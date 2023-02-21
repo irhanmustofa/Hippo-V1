@@ -90,7 +90,7 @@ require_once 'utility.php';
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>MYTAX Indonesia</title>
+    <title>Hippo</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -133,12 +133,12 @@ require_once 'utility.php';
                 </path>
             </svg></a></div>
     <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center px-4"><img class="login-intro-img" src="asset/img/bg-img/36.png" alt=""></div>
+            <div class="text-center px-4"><img class="login-intro-img" src="asset/img/bg-img/LOGIN.png" alt=""></div>
             <!-- Register Form -->
             <div class="register-form mt-4">
-                <h6 class="mb-3 text-center text-success">Masukan Username dan Password Anda</h6>
+                <h6 class="mb-3 text-center" style="color:#ff8300">Masukan Username dan Password Anda</h6>
                 <form action="" method="post">
                     <div class="form-group">
                         <input class="form-control" type="text" name="user" placeholder="Masukan Username">
@@ -150,16 +150,16 @@ require_once 'utility.php';
                                 class="bi bi-eye-slash"></i></div>
                     </div>
                     <p class="text-center"><?php echo $error?></p>
-                    <button class="btn btn-warning rounded-pill w-100" type="submit" name="login">Masuk</button>
+                    <button class="btn rounded-pill w-100 text-white" type="submit" name="login" style="background-color:#FF735C">Masuk</button>
                 </form>
             </div>
             <!-- Login Meta -->
-            <div class="login-meta-data text-center text-success"><a
-                    class="stretched-link forgot-password d-block mt-3 mb-1 text-success"
-                    href="preload/forget-password.php">Lupa
+            <div class="login-meta-data text-center "><a
+                    class="stretched-link forgot-password d-block mt-3 mb-1 "
+                    href="preload/forget-password.php" style="color:#ff8300">Lupa
                     Password?</a>
-                <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link text-success"
-                        href="preload/register.php">Daftar
+                <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link "
+                        href="preload/register.php" style="color:#ff8300">Daftar
                         Sekarang</a></p>
             </div>
         </div>

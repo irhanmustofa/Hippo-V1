@@ -1,15 +1,15 @@
 <?php
 function getRegistran($link)
 {
-    $auth = '&user='.urlencode($_SESSION['user']).'&pass='.urlencode($_SESSION['pass']);
-    $links = "https://mytax.web.id/api/rest_registran.php?function=" . $link.$auth;
+    // $auth = '&user='.urlencode($_SESSION['user']).'&pass='.urlencode($_SESSION['pass']);
+    $links = "localhost/Hippo-V1/api.php?function=" .$link;
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL, $links);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
     $output = curl_exec($ch);
     curl_close($ch);
     $output = json_decode($output);
-    //echo $links;
+    echo $links;
     return $output;
 }
 
