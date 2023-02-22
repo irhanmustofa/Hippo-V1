@@ -56,7 +56,7 @@
     <!-- # This code for showing internet connection status -->
     <div class="internet-connection-status" id="internetStatus"></div>
     <!-- Hero Block Wrapper -->
-    <div class="hero-block-wrapper bg-dark">
+    <div class="hero-block-wrapper" style="background-color:#ffcfc9">
         <!-- Styles -->
         <div class="hero-block-styles">
             <div class="hb-styles1" style="background-image: url('asset/img/core-img/dot.png')"></div>
@@ -67,11 +67,11 @@
             <!-- Skip Page -->
             <div class="skip-page"><a href="index.php">Skip</a></div>
             <!-- Hero Block Content -->
-            <div class="hero-block-content"><img class="mb-4" src="asset/img/bg-img/19.png" alt="">
-                <h2 class="display-4 text-success mb-3">Temukan solusi Pajak dan Akuntansi Anda</h2>
+            <div class="hero-block-content"><img class="mb-4" src="asset/img/bg-img/start.png" alt="">
+                <h2 class="display-4 mb-3" style="color:#ff8300">Temukan Bisnis dan Investor</h2>
                 <form action="" method="post">
                     <p class="text-white">Kami Hadir untuk Menyelesaikan Permasalahan Anda</p>
-                    <button class="btn btn-warning rounded-pill w-100" type="submit" name="mulai">Mulai</button>
+                    <button class="btn rounded-pill w-100 text-white" type="submit" name="mulai" style="background-color:#FF735C; color:white;">Mulai</button>
                 </form>
             </div>
         </div>
