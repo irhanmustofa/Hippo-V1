@@ -20,59 +20,17 @@ require_once 'utility.php';
         } 
         else 
         {
-            $pw = $data->data[0]->pass;
-            $ve = $data->data[0]->verifikasi_email;
-            $nip = $data->data[0]->nip;
-            $nama = $data->data[0]->nama;
-            $nik = $data->data[0]->nik;
-            $alamat = $data->data[0]->alamat;
-            $telepon = $data->data[0]->telepon;
-            $jenis_usaha = $data->data[0]->jenis_usaha;
-            $klu = $data->data[0]->klu;
-            $group = $data->data[0]->grup;
-            $cabang = $data->data[0]->cabang;
-            $image = $data->data[0]->img_profile;
-            $service = $data->data[0]->layanan;
-            $npwp = $data->data[0]->npwp;
-            $img_npwp = $data->data[0]->img_npwp;
-            $jenis_kelamin = $data->data[0]->jenis_kelamin;
-            $status = $data->data[0]->status_pajak;
-            $tanggungan = $data->data[0]->tanggungan;
-            $biaya_hidup = $data->data[0]->biaya;
-            $ptkp = $data->data[0]->ptkp;
-            if($ve != '1')
+            $link = "getRegistran&email=".urlencode($user)."&password=".urlencode($pass);
+            $data = getRegistran($link);
+            $email = $data->data[0]->email;
+            $password = $data->data[0]->password;
+            if($user = $email && $pass= $password){
+                echo("<script>location.href = 'index.php?url=home';</script>");
+            }else
             {
                 $error = "Data tidak valid";
             } 
-            else 
-            {
-                if($pw == md5($pass))
-                {
-                    $_SESSION['nip'] =  $nip;
-                    $_SESSION['nama'] = $nama;
-                    $_SESSION['nik'] = $nik;
-                    $_SESSION['alamat'] = $alamat;
-                    $_SESSION['telepon'] = $telepon;
-                    $_SESSION['jenis_usaha'] = $jenis_usaha;
-                    $_SESSION['klu'] = $klu;
-                    $_SESSION['grup'] = $group;
-                    $_SESSION['cabang'] = $cabang;
-                    $_SESSION['user'] = $user;
-                    $_SESSION['pass'] = $pass;
-                    $_SESSION['service'] = $service;
-                    $_SESSION['image'] = $image;
-                    $_SESSION['npwp'] = $npwp;
-                    $_SESSION['img_npwp'] = $img_npwp;
-                    $_SESSION['jenis_kelamin'] = $jenis_kelamin;
-                    $_SESSION['status_pajak'] = $status;
-                    $_SESSION['tanggungan'] = $tanggungan;
-                    $_SESSION['biaya_hidup'] = $biaya_hidup;
-                    $_SESSION['ptkp'] = $ptkp;
-                    echo("<script>location.href = 'index.php?url=home';</script>");
-                } else {
-                    $error = "Password tidak valid";
-                }
-            }
+            
         }
     }
 ?>

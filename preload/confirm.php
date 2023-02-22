@@ -5,25 +5,27 @@ $error = "";
 if(isset($_POST['verifikasi']))
 {
     $email = $_SESSION['email'];
-    $kode = $_POST['code'];
-    $link = "getCode&email=".urlencode($email);
+    $link = "getKonfirmasi&email=".urlencode($email);
     $data = getRegistran($link);
-    if($data && $data->status == '1') 
-    {
-        $kodeVerifikasi = $data->data[0]->verifikasi_email;
-        if($kode == $kodeVerifikasi){
-            $link = "delVerfikasi&email=".urlencode($email);
-            $data = getRegistran($link);
-            if($data && $data->status == '1') {
-                header('Location:../login.php');
-            } else {
-                $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
-            }
-        } else {
-            $error = "Kode tidak valid";
-        }
+    $kode = $data->data[0]->code;
+    $validasi =$_POST["code"];
+    if($kode == $validasi){
+        $link= "getLogin&email=".urlencode($email);
+        $data= getRegistran($link);
+        $email_user = $data->data[0]->email;
+        $nama_user = $data->data[0]->nama;
+        $password_user = $data->data[0]->password;
+        $class_user = $data->data[0]->class;
+        $link= "setUser&email=".urlencode($email_user)."&nama=".urlencode($nama_user)."&password=".urlencode($password_user)."&class=".urlencode($class_user);
+        echo $link;
+        $data= getRegistran($link);
+        header('Location:../login.php');
+    }else {
+        $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
     }
+    
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -82,11 +84,11 @@ if(isset($_POST['verifikasi']))
                 </path>
             </svg></a></div>
     <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center"><img class="mx-auto mb-4 d-block" src="../asset/img/bg-img/38.png" alt="">
-                <h3 class="text-success">Cek Email Anda!</h3>
-                <p>Masukan Kode yang telah kami kirim</p>
+            <div class="text-center"><img class="mx-auto mb-4 d-block" src="../asset/img/bg-img/KONFIRMASI.png" alt="">
+                <h3 class="" style="color:#ff8300">Cek Email Anda!</h3>
+                <p style="color:#F7645A;">Masukan Kode yang telah kami kirim</p>
             </div>
             <!-- OTP Send Form -->
             <div class="otp-form mt-4">
@@ -95,8 +97,8 @@ if(isset($_POST['verifikasi']))
                         <input class="form-control" type="text" name="code" placeholder="Kode Keamanan" required>
                     </div>
                     <p class="text-center"><?php echo $error?></p>
-                    <button class="btn btn-warning rounded-pill w-100" type="submit"
-                        name="verifikasi">Verifikasi</button>
+                    <button class="btn rounded-pill w-100 text-white" type="submit"
+                        name="verifikasi" style="background-color:#FF735C">Verifikasi</button>
                 </form>
             </div>
         </div>

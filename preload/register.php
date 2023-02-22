@@ -36,8 +36,8 @@ if (isset($_POST['daftar'])) {
             $kode = random_int(100000, 999999);
             $link = "setRegistran&email=" . urlencode($_SESSION['email']) . '&nama='. urlencode($_SESSION['nama']) . "&password=" . urlencode($_SESSION['password']) . "&class=" . urlencode($class)  . "&type=insert";
             $data = getRegistran($link);
-            // $link = "setKonfirm&email=" . urlencode($_SESSION['email']) . '&nama='. urlencode($_SESSION['nama']) . "&password=" . urlencode($_SESSION['password']) . "&class=" . urlencode($class)  . "&type=insert";
-            // $data = getKonfirm($link);
+            $link = "setKonfirmasi&email=" . urlencode($_SESSION['email']) . "&code=" . urlencode($kode) . "&type=insert";
+            $data = getRegistran($link);
             if ($data && $data->status == '1') {
                 $subject = 'Email Verifikasi';
                 $pesan = 'Hallo ' . $_SESSION['nama'] . ',<br><br>';
