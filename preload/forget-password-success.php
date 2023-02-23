@@ -54,19 +54,19 @@ $email = $_SESSION['email'];
     <div class="login-back-button"><a href="../login.php">
             <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
+                <path fill-rule="evenodd" style="color:#FF735C"
                     d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
                 </path>
             </svg></a></div>
     <!-- Wrapper -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center text-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center text-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center px-4"><img class="login-intro-img mb-4" src="../asset/img/bg-img/38.png" alt="">
+            <div class="text-center px-4"><img class="login-intro-img mb-4" src="../asset/img/bg-img/PW-SUKSES.png" alt="">
                 <h3 class="text-success">Cek Email!</h3>
                 <p class="mb-4">Kode verifikasi telah dikirim, silahkan masukan kode untuk merubah password anda.
                 </p>
                 <!-- Go Back Button --><a class="btn btn-warning rounded-pill w-75"
-                    href="change-password.php">Perbaharui
+                    href="change-password.php" class="text-white" style="background-color:#FF735C; color:white;">Perbaharui
                     Password</a>
             </div>
         </div>

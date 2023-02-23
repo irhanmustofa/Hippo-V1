@@ -49,16 +49,16 @@
     <div class="login-back-button"><a href="../login.php">
             <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
+                <path fill-rule="evenodd" style="color:#FF735C"
                     d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
                 </path>
             </svg></a></div>
     <!-- Wrapper -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center text-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center text-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center px-4"><img class="login-intro-img mb-4" src="../asset/img/bg-img/38.png" alt="">
+            <div class="text-center px-4"><img class="login-intro-img mb-4" src="../asset/img/bg-img/PW-GAGAL.png" alt="">
                 <!-- Reset Password Message -->
-                <p class="mb-4">ups! Email yang anda masukan tidak terdaftar, silahkan anda coba kembali.</p>
+                <p class="mb-4" style="color:#ff8300">ups! Email yang anda masukan tidak terdaftar, silahkan anda coba kembali.</p>
                 <!-- Go Back Button --><a class="btn btn-danger rounded-pill w-50" href="forget-password.php">Coba
                     Kembali</a>
             </div>
