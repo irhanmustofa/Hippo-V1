@@ -20,7 +20,7 @@ require_once 'utility.php';
         } 
         else 
         {
-            $link = "getUser&email=".urlencode($user)."&password=".urlencode($pass);
+            $link = "getUser&email=".urlencode($user)."&password=".urlencode(md5($pass));
             $data = getRegistran($link);
             var_dump($data);
             $email = $data->data[0]->email;

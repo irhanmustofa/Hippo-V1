@@ -11,19 +11,15 @@ if(isset($_POST['reset']))
     } else {
         $email = $_SESSION['email'];
         $kode = $_POST['kode'];
-        $link = "getCode&email=".urlencode($email);
+        $link = "getKonfirmasi&email=".urlencode($email);
         $data = getRegistran($link);
-        if($data && $data->status == '1') 
+        $kode1 = $data ->data[0]->code;
+        if($kode1 == $kode) 
         {
-            $kodeVerifikasi = $data->data[0]->verifikasi_email;
-            if($kode == $kodeVerifikasi){
-                $link = "delVerfikasi&email=".urlencode($email)."&kode=".urlencode($pass);
-                $data = getRegistran($link);
-                if($data && $data->status == '1') {
-                    header('Location:../login.php');
-                } else {
-                    $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
-                }
+            $link = "setReset&email=" . urlencode($_SESSION['email']) . "&password=" . urlencode($pass) . "&type=insert";
+            $data = getRegistran($link);
+            if($data && $data->status==1){
+                header('Location:../login.php');
             } else {
                 $error = "Kode tidak valid";
             }

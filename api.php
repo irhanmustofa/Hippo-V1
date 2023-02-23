@@ -99,7 +99,7 @@ function setRegistran()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = $_GET['password'];
+        $password = md5 ($_GET['password']);
     if (!empty($_GET['class']))
         $class = $_GET['class'];
 
@@ -187,11 +187,65 @@ function setUser()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = $_GET['password'];
+        $password = md5 ($_GET['password']);
     if (!empty($_GET['class']))
         $class = $_GET['class'];
 
     $query = "INSERT INTO user SET nama = '$nama', email = '$email', password = '$password', class = '$class'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function setVerifikasi()
+{
+    global $connect;
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['code']))
+        $code = $_GET['code'];
+
+    $query = "UPDATE konfirmasi SET code = '$code' WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function setReset()
+{
+    global $connect;
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['password']))
+        $password = md5 ($_GET['password']);
+
+    $query = "UPDATE user SET password = '$password' WHERE email = '$email'";
     $result = $connect->query($query);
 
     if ($result) {

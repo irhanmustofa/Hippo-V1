@@ -25,14 +25,14 @@ if(isset($_POST['reset']))
     {
         $kode = random_int(100000, 999999);
         
-        $link = "setVerifikasi&email=".urlencode($email)."&vemail=".urlencode($kode)."&type=insert";
+        $link = "setVerifikasi&email=".urlencode($email)."&code=".urlencode($kode)."&type=insert";
         $data = getRegistran($link);
         if($data && $data->status == '1') 
         {
             $subject = 'Email Verifikasi';
             $pesan = 'Hallo Client,<br><br>';
             $pesan .= 'Kode Verifikasi Email Anda '.$kode.'.<br><br><br><br>';
-            $pesan .= 'Salam,<br>Team MYTAX Indonesia';
+            $pesan .= 'Salam,<br>Team Hippo';
     
             $mail = new PHPMailer();
             $mail->isSMTP();
@@ -40,10 +40,10 @@ if(isset($_POST['reset']))
             $mail->SMTPAuth = 'true';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = "465";
-            $mail->Username = "mytaxindonesiaapps@gmail.com";
-            $mail->Password = "kdtwqhzuxejmpiza";
+            $mail->Username = "officialhippo8@gmail.com";
+            $mail->Password = "bhvohkezszymoitv";
             $mail->isHTML(true);
-            $mail->SetFrom('mytaxindonesiaapps@gmail.com',"MYTAX Indonesia");
+            $mail->SetFrom('officialhippo8@gmail.com',"Hippo");
             $mail->addAddress($email);
             
             $mail->Subject = $subject;
@@ -119,9 +119,9 @@ if(isset($_POST['reset']))
                 </path>
             </svg></a></div>
     <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center px-4"><img class="login-intro-img" src="../asset/img/bg-img/37.png" alt=""></div>
+            <div class="text-center px-4"><img class="login-intro-img" src="../asset/img/bg-img/FORGOT-PW.png" alt=""></div>
             <!-- Register Form -->
             <div class="register-form mt-4">
                 <form action="" method="post">
@@ -129,7 +129,7 @@ if(isset($_POST['reset']))
                         <input class="form-control" type="text" name="email" placeholder="Masukan Email Anda">
                     </div>
                     <p class="text-center"><?php echo $error?></p>
-                    <button class="btn btn-warning rounded-pill w-100" type="submit" name="reset">Reset
+                    <button class="btn text-white rounded-pill w-100" type="submit" name="reset" style="background-color:#FF735C">Reset
                         Password</button>
                 </form>
             </div>
