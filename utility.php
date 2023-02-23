@@ -9,7 +9,7 @@ function getRegistran($link)
     $output = curl_exec($ch);
     curl_close($ch);
     $output = json_decode($output);
-    // echo $links;
+    echo $links;
     return $output;
 }
 

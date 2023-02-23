@@ -157,7 +157,7 @@ function getUser()
     if (!empty($_GET['password']))
         $password = $_GET['password'];
 
-    $query = "SELECT * FROM user WHERE email = '$email', password = '$password'";
+    $query = "SELECT * FROM user WHERE email = '$email'AND password = '$password'";
     $result = $connect->query($query);
     while ($row = mysqli_fetch_object($result)) {
         $data[] = $row;

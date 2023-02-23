@@ -20,12 +20,13 @@ require_once 'utility.php';
         } 
         else 
         {
-            $link = "getRegistran&email=".urlencode($user)."&password=".urlencode($pass);
+            $link = "getUser&email=".urlencode($user)."&password=".urlencode($pass);
             $data = getRegistran($link);
+            var_dump($data);
             $email = $data->data[0]->email;
             $password = $data->data[0]->password;
             if($user = $email && $pass= $password){
-                echo("<script>location.href = 'index.php?url=home';</script>");
+                echo("<script>location.href = 'admin/index.php';</script>");
             }else
             {
                 $error = "Data tidak valid";
