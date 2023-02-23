@@ -1,39 +1,37 @@
-<?php 
+<?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 session_start();
-if(!isset($_SESSION['start'])) {
-    echo("<script>location.href = 'start.php';</script>");	
+if (!isset($_SESSION['start'])) {
+    echo ("<script>location.href = 'start.php';</script>");
 }
 
 $_SESSION['valid'] = 'Valid';
 require_once 'utility.php';
 
-    $error = "";
-    if(isset($_POST['login']))
-    {
-        $user = $_POST['user'];
-        $pass = $_POST['pass'];
-        $link = "isRegistedMail&email=".urlencode($user);
+$error = "";
+if (isset($_POST['login'])) {
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $link = "isRegistedMail&email=" . urlencode($user);
+    $data = getRegistran($link);
+    if ($data && $data->status == '0') {
+        $error = "Username tidak terdaftar";
+    } else {
+        $link = "getUser&email=" . urlencode($user) . "&password=" . urlencode(md5($pass));
         $data = getRegistran($link);
-        if($data && $data->status == '0')
-        {
-            $error = "Username tidak terdaftar";
-        } 
-        else 
-        {
-            $link = "getUser&email=".urlencode($user)."&password=".urlencode(md5($pass));
-            $data = getRegistran($link);
-            var_dump($data);
-            $email = $data->data[0]->email;
-            $password = $data->data[0]->password;
-            if($user = $email && $pass= $password){
-                echo("<script>location.href = 'admin/index.php';</script>");
-            }else
-            {
-                $error = "Data tidak valid";
-            } 
-            
+        var_dump($data);
+        $email = $data->data[0]->email;
+        $password = $data->data[0]->password;
+        if ($user = $email && $pass = $password) {
+            echo ("<script>location.href = 'index.php';</script>");
+        } else {
+            echo "<script>alert('Username atau Password salah')</script>";
+            // echo "<script>location = 'login.php'</script>";
         }
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,9 +50,7 @@ require_once 'utility.php';
     <title>Hippo</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="asset/img/core-img/favicon.ico">
     <link rel="apple-touch-icon" href="asset/img/icons/icon-96x96.png">
@@ -85,10 +81,8 @@ require_once 'utility.php';
     <div class="internet-connection-status" id="internetStatus"></div>
     <!-- Back Button -->
     <div class="login-back-button"><a href="start.php">
-            <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
+            <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
                 </path>
             </svg></a></div>
     <!-- Login Wrapper Area -->
@@ -103,22 +97,17 @@ require_once 'utility.php';
                         <input class="form-control" type="text" name="user" placeholder="Masukan Username">
                     </div>
                     <div class="form-group position-relative">
-                        <input class="form-control" id="psw-input" type="password" name="pass"
-                            placeholder="Masukan Password">
-                        <div class="position-absolute" id="password-visibility"><i class="bi bi-eye"></i><i
-                                class="bi bi-eye-slash"></i></div>
+                        <input class="form-control" id="psw-input" type="password" name="pass" placeholder="Masukan Password">
+                        <div class="position-absolute" id="password-visibility"><i class="bi bi-eye"></i><i class="bi bi-eye-slash"></i></div>
                     </div>
-                    <p class="text-center"><?php echo $error?></p>
+                    <p class="text-center"><?php echo $error ?></p>
                     <button class="btn rounded-pill w-100 text-white" type="submit" name="login" style="background-color:#FF735C">Masuk</button>
                 </form>
             </div>
             <!-- Login Meta -->
-            <div class="login-meta-data text-center "><a
-                    class="stretched-link forgot-password d-block mt-3 mb-1 "
-                    href="preload/forget-password.php" style="color:#ff8300">Lupa
+            <div class="login-meta-data text-center "><a class="stretched-link forgot-password d-block mt-3 mb-1 " href="preload/forget-password.php" style="color:#ff8300">Lupa
                     Password?</a>
-                <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link "
-                        href="preload/register.php" style="color:#ff8300">Daftar
+                <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link " href="preload/register.php" style="color:#ff8300">Daftar
                         Sekarang</a></p>
             </div>
         </div>
