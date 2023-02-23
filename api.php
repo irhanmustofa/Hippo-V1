@@ -155,7 +155,7 @@ function getUser()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = $_GET['password'];
+        $password = md5($_GET['password']);
 
     $query = "SELECT * FROM user WHERE email = '$email'AND password = '$password'";
     $result = $connect->query($query);
