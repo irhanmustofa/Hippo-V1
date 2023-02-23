@@ -79,14 +79,14 @@ if(isset($_POST['reset']))
     <div class="login-back-button"><a href="../login.php">
             <svg class="bi bi-arrow-left-short" width="32" height="32" viewBox="0 0 16 16" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
+                <path fill-rule="evenodd" style="color:#FF735C"
                     d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
                 </path>
             </svg></a></div>
     <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center bg-dark">
+    <div class="login-wrapper d-flex align-items-center justify-content-center" style="background-color:#ffcfc9">
         <div class="custom-container">
-            <div class="text-center px-4"><img class="login-intro-img" src="../asset/img/bg-img/36.png" alt=""></div>
+            <div class="text-center px-4"><img class="login-intro-img" src="../asset/img/bg-img/UPDATE-PW.png" alt=""></div>
             <!-- Register Form -->
             <div class="register-form mt-4">
                 <form action="" method="post">
@@ -104,7 +104,7 @@ if(isset($_POST['reset']))
                         <input class="form-control" type="password" name="pass1" placeholder="Konfirmasi Password">
                     </div>
                     <p class="text-center"><?php echo $error?></p>
-                    <button class="btn btn-warning rounded-pill w-100" type="submit" name="reset">Perbaharui
+                    <button class="btn text-white rounded-pill w-100" type="submit" name="reset" style="background-color:#FF735C">Perbaharui
                         Password</button>
                 </form>
             </div>
