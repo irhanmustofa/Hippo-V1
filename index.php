@@ -86,7 +86,7 @@
       <div class="card-body">
         <h5 class="card-title">Perbarui Profil</h5>
         <p class="card-text">Silahkan lengkapi profil anda untuk bisa mulai investasi.</p>
-        <a href="#" class="btn btn-success">Lengkapi Profil</a>
+        <a href="update-profile.html" class="btn btn-success">Lengkapi Profil</a>
       </div>
     </div>
   </div>
