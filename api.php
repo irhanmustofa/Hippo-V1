@@ -263,3 +263,40 @@ function setReset()
     header('Content-Type: application/json');
     echo json_encode($response);
 }
+
+function setUpdateUser()
+{
+    global $connect;
+    if (!empty($_GET['nama']))
+        $nama = $_GET['nama'];
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['password']))
+        $password = md5 ($_GET['password']);
+    if (!empty($_GET['class']))
+        $class = $_GET['class'];
+    if (!empty($_GET['no_identitas']))
+        $no_identitas = $_GET['no_identitas'];
+    if (!empty($_GET['foto_ktp']))
+        $foto_ktp = $_GET['foto_ktp'];
+    if (!empty($_GET['foto_npwp']))
+        $foto_npwp = $_GET['foto_npwp'];
+
+    $query = "UPDATE user SET nama = '$nama', email = '$email', password = '$password', class = '$class', no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', foto_npwp = '$foto_npwp'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
