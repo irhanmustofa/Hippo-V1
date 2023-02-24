@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['start'])) {
     echo ("<script>location.href = 'start.php';</script>");
@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
             echo ("<script>location.href = 'index.php';</script>");
         } else {
             echo "<script>alert('Username atau Password salah')</script>";
-            // echo "<script>location = 'login.php'</script>";
+            echo "<script>location = 'login.php'</script>";
         }
     }
 }
