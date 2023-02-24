@@ -83,7 +83,7 @@ if (!isset($_SESSION['start'])) {
                 </div>
                 <!-- Sidenav Nav -->
                 <ul class="sidenav-nav ps-0">
-                    <li><a href="page-home.html"><i class="bi bi-house-door"></i>Home</a></li>
+                    <li><a href="index.php"><i class="bi bi-house-door"></i>Home</a></li>
                     <li><a href="elements.html"><i class="bi bi-folder2-open"></i>Elements<span class="badge bg-danger rounded-pill ms-2">220+</span></a></li>
                     <li><a href="pages.html"><i class="bi bi-collection"></i>Pages<span class="badge bg-success rounded-pill ms-2">100+</span></a></li>
                     <li><a href="#"><i class="bi bi-cart-check"></i>Shop</a>

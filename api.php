@@ -4,7 +4,8 @@ if (function_exists($_GET['function'])) {
     $_GET['function']();
 }
 
-function getKonfirmasi(){
+function getKonfirmasi()
+{
     global $connect;
     if (!empty($_GET['email']))
         $email = $_GET['email'];
@@ -65,7 +66,7 @@ function setKonfirmasi()
     if (!empty($_GET['code']))
         $code = $_GET['code'];
 
-    if ($email && $code){
+    if ($email && $code) {
         $query = "INSERT INTO konfirmasi SET email = '$email', code = '$code'";
         $result = $connect->query($query);
 
@@ -80,7 +81,7 @@ function setKonfirmasi()
                 'data' => 'Gagal'
             );
         }
-    }else{
+    } else {
         $response = array(
             'status' => 0,
             'data' => 'Parameter Salah'
@@ -99,7 +100,7 @@ function setRegistran()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = md5 ($_GET['password']);
+        $password = md5($_GET['password']);
     if (!empty($_GET['class']))
         $class = $_GET['class'];
 
@@ -187,7 +188,7 @@ function setUser()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = md5 ($_GET['password']);
+        $password = md5($_GET['password']);
     if (!empty($_GET['class']))
         $class = $_GET['class'];
 
@@ -243,7 +244,7 @@ function setReset()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = md5 ($_GET['password']);
+        $password = md5($_GET['password']);
 
     $query = "UPDATE user SET password = '$password' WHERE email = '$email'";
     $result = $connect->query($query);
@@ -272,7 +273,7 @@ function setUpdateUser()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     if (!empty($_GET['password']))
-        $password = md5 ($_GET['password']);
+        $password = md5($_GET['password']);
     if (!empty($_GET['class']))
         $class = $_GET['class'];
     if (!empty($_GET['no_identitas']))
@@ -281,8 +282,11 @@ function setUpdateUser()
         $foto_ktp = $_GET['foto_ktp'];
     if (!empty($_GET['foto_npwp']))
         $foto_npwp = $_GET['foto_npwp'];
+    if (!empty($_GET['alamat']))
+        $alamat = $_GET['alamat'];
 
-    $query = "UPDATE user SET nama = '$nama', email = '$email', password = '$password', class = '$class', no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', foto_npwp = '$foto_npwp'";
+    $query = "UPDATE user SET nama = '$nama', password = '$password',
+    class = '$class', no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', alamat = '$alamat' WHERE email = '$email'";
     $result = $connect->query($query);
 
     if ($result) {
