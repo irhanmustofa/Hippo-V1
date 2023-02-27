@@ -25,6 +25,7 @@ if (isset($_POST['login'])) {
         $email = $data->data[0]->email;
         $password = $data->data[0]->password;
         if ($user = $email && $pass = $password) {
+            $_SESSION ["email"] = $email;
             echo ("<script>location.href = 'index.php';</script>");
         } else {
             echo "<script>alert('Username atau Password salah')</script>";

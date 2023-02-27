@@ -1,4 +1,16 @@
-<?php include 'header.php'; ?>
+<?php 
+session_start();
+include 'header.php';
+require_once 'utility.php';
+$error = "";
+
+$email = $_SESSION['email'];
+$link = "getProfile&email=".urlencode($email);
+echo $link;
+$data = getRegistran($link);
+var_dump($data); 
+
+?>
 
 <div class="page-content-wrapper">
   <!-- Welcome Toast -->
@@ -84,7 +96,7 @@
         Profil
       </div>
       <div class="card-body">
-        <h5 class="card-title">Perbarui Profil</h5>
+        <h5 class="card-title"><?php echo ($data->data[0]->nama) ?></h5>
         <p class="card-text">Silahkan lengkapi profil anda untuk bisa mulai investasi.</p>
         <a href="update-profile.php" class="btn btn-success">Lengkapi Profil</a>
       </div>
