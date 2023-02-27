@@ -6,9 +6,9 @@ $error = "";
 
 $email = $_SESSION['email'];
 $link = "getProfile&email=".urlencode($email);
-echo $link;
+// echo $link;
 $data = getRegistran($link);
-var_dump($data); 
+// var_dump($data); 
 
 ?>
 
