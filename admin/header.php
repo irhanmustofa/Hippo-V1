@@ -21,6 +21,9 @@ if (!isset($_SESSION['email_admin'])) {
 
     <link rel="stylesheet" href="assets/css/shared/iconly.css">
 
+    <!-- Favicon -->
+    <link rel="icon" href="asset/img/bg-img/logo-kudanil.png">
+
 </head>
 
 <body>
