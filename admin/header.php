@@ -4,7 +4,13 @@ if (!isset($_SESSION['email_admin'])) {
     header("Location:login.php");
     exit;
 }
+
+require_once '../utility.php';
+$email_admin = $_SESSION['email_admin'];
+$link = "getProfileAdmin&email_admin=" . urlencode($email_admin);
+$data = getRegistran($link);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +39,9 @@ if (!isset($_SESSION['email_admin'])) {
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
+                            <a href="index.html">
+                                <H5 class="mt-3"><?php echo $data->data[0]->nama_admin; ?></H5>
+                            </a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -78,6 +86,9 @@ if (!isset($_SESSION['email_admin'])) {
                                 <span>User</span>
                             </a>
                             <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="profil-admin.php">Profile Admin</a>
+                                </li>
                                 <li class="submenu-item ">
                                     <a href="pendana.php">Pendana</a>
                                 </li>
