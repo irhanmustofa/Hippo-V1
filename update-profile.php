@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include "header.php";
 require_once 'utility.php';
@@ -6,6 +6,113 @@ $error = "";
 $email = $_SESSION['email'];
 $link = "getProfile&email=".urlencode($email);
 $data = getRegistran($link);
+// var_dump($data);
+$nama = $data->data[0]->nama;
+$password = $data->data[0]->password;
+$class = $data->data[0]->class;
+
+
+
+if(isset($_POST['update']))
+{
+  $no_identitas = $_POST['no_identitas'];
+  $no_npwp = $_POST['no_npwp'];
+  $alamat = $_POST['alamat'];
+
+  if($data && $data->status == '1'){
+    $extensi_izin = array("jpg", "jpeg", "png", "gif");
+    $size_izin = (2097152 / 2);
+
+    $allow_ktp = true;
+    $sumber_ktp = $_FILES['foto_ktp']['tmp_name'];
+    $target_ktp = "./asset/img/ktp/";
+    $nama_ktp = $_FILES['foto_ktp']['name'];
+    $size_ktp = $_FILES['foto_ktp']['size'];
+
+    if ($nama_ktp != "") {
+      if ($size_ktp > $size_izin) {
+        $error .= "- Ukuran File KTP tidak Boleh Melebihi 1 MB";
+        $allow_ktp = false;
+      } else {
+        $getExtensi = explode(".", $nama_ktp);
+        $extensi_ktp = strtolower(end($getExtensi));
+        $nama_ktp = "ktp-" . $email . ".". $extensi_ktp;
+        if (!in_array($extensi_ktp, $extensi_izin) == true) {
+          // if ($op == 'update') {
+          //   $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
+          //   $data = getData($link);
+          //   if ($data && $data->status == 1) {
+          //     unlink($target_ktp . $data->data->img_ktp);
+          //   }
+          // }
+        // } else {
+          $error .= " File hanya diperbolehkan dalam bentuk gambar (jpg, jpeg, png, gif)";
+          $allow_ktp = false;
+        }
+      }
+
+      if ($allow_ktp) {
+        if (!move_uploaded_file($sumber_ktp, $target_ktp . $nama_ktp)) {
+          $error .= " Gagal Uplaod File KTP ke server";
+          $error .= $sumber_ktp . " " . $target_ktp . $nama_ktp;
+          $allow_ktp = false;
+        }
+      }
+      // if ($allow_ktp)
+      //   $kelurga_imgNik = $nama_ktp;
+    }
+
+    $allow_npwp = true;
+    $sumber_npwp = $_FILES['foto_npwp']['tmp_name'];
+    $target_npwp = "./asset/img/npwp/";
+    $nama_npwp = $_FILES['foto_npwp']['name'];
+    $size_npwp = $_FILES['foto_npwp']['size'];
+
+    if ($nama_npwp != "") {
+      if ($size_npwp > $size_izin) {
+        $error .= "- Ukuran File npwp tidak Boleh Melebihi 1 MB";
+        $allow_npwp = false;
+      } else {
+        $getExtensi = explode(".", $nama_npwp);
+        $extensi_npwp = strtolower(end($getExtensi));
+        $nama_npwp = "npwp-" . $email . ".". $extensi_npwp;
+        if (!in_array($extensi_npwp, $extensi_izin) == true) {
+          // if ($op == 'update') {
+          //   $link = 'getKeluargaImage&id=' . $id . '&field=img_npwp&nama=' . $kelurga_nama;
+          //   $data = getData($link);
+          //   if ($data && $data->status == 1) {
+          //     unlink($target_npwp . $data->data->img_npwp);
+          //   }
+          // }
+        // } else {
+          $error .= " File hanya diperbolehkan dalam bentuk gambar (jpg, jpeg, png, gif)";
+          $allow_npwp = false;
+        }
+      }
+
+      if ($allow_npwp) {
+        if (!move_uploaded_file($sumber_npwp, $target_npwp . $nama_npwp)) {
+          $error .= " Gagal Uplaod File npwp ke server";
+          $error .= $sumber_npwp . " " . $target_npwp . $nama_npwp;
+          $allow_npwp = false;
+        }
+      }
+      // if ($allow_ktp)
+      //   $kelurga_imgNik = $nama_ktp;
+    }
+
+    $link= "setUpdateUser&email=".urlencode($email)."&no_identitas=".urlencode($no_identitas)."&foto_ktp=".urlencode($nama_ktp)."&no_npwp=".urlencode($no_npwp)."&foto_npwp=".urlencode($nama_npwp)."&alamat=".urlencode($alamat);
+        // echo $link;
+    $data= getRegistran($link);
+    // header('Location:index.php');
+  }else {
+    $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
+  }
+
+
+
+
+}
 
 ?>
 
@@ -21,43 +128,32 @@ $data = getRegistran($link);
         </div>
         <div class="user-info">
           <div class="d-flex align-items-center">
-            <h5 class="mb-1"><?php echo ($data->data[0]->nama); ?></h5><span class="badge bg-warning ms-2 rounded-pill">Pro</span>
+            <h5 class="mb-1"><?php echo $nama; ?></h5><span class="badge bg-warning ms-2 rounded-pill">Pro</span>
           </div>
-          <p class="mb-0">UX/UI Designer</p>
+          <!-- <p class="mb-0">UX/UI Designer</p> -->
         </div>
       </div>
     </div>
     <!-- User Meta Data-->
     <div class="card user-data-card">
       <div class="card-body">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
+          <div class="form-group mb-3">
+            <input class="form-control" id="nama" type="hidden" name="nama" value="<?php echo $nama; ?>" readonly>
+          </div>
+          <div class="form-group mb-3">
+            <input class="form-control" id="password" type="hidden" name="password" value="<?php echo $password; ?>" readonly>
+          </div>
+          <div class="form-group mb-3">
+            <input class="form-control" id="class" type="hidden" name="class" value="<?php echo $class; ?>" readonly>
+          </div>
           <div class="form-group mb-3">
             <label class="form-label" for="">No Identitas</label>
             <input class="form-control" id="no_identitas" type="text" name="no_identitas">
           </div>
           <div class="form-group mb-3">
             <label class="form-label">Upload Foto KTP</label>
-            <div class="container">
-              <div class="card">
-                <div class="card-body">
-                  <div class="file-upload-card">
-                    <svg class="bi bi-file-earmark-arrow-up text-primary" width="48" height="48" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"></path>
-                      <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"></path>
-                      <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 7.707V11.5a.5.5 0 0 0 .5.5z"></path>
-                    </svg>
-                    <h5 class="mt-2 mb-4">Upload your files</h5>
-                    <form action="#" method="GET">
-                      <div class="form-file">
-                        <input class="form-control d-none" id="customFile" type="file">
-                        <label class="form-file-label justify-content-center" for="customFile"><span class="form-file-button btn shadow w-100 text-white" style="background-color:#f7645a">Upload File</span></label>
-                      </div>
-                    </form>
-                    <h6 class="mt-4 mb-0">Supported files</h6><small>.jpg .png .jpeg .gif</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <input type="file" class="form-control" name="foto_ktp" required="required">
           </div>
           <div class="form-group mb-3">
             <label class="form-label" for="">No NPWP</label>
@@ -65,30 +161,8 @@ $data = getRegistran($link);
           </div>
           <div class="form-group mb-3">
             <label class="form-label">Upload Foto NPWP</label>
-            <div class="container">
-              <div class="card">
-                <div class="card-body">
-                  <div class="file-upload-card">
-                    <svg class="bi bi-file-earmark-arrow-up text-primary" width="48" height="48" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"></path>
-                      <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"></path>
-                      <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 7.707V11.5a.5.5 0 0 0 .5.5z"></path>
-                    </svg>
-                    <h5 class="mt-2 mb-4">Upload your files</h5>
-                    <form action="#" method="GET">
-                      <div class="form-file">
-                        <input class="form-control d-none" id="customFile" type="file">
-                        <label class="form-file-label justify-content-center" for="customFile"><span class="form-file-button btn shadow w-100 text-white" style="background-color:#f7645a">Upload File</span></label>
-                      </div>
-                    </form>
-                    <h6 class="mt-4 mb-0">Supported files</h6><small>.jpg .png .jpeg .gif</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <input type="file" class="form-control" name="foto_npwp" required="required">
           </div>
-
-
           <div class="form-group mb-3">
             <label class="form-label" for="alamat">Alamat</label>
             <input class="form-control" id="alamat" type="text" name="alamat">

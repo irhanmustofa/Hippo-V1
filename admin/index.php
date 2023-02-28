@@ -1,3 +1,8 @@
+<?php 
+session_start();
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +87,12 @@
                                     <a href="penerbit/index.html">Penerbit</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="logout.php" class='sidebar-link'>
+                                <i class="bi bi-person-circle"></i>
+                                <span>logout</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

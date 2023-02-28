@@ -4,6 +4,128 @@ if (function_exists($_GET['function'])) {
     $_GET['function']();
 }
 
+
+function getProfileAdmin()
+{
+
+    global $connect;
+    if (!empty($_GET['email_admin']))
+        $email_admin = $_GET['email_admin'];
+
+    $query = "SELECT * FROM admin WHERE email_admin = '$email_admin'";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => $data
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function getAdmin()
+{
+
+    global $connect;
+    if (!empty($_GET['email_admin']))
+        $email_admin = $_GET['email_admin'];
+    if (!empty($_GET['password']))
+        $password = md5($_GET['password']);
+
+    
+
+    $query = "SELECT * FROM admin WHERE email_admin = '$email_admin' AND password = '$password'";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($data) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function setAdminPw(){
+
+    global $connect;
+    if (!empty($_GET['nama_admin']))
+        $nama_admin = $_GET['nama_admin'];
+    if (!empty($_GET['email_admin']))
+        $email_admin = $_GET['email_admin'];
+    if (!empty($_GET['password']))
+        $password = md5($_GET['password']);
+    
+
+    $query = "UPDATE admin SET nama_admin = '$nama_admin', password = '$password' WHERE email_admin = '$email_admin'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+
+}
+
+function setAdminNoPw(){
+
+    global $connect;
+    if (!empty($_GET['nama_admin']))
+        $nama_admin = $_GET['nama_admin'];
+    if (!empty($_GET['email_admin']))
+        $email_admin = $_GET['email_admin'];
+    
+
+    $query = "UPDATE admin SET nama_admin = '$nama_admin' WHERE email_admin = '$email_admin'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+
+}
+
 function getKonfirmasi()
 {
     global $connect;
@@ -309,7 +431,7 @@ function setUpdateUser()
     if (!empty($_GET['alamat']))
         $alamat = $_GET['alamat'];
 
-    $query = "UPDATE user SET no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', no_npwp = '$no_npwp', alamat = '$alamat' WHERE email = '$email'";
+    $query = "UPDATE user SET no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', no_npwp = '$no_npwp', foto_npwp = '$foto_npwp', alamat = '$alamat' WHERE email = '$email'";
     $result = $connect->query($query);
 
     if ($result) {

@@ -27,7 +27,7 @@ $data = getRegistran($link);
               <div class="d-flex align-items-center">
                 <h5 class="mb-1"><?php echo ($data->data[0]->nama) ?></h5>
               </div>
-              <a href="update-profile.php"><p class="mb-0"> Lihat Profil <i class="bi bi-chevron-right"></i> </p></a>
+              <a href="detail-profile.php"><p class="mb-0"> Lihat Profil <i class="bi bi-chevron-right"></i> </p></a>
             </div>
           </div>
         </div>
