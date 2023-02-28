@@ -1,4 +1,5 @@
 <?php
+include "../koneksi.php";
 session_start();
 if (!isset($_SESSION['email_admin'])) {
     header("Location:login.php");
@@ -28,7 +29,8 @@ $data = getRegistran($link);
     <link rel="stylesheet" href="assets/css/shared/iconly.css">
 
     <!-- Favicon -->
-    <link rel="icon" href="asset/img/bg-img/logo-kudanil.png">
+    <link rel="icon" href="../asset/img/bg-img/logo-kudanil.png">
+    <!-- <link rel="icon" href="asset/img/bg-img/logo-kudanil.png"> -->
 
 </head>
 
@@ -73,7 +75,7 @@ $data = getRegistran($link);
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item">
                             <a href="index.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>

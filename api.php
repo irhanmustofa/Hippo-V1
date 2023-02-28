@@ -43,7 +43,7 @@ function getAdmin()
     if (!empty($_GET['password']))
         $password = md5($_GET['password']);
 
-    
+
 
     $query = "SELECT * FROM admin WHERE email_admin = '$email_admin' AND password = '$password'";
     $result = $connect->query($query);
@@ -66,7 +66,8 @@ function getAdmin()
     echo json_encode($response);
 }
 
-function setAdminPw(){
+function setAdminPw()
+{
 
     global $connect;
     if (!empty($_GET['nama_admin']))
@@ -75,7 +76,7 @@ function setAdminPw(){
         $email_admin = $_GET['email_admin'];
     if (!empty($_GET['password']))
         $password = md5($_GET['password']);
-    
+
 
     $query = "UPDATE admin SET nama_admin = '$nama_admin', password = '$password' WHERE email_admin = '$email_admin'";
     $result = $connect->query($query);
@@ -94,17 +95,17 @@ function setAdminPw(){
 
     header('Content-Type: application/json');
     echo json_encode($response);
-
 }
 
-function setAdminNoPw(){
+function setAdminNoPw()
+{
 
     global $connect;
     if (!empty($_GET['nama_admin']))
         $nama_admin = $_GET['nama_admin'];
     if (!empty($_GET['email_admin']))
         $email_admin = $_GET['email_admin'];
-    
+
 
     $query = "UPDATE admin SET nama_admin = '$nama_admin' WHERE email_admin = '$email_admin'";
     $result = $connect->query($query);
@@ -123,7 +124,6 @@ function setAdminNoPw(){
 
     header('Content-Type: application/json');
     echo json_encode($response);
-
 }
 
 function getKonfirmasi()
@@ -448,4 +448,71 @@ function setUpdateUser()
 
     header('Content-Type: application/json');
     echo json_encode($response);
+}
+
+
+// ==============SET artikel PENGAJUAN===================
+function setArtikel()
+{
+    global $connect;
+    if (!empty($_GET['tanggal']))
+        $tanggal = $_GET['tanggal'];
+    if (!empty($_GET['judul']))
+        $judul = $_GET['judul'];
+    if (!empty($_GET['deskripsi']))
+        $deskripsi = ($_GET['deskripsi']);
+    if (!empty($_GET['gambar']))
+        $gambar = $_GET['gambar'];
+
+
+    if ($tanggal && $judul && $deskripsi && $gambar) {
+        $query = "INSERT INTO artikel SET tanggal = '$tanggal', judul = '$judul', 
+        deskripsi = '$deskripsi', gambar = '$gambar'";
+        $result = $connect->query($query);
+
+        if ($result) {
+            $dodol = array(
+                'status' => 1,
+                'data' => 'Sukses'
+            );
+        } else {
+            $dodol = array(
+                'status' => 0,
+                'data' => 'Gagal'
+            );
+        }
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Paramater Salah'
+        );
+    }
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getArtikel()
+{
+    global $connect;
+    $query = "SELECT * FROM artikel";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
 }

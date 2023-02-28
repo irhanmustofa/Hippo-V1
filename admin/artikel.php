@@ -15,7 +15,7 @@ require_once "../utility.php";
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Berita</h3>
+                    <h3>Data Artikel</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -65,7 +65,7 @@ require_once "../utility.php";
                                             } else {
                                                 $getExtensi = explode(".", $nama_file);
                                                 $extensi_file = strtolower(end($getExtensi));
-                                                $nama_file = "file-" . $id . "-" . '.' . $extensi_file;
+                                                $nama_file = "file-" . $id . "Artikel" . '.' . $extensi_file;
                                                 if (!in_array($extensi_file, $extensi_izin) == true) {
                                                     // if ($op == 'update') {
                                                     //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
@@ -173,5 +173,4 @@ require_once "../utility.php";
                 ?>
             </div>
         </section>
-    </div>
-    <?php include "footer.php"; ?>
+        <?php include "footer.php"; ?>
