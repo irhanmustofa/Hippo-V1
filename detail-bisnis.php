@@ -1,82 +1,64 @@
 <?php
-include "header.php";
-include "koneksi.php";
-$result = mysqli_query($connect, "SELECT * FROM artikel ");
-$bisnis = mysqli_query($connect, "SELECT * FROM bisnis ");
+include 'header.php';
+require_once 'utility.php';
+$error = "";
 
+$email = $_SESSION['email'];
+$link = "getProfile&email=" . urlencode($email);
+// echo $link;
+$id = $_GET['id'];
+$data = getRegistran($link);
+// var_dump($data); 
 
 ?>
-<?php foreach ($result as $key => $value) : ?>
-  <div class="page-content-wrapper py-3">
-    <div class="container">
-      <div class="card product-details-card mb-3">
-        <div class="card-body">
+<div class="page-content-wrapper py-3">
+  <div class="container">
+    <?php
+    $link = "getArtikelDetail&id=" . urlencode($id);
+    $output = getRegistran($link);
+    // foreach ($output->data as $array_item) {
+    //   $artikel[] = array(
+    //     'id' => $array_item->id,
+    //     'judul' => $array_item->judul,
+    //     'tanggal' => $array_item->tanggal,
+    //     'deskripsi' => $array_item->deskripsi,
+    //     'gambar' => $array_item->gambar,
+    //   );
+    // }
+    ?>
+    <div class="card product-details-card mb-3">
+      <div class="card-body">
+        <div class="product-gallery">
           <div class="product-gallery">
-            <div class="product-gallery">
-              <p><?php echo $value["tanggal"]; ?></p>
-              <h1><?php echo $value["judul"]; ?></h1>
-              <img style="width: 100%;" src="admin/image/<?php echo $value["gambar"]; ?>" alt="">
-            </div>
+            <p><?php echo ($output->data[0]->tanggal) ?></p>
+            <p><?php echo ($output->data[0]->judul) ?></p>
+            <img style="width: 100%;" src="admin/image/<?php echo ($output->data[0]->gambar) ?>" alt="">
           </div>
         </div>
       </div>
-      <div class="card product-details-card mb-3 direction-rtl">
-        <div class="card-body">
-          <h5>Description</h5>
-          <p><?php echo $value["deskripsi"] ?></p>
-          <div class="rating-card-two mt-4">
-            <!-- Rating result -->
-            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
-              <div class="rating"><a href="#"><i class="bi bi-star-fill"></i></a><a href="#"><i class="bi bi-star-fill"></i></a><a href="#"><i class="bi bi-star-fill"></i></a><a href="#"><i class="bi bi-star-fill"></i></a><a href="#"><i class="bi bi-star-half"></i></a></div><span>4.44 out of 5 ratings</span>
-            </div>
-            <!-- Rating Details -->
-            <div class="rating-detail">
-              <!-- Single Rating Details -->
-              <div class="d-flex align-items-center mt-2"><span>5 star</span>
-                <div class="progress-bar-wrapper">
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: 78%;" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div><span>78%</span>
-              </div>
-              <!-- Single Rating Details -->
-              <div class="d-flex align-items-center mt-2"><span>4 star</span>
-                <div class="progress-bar-wrapper">
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: 14%;" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div><span>14%</span>
-              </div>
-              <!-- Single Rating Details -->
-              <div class="d-flex align-items-center mt-2"><span>3 star</span>
-                <div class="progress-bar-wrapper">
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: 8%;" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div><span>8%</span>
-              </div>
-              <!-- Single Rating Details -->
-              <div class="d-flex align-items-center mt-2"><span>2 star</span>
-                <div class="progress-bar-wrapper">
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div><span>0%</span>
-              </div>
-              <!-- Single Rating Details -->
-              <div class="d-flex align-items-center mt-2"><span>1 star</span>
-                <div class="progress-bar-wrapper">
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div><span>0%</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="card product-details-card mb-3 direction-rtl">
+      <div class="card-body">
+        <h5>Description</h5>
+        <p><?php echo ($output->data[0]->deskripsi) ?></p>
       </div>
-    <?php endforeach ?>
+    </div>
 
+    <?php
+    $link = "getBisnis";
+    $output = getRegistran($link);
+    foreach ($output->data as $array_item) {
+      $bisnis[] = array(
+        'id_bisnis' => $array_item->id_bisnis,
+        'kode_bisnis' => $array_item->kode_bisnis,
+        'nama_bisnis' => $array_item->nama_bisnis,
+        'deskripsi' => $array_item->deskripsi,
+        'dana' => $array_item->dana,
+        'estimasi' => $array_item->estimasi,
+        'gambar' => $array_item->gambar,
+      );
+    }
+    ?>
     <?php foreach ($bisnis as $key => $value) : ?>
       <div class="card related-product-card direction-rtl">
         <div class="card-body">
@@ -104,6 +86,6 @@ $bisnis = mysqli_query($connect, "SELECT * FROM bisnis ");
         </div>
       </div>
     <?php endforeach ?>
-    </div>
   </div>
-  <?php include "footer.php" ?>
+</div>
+<?php include "footer.php" ?>

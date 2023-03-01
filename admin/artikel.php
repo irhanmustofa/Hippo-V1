@@ -2,7 +2,6 @@
 include "header.php";
 require_once "../utility.php";
 
-
 ?>
 <div id="main">
     <header class="mb-3">
@@ -65,7 +64,7 @@ require_once "../utility.php";
                                             } else {
                                                 $getExtensi = explode(".", $nama_file);
                                                 $extensi_file = strtolower(end($getExtensi));
-                                                $nama_file = "file-" . $id . "Artikel" . '.' . $extensi_file;
+                                                $nama_file = "file-" . $judul  . '.' . $extensi_file;
                                                 if (!in_array($extensi_file, $extensi_izin) == true) {
                                                     // if ($op == 'update') {
                                                     //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;

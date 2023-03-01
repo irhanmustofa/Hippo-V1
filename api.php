@@ -586,3 +586,31 @@ function getBisnis()
     header('Content-Type: application/json');
     echo json_encode($dodol);
 }
+
+function getArtikelDetail()
+{
+    global $connect;
+    if (!empty($_GET['id']))
+        $id = $_GET['id'];
+    $query = "SELECT * FROM artikel WHERE id = '$id'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
