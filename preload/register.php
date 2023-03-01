@@ -46,15 +46,18 @@ if (isset($_POST['daftar'])) {
 
                 $mail = new PHPMailer();
                 $mail->isSMTP();
+                $mail->SMTPDebug = 2;
+                $mail->Debugoutput = 'html';
+                $mail->SMTPSecure = 'ssl';
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = 'true';
-                $mail->SMTPSecure = 'ssl';
                 $mail->Port = "465";
-                $mail->Username = "officialhippo8@gmail.com";
-                $mail->Password = "bhvohkezszymoitv";
+                $mail->SMTPKeepAlive = true; //tambahan
+                $mail->Username = "8hippocikarang@gmail.com";
+                $mail->Password = "xwfvoigkinacfoza";
                 $mail->isHTML(true);
-                $mail->SetFrom('officialhippo8@gmail.com', "Hippo");
-                $mail->addAddress($_SESSION['email']);
+                $mail->SetFrom('8hippocikarang@gmail.com',"Hippo");
+                $mail->addAddress($email);
 
                 $mail->Subject = $subject;
                 $mail->Body = $pesan;

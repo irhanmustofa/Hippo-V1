@@ -25,19 +25,19 @@
           <label class="form-label" for="job">Password</label>
           <div class="input-group mb-3">
             <input class="form-control" type="password" aria-label="Text input with dropdown button" value="<?php echo ($data->data[0]->password) ?>" placeholder="" readonly>
-            <a href="../preload/forget-password.php" class="btn btn-primary" type="a">Ubah</a>
+            <a href="./preload/forget-password.php" class="btn btn-primary" type="a">Ubah</a>
           </div>
           <div class="form-group mb-3">
             <label class="form-label" for="portfolio">No Identitas</label>
             <input class="form-control" id="portfolio" type="url" value="<?php echo ($data->data[0]->no_identitas) ?>" placeholder="Portfolio URL">
           </div>
           <div class="form-group mb-3">
-            <label class="form-label" for="address">No N</label>
-            <input class="form-control" id="address" type="text" value="28/C Green Road, BD" placeholder="Address">
+            <label class="form-label" for="address">No NPWP</label>
+            <input class="form-control" id="address" type="text" value="<?php echo ($data->data[0]->no_npwp) ?>">
           </div>
           <div class="form-group mb-3">
-            <label class="form-label" for="bio">Bio</label>
-            <textarea class="form-control" id="bio" name="bio" cols="30" rows="10" placeholder="Working as UX/UI Designer at Designing World since 2016."></textarea>
+            <label class="form-label" for="address">Alamat</label>
+            <input class="form-control" id="address" type="text" value="<?php echo ($data->data[0]->alamat) ?>">
           </div>
           <button class="btn btn-success w-100" type="submit">Update Now</button>
         </form>

@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include 'header.php';
 require_once 'utility.php';
 $error = "";

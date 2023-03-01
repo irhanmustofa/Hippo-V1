@@ -36,24 +36,27 @@ if(isset($_POST['reset']))
     
             $mail = new PHPMailer();
             $mail->isSMTP();
+            $mail->SMTPDebug = 2;
+            $mail->Debugoutput = 'html';
+            $mail->SMTPSecure = 'ssl';
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = 'true';
-            $mail->SMTPSecure = 'ssl';
             $mail->Port = "465";
-            $mail->Username = "officialhippo8@gmail.com";
-            $mail->Password = "bhvohkezszymoitv";
+            $mail->SMTPKeepAlive = true; //tambahan
+            $mail->Username = "irhanmustofa28@gmail.com";
+            $mail->Password = "hgdpncivgyxgglsj";
             $mail->isHTML(true);
-            $mail->SetFrom('officialhippo8@gmail.com',"Hippo");
+            $mail->SetFrom('irhanmustofa28@gmail.com',"Hippo");
             $mail->addAddress($email);
             
             $mail->Subject = $subject;
             $mail->Body = $pesan;
-            $mail->smtpClose();
             if($mail->send()){
                 header("Location:forget-password-success.php");
             } else {
                 $error = "Email verifikasi gagal dikirim, cek kembali data anda!";
             }                    
+            $mail->smtpClose();
         } 
         else 
         {
