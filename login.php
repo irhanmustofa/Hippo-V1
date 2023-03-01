@@ -24,7 +24,17 @@ if (isset($_POST['login'])) {
         // var_dump($data);
         $email = $data->data[0]->email;
         $password = $data->data[0]->password;
+        $no_identitas = $data->data[0]->no_identitas;
+        $foto_ktp = $data->data[0]->foto_ktp;
+        $no_npwp = $data->data[0]->no_npwp;
+        $foto_npwp = $data->data[0]->foto_npwp;
+        $alamat = $data->data[0]->alamat;
         if ($user = $email && $pass = $password) {
+            $_SESSION['lengkap'] = '0';
+            if (!empty($no_identitas) && !empty($foto_ktp) && !empty($no_npwp) && !empty($foto_npwp) && !empty($alamat)) {
+                $_SESSION["lengkap"] = '1';
+
+            }
             $_SESSION ["email"] = $email;
             echo ("<script>location.href = 'index.php';</script>");
         } else {

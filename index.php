@@ -88,6 +88,10 @@ $data = getRegistran($link);
       </div>
     </div>
   </div>
+
+  <?php 
+  if ($_SESSION['lengkap'] == '0') {?>
+    
   <div class="pt-3"></div>
   <div class="container direction-rtl">
     <div class="card">
@@ -101,6 +105,13 @@ $data = getRegistran($link);
       </div>
     </div>
   </div>
+  <?php   
+  }
+  ?>
+  
+
+
+
   <div class="pt-3"></div>
   <div class="container direction-rtl">
     <div class="card mb-3">
