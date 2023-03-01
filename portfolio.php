@@ -33,6 +33,8 @@ $link = "getProfile&email=" . urlencode($email);
                                     $deskripsi = $_POST['deskripsi'];
                                     $dana = $_POST['dana'];
                                     $estimasi = $_POST['estimasi'];
+                                    $lokasi = $_POST['lokasi'];
+                                    $kategori = $_POST['kategori'];
                                     $extensi_izin = array("jpg", "jpeg", "png", "pdf", "gif");
                                     $size_izin = (2097152 / 2);
 
@@ -77,7 +79,7 @@ $link = "getProfile&email=" . urlencode($email);
 
                                     $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
                                         '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
-                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&type=insert';
+                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&type=insert';
                                     $data = getRegistran($link);
                                     $output = $data;
                                     var_dump($output);
@@ -108,6 +110,10 @@ $link = "getProfile&email=" . urlencode($email);
                                             <input name="dana" class="form-control" type="text"><br>
                                             <label for="">Estimasi</label>
                                             <input name="estimasi" class="form-control" type="text"><br>
+                                            <label for="">Lokasi</label>
+                                            <input name="lokasi" class="form-control" type="text"><br>
+                                            <label for="">Kategori</label>
+                                            <input name="kategori" class="form-control" type="text"><br>
                                             <label for="">Gambar</label>
                                             <input name="gambar" class="form-control" type="file"><br>
                                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
@@ -135,8 +141,8 @@ $link = "getProfile&email=" . urlencode($email);
                         echo ' <div class="card-body">';
                         echo '<div class="d-flex align-items-center">';
                         echo '<div class="card-side-img">';
-                        echo '<a class="product-thumbnail d-block" href="page-shop-details.html">';
-                        echo '<img style="width:100vh;" src="image/' . $array_item->gambar . '" />';
+                        echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id_bisnis . '">';
+                        echo '<img style="width:200px;" src="image/' . $array_item->gambar . '" />';
                         echo '<span class="badge bg-primary">Sale</span></a></div>';
                         echo '<div class="card-content px-4 py-2">';
                         echo $array_item->kode_bisnis . '<br>';

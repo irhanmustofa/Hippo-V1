@@ -23,7 +23,7 @@ $data = getRegistran($link);
       </svg>
       <div class="toast-text ms-3 me-2">
         <p class="mb-1 text-white">Welcome to Affan!</p><small class="d-block">Click the "Add to Home Screen" button
-          &amp; enjoy it like an app.</small>
+        &amp; enjoy it like an app.</small>
       </div>
     </div>
     <button class="btn btn-close btn-close-white position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -135,7 +135,7 @@ $data = getRegistran($link);
       <div class="card-body direction-rtl p-5">
         <h2 class="text-white">Reusable elements</h2>
         <p class="mb-4 text-white">More than 220+ reusable modern design elements. Just copy the code and paste it on
-          your desired page.</p><a class="btn btn-warning" href="elements.html">All elements</a>
+        your desired page.</p><a class="btn btn-warning" href="elements.html">All elements</a>
       </div>
     </div>
   </div>
@@ -165,17 +165,55 @@ $data = getRegistran($link);
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="card mb-3 bg-img" style="background-image: url('img/core-img/1.png'); background-color: #f7645a;">
-      <div class="card-body direction-rtl p-5">
-        <h2 class="text-white">Ready pages</h2>
-        <p class="mb-4 text-white">Already designed more than 100+ pages for your needs. Such as - Authentication,
-          Chats, eCommerce, Blog &amp; Miscellaneous pages.</p>
-        <a class="btn btn-warning" href="pages.html">All
-          pages</a>
+
+  <!-- Lts Go Modal -->
+  <div class="modal fade" id="bootstrapBasicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel">Pelajari Sebelum Mulai </h6>
+          <button class="btn btn-close p-1 ms-auto" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card text-center shadow" style="background-color: #fff8f7;">
+            <div class="card-header">
+              Penerbit
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Jadilah penerbit dan kembangkan bisnismu</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="perkenalan.php" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="card text-center shadow" style="background-color: #fff8f7;">
+            <div class="card-header">
+              Mulai Sekarang
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Mulai sekarang</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="index.php" class="btn btn-primary">Go Start</a>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="card mb-3 bg-img " style="background-image: url('./asset/img/core-img/1.png'); background-color: #f7645a;">
+      <div class="card-body direction-rtl p-5">
+        <h4 class="text-white">Belajar Dulu Yuuk !</h4>
+        <p class="mb-4 text-white">Pelajari dan jelajahi fitur dari Hippo.</p>
+        <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#bootstrapBasicModal">Lets Go!</button>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container direction-rtl">
     <div class="card mb-3">
       <div class="card-body">
@@ -207,89 +245,51 @@ $data = getRegistran($link);
       <div class="card-body">
         <div class="row">
           <div class="col-6">
-            <h3>Customer Review</h3>
+            <h3>Bisnis Berlangsung</h3>
           </div>
           <div class="col-6 d-md-flex justify-content-md-end">
             <button class="btn btn-outline-info" type="button">Selengkapnya</button>
           </div>
         </div>
+        <?php
+        $link = "getBisnis";
+        $output = getRegistran($link);
+        foreach ($output->data as $array_item) {
+          $bisnis[] = array(
+            'id_bisnis' => $array_item->id_bisnis,
+            'kode_bisnis' => $array_item->kode_bisnis,
+            'nama_bisnis' => $array_item->nama_bisnis,
+            'deskripsi' => $array_item->deskripsi,
+            'dana' => $array_item->dana,
+            'estimasi' => $array_item->estimasi,
+            'gambar' => $array_item->gambar,
+          );
+        }
+        ?>
+
+        <?php foreach ($bisnis as $key => $value): ?>
 
 
-        <div class="testimonial-slide-three-wrapper">
-          <div class="testimonial-slide3 testimonial-style3">
-            <!-- Single Testimonial Slide -->
+          <div class="testimonial-slide-three-wrapper">
+            <div class="testimonial-slide3 testimonial-style3">
+              <!-- Single Testimonial Slide -->
 
-            <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="img/bg-img/p2.jpg" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="image/<?php echo $value["gambar"]; ?>" class="img-fluid rounded-start mt-4" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><?php echo $value["nama_bisnis"];  ?></h5>
+                      <span class="card-text"><?php echo $value["deskripsi"]; ?></span><br>
+                      <a href="detail-bisnis.php?id=<?php echo $value["id_bisnis"]; ?>" class="btn btn-primary mt-2">Detail</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <?php endforeach ?>
 
-            <!-- Single Testimonial Slide -->
-            <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="img/bg-img/p2.jpg" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-            <!-- Single Testimonial Slide -->
-            <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="img/bg-img/p2.jpg" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Testimonial Slide -->
-            <div class="card mb-3">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="img/bg-img/p2.jpg" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -309,7 +309,7 @@ $data = getRegistran($link);
             echo ' <div class="card-body">';
             echo '<div class="d-flex align-items-center">';
             echo '<div class="card-side-img">';
-            echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id . '">';
+            echo '<a class="product-thumbnail d-block" href="detail-artikel.php?id=' . $array_item->id . '">';
             echo '<img src="admin/image/' . $array_item->gambar . '" />';
             echo '<span class="badge bg-primary">Sale</span></a></div>';
             echo '<div class="card-content px-4 py-2">';
