@@ -118,7 +118,7 @@ require_once "../utility.php";
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Deskripsi Artikel</label>
-                                            <input type="text" name="deskripsi" class="form-control">
+                                            <textarea name="deskripsi" id="deskripsi"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Gambar Artikel</label>

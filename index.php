@@ -1,11 +1,11 @@
-<?php 
+<?php
 session_start();
 include 'header.php';
 require_once 'utility.php';
 $error = "";
 
 $email = $_SESSION['email'];
-$link = "getProfile&email=".urlencode($email);
+$link = "getProfile&email=" . urlencode($email);
 // echo $link;
 $data = getRegistran($link);
 // var_dump($data); 
@@ -296,7 +296,45 @@ $data = getRegistran($link);
       </div>
     </div>
   </div>
-  <div class="container direction-rtl">
+
+  <!-- Top Products-->
+  <div class="top-products-area product-list-wrap">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-12">
+          <?php
+          $link = "getArtikel";
+          $output = getRegistran($link);
+          foreach ($output->data as $array_item) {
+            echo '<div class="card single-product-card">';
+            echo ' <div class="card-body">';
+            echo '<div class="d-flex align-items-center">';
+            echo '<div class="card-side-img">';
+            echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id . '">';
+            echo '<img src="admin/image/' . $array_item->gambar . '" />';
+            echo '<span class="badge bg-primary">Sale</span></a></div>';
+            echo '<div class="card-content px-4 py-2">';
+            echo $array_item->judul . '<br>';
+            echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
+            // tambahkan kode untuk menampilkan data dalam array lainnya
+
+            // foreach ($output as $row) {
+            //     echo $row["kode_bisnis"];
+            //     echo $row["nama_bisnis"];
+            //     echo $row["deskripsi"];
+            // }
+            // echo ($output->data[0]->kode_bisnis) . '<br>';
+
+
+          }
+          ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container direction-rtl mt-2">
     <div class="card">
       <div class="card-body">
         <div class="row g-3">

@@ -1,4 +1,12 @@
-<?php include 'header.php'; ?>
+<?php
+include 'header.php';
+
+require_once "utility.php";
+$email = $_SESSION['email'];
+$link = "getProfile&email=" . urlencode($email);
+?>
+
+
 
 <div class="page-content-wrapper py-3">
     <!-- Pagination-->
@@ -11,27 +19,100 @@
                             <div class="card direction-rtl">
                                 <div class="card-body">
                                     <!-- Fullscreen Modal Trigger Button -->
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#fullscreenModal">Ajukan Pendanaan</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#fullscreenModal">Ajukan Ide Bisnis</button>
                                 </div>
                             </div>
                         </div>
                         <!-- Fullscreen Modal -->
                         <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-fullscreen-md-down">
+                                <?php
+                                if (isset($_POST['submit'])) {
+                                    $kode_bisnis = $_POST['kode_bisnis'];
+                                    $nama_bisnis = $_POST['nama_bisnis'];
+                                    $deskripsi = $_POST['deskripsi'];
+                                    $dana = $_POST['dana'];
+                                    $estimasi = $_POST['estimasi'];
+                                    $extensi_izin = array("jpg", "jpeg", "png", "pdf", "gif");
+                                    $size_izin = (2097152 / 2);
+
+                                    $allow_file = true;
+                                    $sumber_file = $_FILES['gambar']['tmp_name'];
+                                    $target_file = "image/";
+                                    $nama_file = $_FILES['gambar']['name'];
+                                    $size_file = $_FILES['gambar']['size'];
+
+                                    if ($nama_file != "") {
+                                        if ($size_file > $size_izin) {
+                                            $error .= "- Ukuran File file tidak Boleh Melebihi 1 MB";
+                                            $allow_file = false;
+                                        } else {
+                                            $getExtensi = explode(".", $nama_file);
+                                            $extensi_file = strtolower(end($getExtensi));
+                                            $nama_file = "file-" . $id . "-" . $kelurga_nama . '.' . $extensi_file;
+                                            if (!in_array($extensi_file, $extensi_izin) == true) {
+                                                // if ($op == 'update') {
+                                                //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
+                                                //     $data = getData($link);
+                                                //     if ($data && $data->status == 1) {
+                                                //         unlink($target_ktp . $data->data->img_ktp);
+                                                //     }
+                                                // }
+                                                // } else {
+                                                $error .= " File hanya diperbolehkan dalam bentuk gambar (jpg, jpeg, png, gif)";
+                                                $allow_ktp = false;
+                                            }
+                                        }
+
+                                        if ($allow_file) {
+                                            if (!move_uploaded_file($sumber_file, $target_file . $nama_file)) {
+                                                $error .= " Gagal Uplaod File file ke server";
+                                                $error .= $sumber_file . " " . $target_file . $nama_file;
+                                                $allow_file = false;
+                                            }
+                                        }
+                                        if ($allow_file)
+                                            $kelurga_imgNik = $nama_file;
+                                    }
+
+                                    $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
+                                        '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
+                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&type=insert';
+                                    $data = getRegistran($link);
+                                    $output = $data;
+                                    var_dump($output);
+                                    if ($output) {
+                                        echo '<script>alert("data berhasil diatmabah")</script>';
+                                        header('Location:portfolio.php');
+                                    }
+                                    // } else {
+                                    //     echo '<script>alert("data GAGAL diatmabah")</script>';
+                                    //     header('Location:portfolio.php');
+                                    // }
+                                }
+                                ?>
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h6 class="modal-title" id="fullscreenModalLabel">Halaman Ajukan Pendanaan</h6>
                                         <button class="btn btn-close p-1 ms-auto" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" method="post">
-                                            <label for="">Nama Pengajuan</label>
-                                            <input class="form-control" type="text">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <label for="">Kode Bisnis</label>
+                                            <input name="kode_bisnis" class="form-control" type="text" autofocus><br>
+                                            <label for="">Nama Bisnis</label>
+                                            <input name="nama_bisnis" class="form-control" type="text"><br>
+                                            <label for="">Deskripsi Bisnis</label>
+                                            <textarea name="deskripsi" id="deskripsi"></textarea><br>
+                                            <label for="">Kebutuhan Dana</label>
+                                            <input name="dana" class="form-control" type="text"><br>
+                                            <label for="">Estimasi</label>
+                                            <input name="estimasi" class="form-control" type="text"><br>
+                                            <label for="">Gambar</label>
+                                            <input name="gambar" class="form-control" type="file"><br>
+                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                            <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-sm btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                                        <button class="btn btn-sm btn-success" type="button">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -45,31 +126,35 @@
     <div class="top-products-area product-list-wrap">
         <div class="container">
             <div class="row g-3">
-                <!-- Single Top Product Card-->
                 <div class="col-12">
-                    <div class="card single-product-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="card-side-img">
-                                    <!-- Product Thumbnail--><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="asset/img/profile/logo.jpg" alt="">
-                                        <!-- Badge--><span class="badge bg-primary">Sale</span></a>
-                                </div>
-                                <div class="card-content px-4 py-2">
-                                    <!-- Product Title-->
-                                    <a class="product-title d-block text-truncate mt-0" href="page-shop-details.html">Wooden Tool</a>
-                                    <!-- Product Price-->
-                                    <p class="sale-price">$9.89<span>$13.42</span></p>
-                                    <!-- Add To Cart Button-->
-                                    <a class="btn btn-outline-danger btn-sm disabled" href="#">
-                                        <svg class="bi bi-cart-x me-2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"></path>
-                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
-                                        </svg>Out of Stock
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $link = "getBisnis&getProfile&email=" . urlencode($email);
+                    $output = getRegistran($link);
+                    foreach ($output->data as $array_item) {
+                        echo '<div class="card single-product-card mt-2">';
+                        echo ' <div class="card-body">';
+                        echo '<div class="d-flex align-items-center">';
+                        echo '<div class="card-side-img">';
+                        echo '<a class="product-thumbnail d-block" href="page-shop-details.html">';
+                        echo '<img style="width:100vh;" src="image/' . $array_item->gambar . '" />';
+                        echo '<span class="badge bg-primary">Sale</span></a></div>';
+                        echo '<div class="card-content px-4 py-2">';
+                        echo $array_item->kode_bisnis . '<br>';
+                        echo $array_item->nama_bisnis . '<br>';
+                        echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
+                        // tambahkan kode untuk menampilkan data dalam array lainnya
+
+                        // foreach ($output as $row) {
+                        //     echo $row["kode_bisnis"];
+                        //     echo $row["nama_bisnis"];
+                        //     echo $row["deskripsi"];
+                        // }
+                        // echo ($output->data[0]->kode_bisnis) . '<br>';
+
+
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -81,19 +166,25 @@
                 <div class="card-body py-3">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination pagination-two justify-content-center">
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Previous">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
                                     <svg class="bi bi-chevron-left" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-                                    </svg></a></li>
+                                    </svg>
+                                </a>
+                            </li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">...</a></li>
                             <li class="page-item"><a class="page-link" href="#">9</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
                                     <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
-                                    </svg></a></li>
+                                    </svg>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

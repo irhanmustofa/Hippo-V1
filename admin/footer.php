@@ -17,6 +17,12 @@
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
 <script src="assets/js/pages/dashboard.js"></script>
 
+<!-- script ck editor -->
+<script src="https://cdn.ckeditor.com/4.20.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('deskripsi');
+</script>
+
 </body>
 
 </html>

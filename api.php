@@ -516,3 +516,73 @@ function getArtikel()
     header('Content-Type: application/json');
     echo json_encode($dodol);
 }
+
+// ==============SET BISNIS PENGAJUAN===================
+function setBisnis()
+{
+    global $connect;
+    if (!empty($_GET['kode_bisnis']))
+        $kode_bisnis = $_GET['kode_bisnis'];
+    if (!empty($_GET['nama_bisnis']))
+        $nama_bisnis = $_GET['nama_bisnis'];
+    if (!empty($_GET['deskripsi']))
+        $deskripsi = ($_GET['deskripsi']);
+    if (!empty($_GET['dana']))
+        $dana = $_GET['dana'];
+    if (!empty($_GET['estimasi']))
+        $estimasi = $_GET['estimasi'];
+    if (!empty($_GET['gambar']))
+        $gambar = $_GET['gambar'];
+
+
+    if ($kode_bisnis && $nama_bisnis && $deskripsi && $dana && $estimasi && $gambar) {
+        $query = "INSERT INTO bisnis SET kode_bisnis = '$kode_bisnis', nama_bisnis = '$nama_bisnis', 
+        deskripsi = '$deskripsi', dana = '$dana', estimasi = '$estimasi', gambar = '$gambar'";
+        $result = $connect->query($query);
+
+        if ($result) {
+            $dodol = array(
+                'status' => 1,
+                'data' => 'Sukses'
+            );
+        } else {
+            $dodol = array(
+                'status' => 0,
+                'data' => 'Gagal'
+            );
+        }
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Paramater Salah'
+        );
+    }
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getBisnis()
+{
+    global $connect;
+    $query = "SELECT * FROM bisnis";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
