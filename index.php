@@ -22,7 +22,7 @@ $data = getRegistran($link);
         </path>
       </svg>
       <div class="toast-text ms-3 me-2">
-        <p class="mb-1 text-white">Welcome to Affan!</p><small class="d-block">Click the "Add to Home Screen" button
+        <p class="mb-1 text-white">Welcome <?php echo ($data->data[0]->nama) ?></p><small class="d-block">Click the "Add to Home Screen" button
         &amp; enjoy it like an app.</small>
       </div>
     </div>
