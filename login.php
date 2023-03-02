@@ -30,11 +30,12 @@ if (isset($_POST['login'])) {
         $no_npwp = $data->data[0]->no_npwp;
         $foto_npwp = $data->data[0]->foto_npwp;
         $alamat = $data->data[0]->alamat;
+        $foto_profil = $data->data[0]->foto_profil;
         
         if ($user = $email && $pass = $password) {
             $_SESSION['lengkap'] = '0';
             $_SESSION['user'] = '0';
-            if (!empty($no_identitas) && !empty($foto_ktp) && !empty($no_npwp) && !empty($foto_npwp) && !empty($alamat)) {
+            if (!empty($no_identitas) && !empty($foto_ktp) && !empty($no_npwp) && !empty($foto_npwp) && !empty($foto_profil)) {
                 $_SESSION["lengkap"] = '1';
                 $_SESSION['user'] = $class;
             }

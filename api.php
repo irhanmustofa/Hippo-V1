@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "koneksi.php";
 if (function_exists($_GET['function'])) {
     $_GET['function']();
@@ -430,8 +431,10 @@ function setUpdateUser()
         $foto_npwp = $_GET['foto_npwp'];
     if (!empty($_GET['alamat']))
         $alamat = $_GET['alamat'];
+    if (!empty($_GET['foto_profil']))
+        $foto_profil = $_GET['foto_profil'];
 
-    $query = "UPDATE user SET no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', no_npwp = '$no_npwp', foto_npwp = '$foto_npwp', alamat = '$alamat' WHERE email = '$email'";
+    $query = "UPDATE user SET no_identitas = '$no_identitas', foto_ktp = '$foto_ktp', no_npwp = '$no_npwp', foto_npwp = '$foto_npwp', alamat = '$alamat', foto_profil = '$foto_profil' WHERE email = '$email'";
     $result = $connect->query($query);
 
     if ($result) {
@@ -450,6 +453,61 @@ function setUpdateUser()
     echo json_encode($response);
 }
 
+function setProfil()
+{
+    global $connect;
+    if (!empty($_GET['nama']))
+        $nama = $_GET['nama'];
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+
+    $query = "UPDATE user SET nama = '$nama' WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function setProfilFoto()
+{
+    global $connect;
+    if (!empty($_GET['nama']))
+        $nama = $_GET['nama'];
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['foto_profil']))
+        $foto_profil = $_GET['foto_profil'];
+
+    $query = "UPDATE user SET nama = '$nama', foto_profil = '$foto_profil' WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
 
 // ==============SET artikel PENGAJUAN===================
 function setArtikel()

@@ -17,10 +17,7 @@ $data = getRegistran($link);
         <!-- User Information-->
         <div class="card user-info-card mb-3">
           <div class="card-body d-flex align-items-center">
-            <div class="user-profile me-3"><img src="asset/img/bg-img/7.jpg" alt="" style="height:100%"><i class="bi bi-pencil"></i>
-              <form action="#">
-                <input class="form-control" type="file">
-              </form>
+            <div class="user-profile me-3"><img src="asset/img/profile/<?php echo ($data->data[0]->foto_profil); ?>" alt="" style="height:100%">
             </div>
             <div class="user-info">
               <div class="d-flex align-items-center">

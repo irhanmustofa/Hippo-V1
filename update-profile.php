@@ -100,11 +100,50 @@ if(isset($_POST['update']))
       //   $kelurga_imgNik = $nama_ktp;
     }
 
-    $link= "setUpdateUser&email=".urlencode($email)."&no_identitas=".urlencode($no_identitas)."&foto_ktp=".urlencode($nama_ktp)."&no_npwp=".urlencode($no_npwp)."&foto_npwp=".urlencode($nama_npwp)."&alamat=".urlencode($alamat);
+    $allow_profil = true;
+    $sumber_profil = $_FILES['foto_profil']['tmp_name'];
+    $target_profil = "./asset/img/profile/";
+    $nama_profil = $_FILES['foto_profil']['name'];
+    $size_profil = $_FILES['foto_profil']['size'];
+
+    if ($nama_profil != "") {
+      if ($size_profil > $size_izin) {
+        $error .= "- Ukuran File profil tidak Boleh Melebihi 1 MB";
+        $allow_profil = false;
+      } else {
+        $getExtensi = explode(".", $nama_profil);
+        $extensi_profil = strtolower(end($getExtensi));
+        $nama_profil = "profil-" . $email . ".". $extensi_profil;
+        if (!in_array($extensi_profil, $extensi_izin) == true) {
+          // if ($op == 'update') {
+          //   $link = 'getKeluargaImage&id=' . $id . '&field=img_profil&nama=' . $kelurga_nama;
+          //   $data = getData($link);
+          //   if ($data && $data->status == 1) {
+          //     unlink($target_profil . $data->data->img_profil);
+          //   }
+          // }
+        // } else {
+          $error .= " File hanya diperbolehkan dalam bentuk gambar (jpg, jpeg, png, gif)";
+          $allow_profil = false;
+        }
+      }
+
+      if ($allow_profil) {
+        if (!move_uploaded_file($sumber_profil, $target_profil . $nama_profil)) {
+          $error .= " Gagal Uplaod File profil ke server";
+          $error .= $sumber_profil . " " . $target_profil . $nama_profil;
+          $allow_profil = false;
+        }
+      }
+      // if ($allow_ktp)
+      //   $kelurga_imgNik = $nama_ktp;
+    }
+
+    $link= "setUpdateUser&email=".urlencode($email)."&no_identitas=".urlencode($no_identitas)."&foto_ktp=".urlencode($nama_ktp)."&no_npwp=".urlencode($no_npwp)."&foto_npwp=".urlencode($nama_npwp)."&alamat=".urlencode($alamat)."&foto_profil=".urlencode($nama_profil);
         // echo $link;
     $data= getRegistran($link);
     echo '<script>alert("data berhasil diupdate")</script>';
-    echo '<script>location = "index.php"</script>';
+    echo ("<script>location.href = 'index.php';</script>");
   }else {
     $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
   }
@@ -121,14 +160,9 @@ if(isset($_POST['update']))
     <!-- User Information-->
     <div class="card user-info-card mb-3">
       <div class="card-body d-flex align-items-center">
-        <div class="user-profile me-3"><img src="asset/img/bg-img/7.jpg" alt="" style="height:100%"><i class="bi bi-pencil"></i>
-          <form action="#">
-            <input class="form-control" type="file">
-          </form>
-        </div>
         <div class="user-info">
           <div class="d-flex align-items-center">
-            <h5 class="mb-1"><?php echo $nama; ?></h5><span class="badge bg-warning ms-2 rounded-pill">Pro</span>
+            <h5 class="mb-1"><?php echo $nama; ?></h5>
           </div>
           <!-- <p class="mb-0">UX/UI Designer</p> -->
         </div>
@@ -148,8 +182,12 @@ if(isset($_POST['update']))
             <input class="form-control" id="class" type="hidden" name="class" value="<?php echo $class; ?>" readonly>
           </div>
           <div class="form-group mb-3">
+            <label class="form-label">Foto Profil</label>
+            <input type="file" class="form-control" name="foto_profil" required="required">
+          </div>
+          <div class="form-group mb-3">
             <label class="form-label" for="">No Identitas</label>
-            <input class="form-control" id="no_identitas" type="text" name="no_identitas">
+            <input class="form-control" id="no_identitas" type="text" name="no_identitas" required="required">
           </div>
           <div class="form-group mb-3">
             <label class="form-label">Upload Foto KTP</label>
@@ -157,7 +195,7 @@ if(isset($_POST['update']))
           </div>
           <div class="form-group mb-3">
             <label class="form-label" for="">No NPWP</label>
-            <input class="form-control" id="no_npwp" type="text" name="no_npwp">
+            <input class="form-control" id="no_npwp" type="text" name="no_npwp" required="required">
           </div>
           <div class="form-group mb-3">
             <label class="form-label">Upload Foto NPWP</label>
@@ -165,7 +203,7 @@ if(isset($_POST['update']))
           </div>
           <div class="form-group mb-3">
             <label class="form-label" for="alamat">Alamat</label>
-            <input class="form-control" id="alamat" type="text" name="alamat">
+            <input class="form-control" id="alamat" type="text" name="alamat" required="required">
           </div>
           
           <button class="btn text-white w-100" type="submit" style="background-color:#FF735C" name="update">Update Now</button>
