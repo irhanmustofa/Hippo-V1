@@ -14,7 +14,7 @@ $link = "getProfile&email=" . urlencode($email);
         <div class="container">
             <div class="card">
                 <div class="card-body p-2">
-                    <div class="d-flex align-items-center justify-content-between"><small class="ms-1">Portfolio</small>
+                    <div class="d-flex align-items-center justify-content-between"><small class="ms-1">Portfolio</small>    
                         <div class="container d-flex justify-content-end">
                             <div class="card direction-rtl">
                                 <div class="card-body">
@@ -166,7 +166,7 @@ $link = "getProfile&email=" . urlencode($email);
         </div>
     </div>
     <!-- Pagination-->
-    <div class="shop-pagination pt-3">
+    <!-- <div class="shop-pagination pt-3">
         <div class="container">
             <div class="card">
                 <div class="card-body py-3">
@@ -196,6 +196,6 @@ $link = "getProfile&email=" . urlencode($email);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <?php include 'footer.php'; ?>

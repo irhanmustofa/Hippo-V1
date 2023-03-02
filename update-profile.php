@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "header.php";
 require_once 'utility.php';
 $error = "";
@@ -104,7 +103,8 @@ if(isset($_POST['update']))
     $link= "setUpdateUser&email=".urlencode($email)."&no_identitas=".urlencode($no_identitas)."&foto_ktp=".urlencode($nama_ktp)."&no_npwp=".urlencode($no_npwp)."&foto_npwp=".urlencode($nama_npwp)."&alamat=".urlencode($alamat);
         // echo $link;
     $data= getRegistran($link);
-    // header('Location:index.php');
+    echo '<script>alert("data berhasil diupdate")</script>';
+    echo '<script>location = "index.php"</script>';
   }else {
     $error = 'Terjadi Kesalahan, silahkan coba beberapa saat lagi!';
   }

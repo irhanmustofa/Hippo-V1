@@ -24,22 +24,26 @@ if (isset($_POST['login'])) {
         // var_dump($data);
         $email = $data->data[0]->email;
         $password = $data->data[0]->password;
+        $class = $data->data[0]->class;
         $no_identitas = $data->data[0]->no_identitas;
         $foto_ktp = $data->data[0]->foto_ktp;
         $no_npwp = $data->data[0]->no_npwp;
         $foto_npwp = $data->data[0]->foto_npwp;
         $alamat = $data->data[0]->alamat;
+        
         if ($user = $email && $pass = $password) {
             $_SESSION['lengkap'] = '0';
+            $_SESSION['user'] = '0';
             if (!empty($no_identitas) && !empty($foto_ktp) && !empty($no_npwp) && !empty($foto_npwp) && !empty($alamat)) {
                 $_SESSION["lengkap"] = '1';
-
+                $_SESSION['user'] = $class;
             }
             $_SESSION ["email"] = $email;
             echo ("<script>location.href = 'index.php';</script>");
         } else {
             echo "<script>alert('Username atau Password salah')</script>";
-            echo "<script>location = 'login.php'</script>";
+            // echo "<script>location = 'login.php'</script>";
+            header("Location:login.php");
         }
     }
 }
@@ -124,27 +128,27 @@ if (isset($_POST['login'])) {
             </div>
             <!-- Login Meta -->
             <div class="login-meta-data text-center "><a class="stretched-link forgot-password d-block mt-3 mb-1 " href="preload/forget-password.php" style="color:#ff8300">Lupa
-                    Password?</a>
-                <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link " href="preload/register.php" style="color:#ff8300">Daftar
-                        Sekarang</a></p>
-            </div>
+            Password?</a>
+            <p class="mb-0 ">Belum memiliki Akun? <a class="stretched-link " href="preload/register.php" style="color:#ff8300">Daftar
+            Sekarang</a></p>
         </div>
     </div>
-    <!-- All JavaScript Files -->
-    <script src="asset/js/bootstrap.bundle.min.js"></script>
-    <script src="asset/js/slideToggle.min.js"></script>
-    <script src="asset/js/internet-status.js"></script>
-    <script src="asset/js/tiny-slider.js"></script>
-    <script src="asset/js/baguetteBox.min.js"></script>
-    <script src="asset/js/countdown.js"></script>
-    <script src="asset/js/rangeslider.min.js"></script>
-    <script src="asset/js/vanilla-dataTables.min.js"></script>
-    <script src="asset/js/index.js"></script>
-    <script src="asset/js/magic-grid.min.js"></script>
-    <script src="asset/js/dark-rtl.js"></script>
-    <script src="asset/js/active.js"></script>
-    <!-- PWA -->
-    <script src="asset/js/pwa.js"></script>
+</div>
+<!-- All JavaScript Files -->
+<script src="asset/js/bootstrap.bundle.min.js"></script>
+<script src="asset/js/slideToggle.min.js"></script>
+<script src="asset/js/internet-status.js"></script>
+<script src="asset/js/tiny-slider.js"></script>
+<script src="asset/js/baguetteBox.min.js"></script>
+<script src="asset/js/countdown.js"></script>
+<script src="asset/js/rangeslider.min.js"></script>
+<script src="asset/js/vanilla-dataTables.min.js"></script>
+<script src="asset/js/index.js"></script>
+<script src="asset/js/magic-grid.min.js"></script>
+<script src="asset/js/dark-rtl.js"></script>
+<script src="asset/js/active.js"></script>
+<!-- PWA -->
+<script src="asset/js/pwa.js"></script>
 </body>
 
 </html>
