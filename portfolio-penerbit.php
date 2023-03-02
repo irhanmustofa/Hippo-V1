@@ -4,6 +4,9 @@ include 'header.php';
 require_once "utility.php";
 $email = $_SESSION['email'];
 $link = "getProfile&email=" . urlencode($email);
+
+$link = "getBisnis";
+$data = getRegistran($link);
 ?>
 
 
@@ -27,7 +30,10 @@ $link = "getProfile&email=" . urlencode($email);
                         <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-fullscreen-md-down">
                                 <?php
+
+
                                 if (isset($_POST['submit'])) {
+                                    $id_bisnis = $_POST['id_bisnis'];
                                     $kode_bisnis = $_POST['kode_bisnis'];
                                     $nama_bisnis = $_POST['nama_bisnis'];
                                     $deskripsi = $_POST['deskripsi'];
@@ -35,6 +41,10 @@ $link = "getProfile&email=" . urlencode($email);
                                     $estimasi = $_POST['estimasi'];
                                     $lokasi = $_POST['lokasi'];
                                     $kategori = $_POST['kategori'];
+                                    $email = $_POST['email'];
+                                    $sistem_pengolahan = $_POST['sistem_pengolahan'];
+                                    $skema_bisnis = $_POST['skema_bisnis'];
+                                    $minimum_invest = $_POST['minimum_invest'];
                                     $extensi_izin = array("jpg", "jpeg", "png", "pdf", "gif");
                                     $size_izin = (2097152 / 2);
 
@@ -51,7 +61,7 @@ $link = "getProfile&email=" . urlencode($email);
                                         } else {
                                             $getExtensi = explode(".", $nama_file);
                                             $extensi_file = strtolower(end($getExtensi));
-                                            $nama_file = "file-" . $id . "-" . $kelurga_nama . '.' . $extensi_file;
+                                            $nama_file = "file-" . $kode_bisnis . $nama_file . '.' . $extensi_file;
                                             if (!in_array($extensi_file, $extensi_izin) == true) {
                                                 // if ($op == 'update') {
                                                 //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
@@ -78,11 +88,10 @@ $link = "getProfile&email=" . urlencode($email);
                                     }
 
                                     $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
-                                        '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
-                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&type=insert';
+                                    '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
+                                    '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
                                     $data = getRegistran($link);
                                     $output = $data;
-                                    var_dump($output);
                                     if ($output) {
                                         echo '<script>alert("data berhasil diatmabah")</script>';
                                         header('Location:portfolio.php');
@@ -100,6 +109,7 @@ $link = "getProfile&email=" . urlencode($email);
                                     </div>
                                     <div class="modal-body">
                                         <form action="" method="POST" enctype="multipart/form-data">
+                                            <input name="id_bisnis" class="form-control" type="hidden" ><br>
                                             <label for="">Kode Bisnis</label>
                                             <input name="kode_bisnis" class="form-control" type="text" autofocus><br>
                                             <label for="">Nama Bisnis</label>
@@ -114,6 +124,14 @@ $link = "getProfile&email=" . urlencode($email);
                                             <input name="lokasi" class="form-control" type="text"><br>
                                             <label for="">Kategori</label>
                                             <input name="kategori" class="form-control" type="text"><br>
+                                            <label for="">Email</label>
+                                            <input name="email" class="form-control" type="text"><br>
+                                            <label for="">Sistem Pengolahan</label>
+                                            <input name="sistem_pengolahan" class="form-control" type="text"><br>
+                                            <label for="">Skema Bisnis</label>
+                                            <input name="skema_bisnis" class="form-control" type="text"><br>
+                                            <label for="">Minimum Invest</label>
+                                            <input name="minimum_invest" class="form-control" type="text"><br>
                                             <label for="">Gambar</label>
                                             <input name="gambar" class="form-control" type="file"><br>
                                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
@@ -133,21 +151,37 @@ $link = "getProfile&email=" . urlencode($email);
         <div class="container">
             <div class="row g-3">
                 <div class="col-12">
-                    <?php
-                    $link = "getBisnis&getProfile&email=" . urlencode($email);
-                    $output = getRegistran($link);
-                    foreach ($output->data as $array_item) {
-                        echo '<div class="card single-product-card mt-2">';
-                        echo ' <div class="card-body">';
-                        echo '<div class="d-flex align-items-center">';
-                        echo '<div class="card-side-img">';
-                        echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id_bisnis . '">';
-                        echo '<img style="width:200px;" src="image/' . $array_item->gambar . '" />';
-                        echo '<span class="badge bg-primary">Sale</span></a></div>';
-                        echo '<div class="card-content px-4 py-2">';
-                        echo $array_item->kode_bisnis . '<br>';
-                        echo $array_item->nama_bisnis . '<br>';
-                        echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
+                    <?php 
+                    if ($data == NULL) { ?>
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Data Kosong
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
+                    <?php } else{
+
+                        $link = "getBisnis&getProfile&email=" . urlencode($email);
+                        $output = getRegistran($link);
+                        foreach ($output->data as $array_item) {
+                            echo '<div class="card single-product-card mt-2">';
+                            echo ' <div class="card-body">';
+                            echo '<div class="d-flex align-items-center">';
+                            echo '<div class="card-side-img">';
+                            echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id_bisnis . '">';
+                            echo '<img style="width:200px;" src="image/' . $array_item->gambar . '" />';
+                            echo '<span class="badge bg-primary">Sale</span></a></div>';
+                            echo '<div class="card-content px-4 py-2">';
+                            echo $array_item->kode_bisnis . '<br>';
+                            echo $array_item->nama_bisnis . '<br>';
+                            echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
                         // tambahkan kode untuk menampilkan data dalam array lainnya
 
                         // foreach ($output as $row) {
@@ -158,7 +192,9 @@ $link = "getProfile&email=" . urlencode($email);
                         // echo ($output->data[0]->kode_bisnis) . '<br>';
 
 
-                    }
+                        }
+                    } 
+
                     ?>
 
                 </div>

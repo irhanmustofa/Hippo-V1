@@ -274,16 +274,21 @@ $data = getRegistran($link);
             'dana' => $array_item->dana,
             'estimasi' => $array_item->estimasi,
             'gambar' => $array_item->gambar,
+            'lokasi' => $array_item->lokasi,
+            'kategori' => $array_item->kategori,
+            'email' => $array_item->email,
+            'sistem_pengolahan' => $array_item->sistem_pengolahan,
+            'skema_bisnis' => $array_item->skema_bisnis,
+            'minimum_invest' => $array_item->minimum_invest,
           );
         }
         ?>
-
-        <?php foreach ($bisnis as $key => $value): ?>
 
 
           <div class="testimonial-slide-three-wrapper">
             <div class="testimonial-slide3 testimonial-style3">
               <!-- Single Testimonial Slide -->
+        <?php foreach ($bisnis as $key => $value): ?>
 
               <div class="card mb-3">
                 <div class="row g-0">

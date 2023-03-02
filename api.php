@@ -537,12 +537,20 @@ function setBisnis()
         $lokasi = $_GET['lokasi'];
     if (!empty($_GET['kategori']))
         $kategori = $_GET['kategori'];
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['sistem_pengolahan']))
+        $sistem_pengolahan = $_GET['sistem_pengolahan'];
+    if (!empty($_GET['skema_bisnis']))
+        $skema_bisnis = $_GET['skema_bisnis'];
+    if (!empty($_GET['minimum_invest']))
+        $minimum_invest = $_GET['minimum_invest'];
 
 
 
     if ($kode_bisnis && $nama_bisnis && $deskripsi && $dana && $estimasi && $gambar) {
         $query = "INSERT INTO bisnis SET kode_bisnis = '$kode_bisnis', nama_bisnis = '$nama_bisnis', 
-        deskripsi = '$deskripsi', dana = '$dana', estimasi = '$estimasi', gambar = '$gambar', lokasi = '$lokasi', kategori = '$kategori'";
+        deskripsi = '$deskripsi', dana = '$dana', estimasi = '$estimasi', gambar = '$gambar', lokasi = '$lokasi', kategori = '$kategori', email = '$email', sistem_pengolahan = '$sistem_pengolahan', skema_bisnis = '$skema_bisnis', minimum_invest = '$minimum_invest'";
         $result = $connect->query($query);
 
         if ($result) {
