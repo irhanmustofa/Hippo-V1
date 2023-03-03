@@ -94,7 +94,7 @@ $data = getRegistran($link);
 
     <div class="card user-info-card mb-3">
       <div class="card-body d-flex align-items-center">
-        <div class="user-profile me-3"><img src="asset/img/ktp/<?php echo ($data->data[0]->foto_ktp) ?>" alt="" style="height:100%"></div>
+        <div class="user-profile me-3"><img src="asset/img/profile/<?php echo ($data->data[0]->foto_profil) ?>" alt="" style="height:100%"></div>
         <div class="user-info">
           <div class="d-flex align-items-center">
             <h5 class="mb-1"><?php echo ($data->data[0]->nama) ?></h5>
