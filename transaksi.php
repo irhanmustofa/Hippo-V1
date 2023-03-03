@@ -64,54 +64,82 @@
                     <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, impedit natus itaque fuga aperiam qui eos ut.</p>
                     <div class="container mt-3">
                       <div class="row justify-content-start">
-                        
+                        <hr>
 
 
-                            <!-- Single Price Table -->
-                            <div class="col-6 single-price-content shadow-sm pt-2">
-                              <div class="price">
-                                <h5 class="bg-light text-dark rounded-pill">Permintaan</h5>
-                              </div>
-                              <!-- Pricing Desc -->
-                              <div class="pricing-desc">
-                                <ul class="ps-0">
-                                  <li><i class="bi bi-check-lg me-2"></i>6 Month Usage</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>Lifetime Updates</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>10 Website License</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>Free Support</li>
-                                  <li class="times"><i class="bi bi-x-lg me-2"></i>Download New Release</li>
-                                </ul>
-                              </div>
-                              <!-- Purchase -->
-                              <div class="purchase"><a class="btn btn-light btn-lg btn-creative" href="#">Choose Plan</a></div>
-                            </div>
-                          
 
-                        
-                       
+                        <!-- Single Price Table -->
+                        <div class="col-6 single-price-content shadow-sm pt-2">
+                          <div class="price">
+                            <h6>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>
+                                <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                              </svg>
+                            Permintaan</h6>
+                          </div>
+                          <!-- Pricing Desc -->
+                          <div class="pricing-desc">
+                            <ul class="ps-0">
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Penawaran</p>
+                                  <h6 class="mb-0">0 Lembar<br></h6>
+                                  <h6 class="mb-3">0 Bisnis<br></h6>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Nilai</p>
+                                  <h6 class="mb-3">Rp 0<br></h6>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Terjual</p>
+                                  <h6 class="mb-3">Rp 0<br></h6>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
 
-                          
-                            <!-- Single Price Table -->
-                            <div class="col-6 single-price-content shadow-sm pt-2">
-                              <div class="price">
-                                <h5 class="bg-light text-dark rounded-pill">Permintaan</h5>
-                              </div>
-                              <!-- Pricing Desc -->
-                              <div class="pricing-desc">
-                                <ul class="ps-0">
-                                  <li><i class="bi bi-check-lg me-2"></i>6 Month Usage</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>Lifetime Updates</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>10 Website License</li>
-                                  <li><i class="bi bi-check-lg me-2"></i>Free Support</li>
-                                  <li class="times"><i class="bi bi-x-lg me-2"></i>Download New Release</li>
-                                </ul>
-                              </div>
-                              <!-- Purchase -->
-                              <div class="purchase"><a class="btn btn-light btn-lg btn-creative" href="#">Choose Plan</a></div>
-                            </div>
-                          
+                        </div>
 
-                        
+                        <!-- Single Price Table -->
+                        <div class="col-6 single-price-content shadow-sm pt-2">
+                          <div class="price">
+                            <h6>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
+                                <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                              </svg>
+                            Penawaran</h6>
+                          </div>
+                          <!-- Pricing Desc -->
+                          <div class="">
+                            <ul class="ps-0">
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Penawaran</p>
+                                  <h6 class="mb-0">0 Lembar<br></h6>
+                                  <h6 class="mb-3">0 Bisnis<br></h6>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Nilai</p>
+                                  <h6 class="mb-3">Rp 0<br></h6>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                  <p class="mb-0">Total Terjual</p>
+                                  <h6 class="mb-3">Rp 0<br></h6>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
 
                     </div>

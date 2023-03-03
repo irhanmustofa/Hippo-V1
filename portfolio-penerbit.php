@@ -125,7 +125,7 @@ $data = getRegistran($link);
                                             <label for="">Kategori</label>
                                             <input name="kategori" class="form-control" type="text"><br>
                                             <label for="">Email</label>
-                                            <input name="email" class="form-control" type="text"><br>
+                                            <input name="email" class="form-control" type="text" value="<?php echo $email ?>" readonly><br>
                                             <label for="">Sistem Pengolahan</label>
                                             <input name="sistem_pengolahan" class="form-control" type="text"><br>
                                             <label for="">Skema Bisnis</label>
@@ -168,7 +168,7 @@ $data = getRegistran($link);
                         </div>
                     <?php } else{
 
-                        $link = "getBisnis&getProfile&email=" . urlencode($email);
+                        $link = "getBisnisUser&getProfile&email=" . urlencode($email);
                         $output = getRegistran($link);
                         foreach ($output->data as $array_item) {
                             echo '<div class="card single-product-card mt-2">';

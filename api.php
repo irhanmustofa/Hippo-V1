@@ -658,6 +658,35 @@ function getBisnis()
     echo json_encode($dodol);
 }
 
+function getBisnisUser()
+{
+    
+    global $connect;
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    $query = "SELECT * FROM bisnis WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
 function getBisnisDetail()
 {
     global $connect;
