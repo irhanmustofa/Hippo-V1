@@ -23,7 +23,7 @@ $data = getRegistran($link);
       </svg>
       <div class="toast-text ms-3 me-2">
         <p class="mb-1 text-white">Welcome <?php echo ($data->data[0]->nama) ?></p><small class="d-block">Click the "Add to Home Screen" button
-        &amp; enjoy it like an app.</small>
+          &amp; enjoy it like an app.</small>
       </div>
     </div>
     <button class="btn btn-close btn-close-white position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -89,26 +89,26 @@ $data = getRegistran($link);
     </div>
   </div>
 
-  <?php 
-  if ($_SESSION['lengkap'] == '0') {?>
-    
-  <div class="pt-3"></div>
-  <div class="container direction-rtl">
-    <div class="card">
-      <div class="card-header">
-        Profil
-      </div>
-      <div class="card-body">
-        <h5 class="card-title"><?php echo ($data->data[0]->nama) ?></h5>
-        <p class="card-text">Silahkan lengkapi profil anda untuk bisa mulai investasi.</p>
-        <a href="update-profile.php" class="btn btn-success">Lengkapi Profil</a>
+  <?php
+  if ($_SESSION['lengkap'] == '0') { ?>
+
+    <div class="pt-3"></div>
+    <div class="container direction-rtl">
+      <div class="card">
+        <div class="card-header">
+          Profil
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><?php echo ($data->data[0]->nama) ?></h5>
+          <p class="card-text">Silahkan lengkapi profil anda untuk bisa mulai investasi.</p>
+          <a href="update-profile.php" class="btn btn-success">Lengkapi Profil</a>
+        </div>
       </div>
     </div>
-  </div>
-  <?php   
+  <?php
   }
   ?>
-  
+
 
 
 
@@ -146,7 +146,7 @@ $data = getRegistran($link);
       <div class="card-body direction-rtl p-5">
         <h2 class="text-white">Reusable elements</h2>
         <p class="mb-4 text-white">More than 220+ reusable modern design elements. Just copy the code and paste it on
-        your desired page.</p><a class="btn btn-warning" href="elements.html">All elements</a>
+          your desired page.</p><a class="btn btn-warning" href="elements.html">All elements</a>
       </div>
     </div>
   </div>
@@ -210,7 +210,7 @@ $data = getRegistran($link);
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -285,10 +285,10 @@ $data = getRegistran($link);
         ?>
 
 
-          <div class="testimonial-slide-three-wrapper">
-            <div class="testimonial-slide3 testimonial-style3">
-              <!-- Single Testimonial Slide -->
-        <?php foreach ($bisnis as $key => $value): ?>
+        <div class="testimonial-slide-three-wrapper">
+          <div class="testimonial-slide3 testimonial-style3">
+            <!-- Single Testimonial Slide -->
+            <?php foreach ($bisnis as $key => $value) : ?>
 
               <div class="card mb-3">
                 <div class="row g-0">
@@ -326,7 +326,7 @@ $data = getRegistran($link);
             echo '<div class="d-flex align-items-center">';
             echo '<div class="card-side-img">';
             echo '<a class="product-thumbnail d-block" href="detail-artikel.php?id=' . $array_item->id . '">';
-            echo '<img src="admin/image/' . $array_item->gambar . '" />';
+            echo '<img style="width:200px;" src="admin/image/' . $array_item->gambar . '" />';
             echo '<span class="badge bg-primary">Sale</span></a></div>';
             echo '<div class="card-content px-4 py-2">';
             echo $array_item->judul . '<br>';
