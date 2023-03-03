@@ -1,10 +1,10 @@
-<?php 
-include 'header.php'; 
+<?php
+include 'header.php';
 require_once "utility.php";
 
 $id = $_GET['id'];
 $link = "getBisnisDetail&id_bisnis=" . urlencode($id);
-echo($link);
+// echo($link);
 $output = getRegistran($link);
 
 ?>
@@ -16,7 +16,7 @@ $output = getRegistran($link);
         <h1><?php echo ($output->data[0]->nama_bisnis); ?></h1>
         <div class="product-gallery-wrapper">
           <div class="product-gallery">
-            <img class="rounded" src="image/<?php echo ($output->data[0]->gambar); ?>"alt="">
+            <img class="rounded" src="image/<?php echo ($output->data[0]->gambar); ?>" alt="">
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@ $output = getRegistran($link);
         <h1><?php echo ($output->data[0]->dana); ?></h1>
       </div>
     </div>
-    
+
 
     <div class="card product-details-card mb-3 direction-rtl">
       <div class="card-body">
@@ -91,9 +91,9 @@ $output = getRegistran($link);
       <div class="card-body">
         <h5>Description</h5>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum soluta tempore tenetur provident eligendi
-        porro, eius nulla? Aliquam, blanditiis id. Corporis.</p>
+          porro, eius nulla? Aliquam, blanditiis id. Corporis.</p>
         <p class="mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ut fugit accusantium quo quidem
-        magni laboriosam!</p>
+          magni laboriosam!</p>
         <div class="rating-card-two mt-4">
           <!-- Rating Details -->
           <div class="rating-detail">
@@ -113,35 +113,32 @@ $output = getRegistran($link);
           <div class="col-6 col-sm-4 col-lg-3">
             <div class="card single-product-card border">
               <div class="card-body p-3">
-                <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img
-                  src="img/bg-img/p1.jpg" alt="">
+                <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="img/bg-img/p1.jpg" alt="">
                   <!-- Badge --><span class="badge bg-primary">Sale</span></a>
-                  <!-- Product Title --><a class="product-title d-block text-truncate"
-                  href="page-shop-details.html">Wooden Tool</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$9.89<span>$13.42</span></p><a class="btn btn-danger btn-sm" href="#">Add to
+                <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html">Wooden Tool</a>
+                <!-- Product Price -->
+                <p class="sale-price">$9.89<span>$13.42</span></p><a class="btn btn-danger btn-sm" href="#">Add to
                   Cart</a>
-                </div>
               </div>
             </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card single-product-card border">
-                <div class="card-body p-3">
-                  <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img
-                    src="img/bg-img/p2.jpg" alt="">
-                    <!-- Badge --><span class="badge bg-primary">Sale</span></a>
-                    <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html">Atoms
-                    Musk</a>
-                    <!-- Product Price -->
-                    <p class="sale-price">$3.36<span>$5.99</span></p><a class="btn btn-danger btn-sm" href="#">Add to
-                    Cart</a>
-                  </div>
-                </div>
+          </div>
+          <!-- Single Top Product Card -->
+          <div class="col-6 col-sm-4 col-lg-3">
+            <div class="card single-product-card border">
+              <div class="card-body p-3">
+                <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="img/bg-img/p2.jpg" alt="">
+                  <!-- Badge --><span class="badge bg-primary">Sale</span></a>
+                <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html">Atoms
+                  Musk</a>
+                <!-- Product Price -->
+                <p class="sale-price">$3.36<span>$5.99</span></p><a class="btn btn-danger btn-sm" href="#">Add to
+                  Cart</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <?php include 'footer.php'; ?>
+  </div>
+</div>
+<?php include 'footer.php'; ?>
