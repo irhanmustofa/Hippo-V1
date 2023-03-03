@@ -28,54 +28,54 @@
                     Simple Datatable
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-hover" id="table1">
+                    <table class="table table-striped table-hover text-center" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Pendana</th>
-                                <th>Tujuan Pendanaan</th>
-                                <th>Jumlah Pendanaan</th>
-                                <th class="text-center">Status</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>No Identitas</th>
+                                <th>Foto KTP</th>
+                                <th>No NPWP</th>
+                                <th>Foto NPWP</th>
+                                <th>Alamat</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dale</td>
-                                <td>Henri Herdiyanto</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Accepted</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nathaniel</td>
-                                <td>Muhammad Irfan Rasnansyah</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-danger">Rejected </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Emmanuel</td>
-                                <td>Irhan Mustafa</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Accepted</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <?php
+                        $link = "getUserPendana";
+                        $output = getRegistran($link);
+                        foreach ($output->data as $array_item) {
+                            $bisnis[] = array(
+                                'nama' => $array_item->nama,
+                                'email' => $array_item->email,
+                                'password' => $array_item->password,
+                                'no_identitas' => $array_item->no_identitas,
+                                'foto_ktp' => $array_item->foto_ktp,
+                                'no_npwp' => $array_item->no_npwp,
+                                'foto_npwp' => $array_item->foto_npwp,
+                                'alamat' => $array_item->alamat,
+                            );
+                        }
+                        ?>
+                        <?php foreach ($bisnis as $key => $value) : ?>
+                            <tbody>
+                                <tr>
+                                    <td><?= $value['nama']; ?></td>
+                                    <td><?= $value['email']; ?></td>
+                                    <td><?= $value['password']; ?></td>
+                                    <td><?= $value['no_identitas']; ?></td>
+                                    <td><?= $value['foto_ktp']; ?></td>
+                                    <td><?= $value['no_npwp']; ?></td>
+                                    <td><?= $value['foto_npwp']; ?></td>
+                                    <td><?= $value['alamat']; ?></td>
+                                    <td class="text-center">
+                                        <span class="badge bg-warning">Riview</span>
+                                        <span class="badge bg-danger">Delete</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        <?php endforeach; ?>
                     </table>
                 </div>
             </div>

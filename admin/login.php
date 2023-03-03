@@ -35,13 +35,26 @@ if (isset($_POST['login'])) {
 	<title>Login-Admin</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+<style>
+	body {
+		background-color: orangered;
+	}
+
+	form {
+		background-image: url(../asset/img/bg-img/logo-kudanil.png);
+		background-repeat: no-repeat;
+		/* background-position: center; */
+		background-size: 90px;
+
+	}
+</style>
 
 <body>
 	<div class="container">
 		<div class="row justify-content-center mt-5">
 			<div class="col-md-4 mt-5">
 				<form method="post" class="bg-white rounded p-4 shadow mt-5">
-					<h1>Admin Login</h1><br>
+					<h1 class="text-center">Admin Login</h1><br>
 					<div class="mb-3">
 						<label class="form-label">Email Admin</label>
 						<input type="text" class="form-control" id="" name="email_admin">

@@ -713,3 +713,95 @@ function getArtikelDetail()
     header('Content-Type: application/json');
     echo json_encode($dodol);
 }
+
+
+
+function getUserPenerbit()
+{
+    global $connect;
+    if (!empty($_GET['nama']))
+        $nama = md5($_GET['nama']);
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['password']))
+        $password = md5($_GET['password']);
+    if (!empty($_GET['class']))
+        $class = md5($_GET['class']);
+    if (!empty($_GET['no_identitas']))
+        $no_identitas = md5($_GET['no_identitas']);
+    if (!empty($_GET['foto_ktp']))
+        $foto_ktp = md5($_GET['foto_ktp']);
+    if (!empty($_GET['no_npwp']))
+        $no_npwp = md5($_GET['no_npwp']);
+    if (!empty($_GET['foto_npwp']))
+        $foto_npwp = md5($_GET['foto_npwp']);
+    if (!empty($_GET['alamat']))
+        $alamat = md5($_GET['alamat']);
+
+    $query = "SELECT * FROM user WHERE class = 2";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+
+
+function getUserPendana()
+{
+    global $connect;
+    if (!empty($_GET['nama']))
+        $nama = md5($_GET['nama']);
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['password']))
+        $password = md5($_GET['password']);
+    if (!empty($_GET['class']))
+        $class = md5($_GET['class']);
+    if (!empty($_GET['no_identitas']))
+        $no_identitas = md5($_GET['no_identitas']);
+    if (!empty($_GET['foto_ktp']))
+        $foto_ktp = md5($_GET['foto_ktp']);
+    if (!empty($_GET['no_npwp']))
+        $no_npwp = md5($_GET['no_npwp']);
+    if (!empty($_GET['foto_npwp']))
+        $foto_npwp = md5($_GET['foto_npwp']);
+    if (!empty($_GET['alamat']))
+        $alamat = md5($_GET['alamat']);
+
+    $query = "SELECT * FROM user WHERE class = 1";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
