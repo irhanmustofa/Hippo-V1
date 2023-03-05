@@ -632,6 +632,35 @@ function setBisnis()
     echo json_encode($dodol);
 }
 
+function setKonfirmasiBisnis()
+{
+    global $connect;
+    
+    if (!empty($_GET['id_bisnis']))
+        $id_bisnis = $_GET['id_bisnis'];
+    if (!empty($_GET['status']))
+        $status = $_GET['status'];
+
+
+    $query = "UPDATE bisnis SET status = '$status' WHERE id_bisnis = '$id_bisnis'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
 function getBisnis()
 {
     global $connect;
@@ -658,9 +687,39 @@ function getBisnis()
     echo json_encode($dodol);
 }
 
+function getBisnisId()
+{
+    global $connect;
+
+    if (!empty($_GET['id_bisnis']))
+        $id_bisnis = $_GET['id_bisnis'];
+
+    $query = "SELECT * FROM bisnis WHERE id_bisnis = '$id_bisnis'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
 function getBisnisUser()
 {
-    
+
     global $connect;
     if (!empty($_GET['email']))
         $email = $_GET['email'];

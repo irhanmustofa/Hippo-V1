@@ -100,6 +100,12 @@ $data = getRegistran($link);
                             </ul>
                         </li>
                         <li class="sidebar-item">
+                            <a href="pengajuan-bisnis.php" class='sidebar-link'>
+                                <i class="bi bi-clipboard2-plus-fill"></i>
+                                <span>Bisnis</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="penawaran.php" class='sidebar-link'>
                                 <i class="bi bi-clipboard2-plus-fill"></i>
                                 <span>Penawaran</span>
