@@ -112,7 +112,7 @@ $data = getRegistran($link);
           <!-- Rating Details -->
           <div class="rating-detail">
             <div class="d-flex align-items-center mt-4">
-              <button class="btn btn-primary" type="submit">Invest Now</button>
+              <a href="join-invest.php?id=<?php echo $id ?>"><button class="btn btn-primary">Invest Now</button></a>
             </div>
           </div>
         </div>
