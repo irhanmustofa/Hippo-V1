@@ -53,6 +53,9 @@ $data = getRegistran($link);
             <li class="nav-item" role="presentation">
               <button class="btn" id="simulasi-tab" data-bs-toggle="tab" data-bs-target="#simulasi" type="button" role="tab" aria-controls="simulasi" aria-selected="false">Simulasi Investasi</button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn" id="prospektus-tab" data-bs-toggle="tab" data-bs-target="#prospektus" type="button" role="tab" aria-controls="prospektus" aria-selected="false">Prospektus</button>
+            </li>
           </ul>
           <div class="tab-content rounded-lg p-3 shadow-sm" id="affanTabs1Content">
             <div class="tab-pane fade show active" id="finansial" role="tabpanel" aria-labelledby="finansial-tab">
@@ -87,82 +90,85 @@ $data = getRegistran($link);
               <h6>Simulasi</h6>
               <p class="mb-0"><?php echo ($output->data[0]->deskripsi); ?></p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card user-info-card mb-3">
-      <div class="card-body d-flex align-items-center">
-        <div class="user-profile me-3"><img src="asset/img/profile/<?php echo ($data->data[0]->foto_profil) ?>" alt="" style="height:100%"></div>
-        <div class="user-info">
-          <div class="d-flex align-items-center">
-            <h5 class="mb-1"><?php echo ($data->data[0]->nama) ?></h5>
-          </div>
-          <p class="mb-0">Keterangan</p></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card product-details-card mb-3 direction-rtl">
-      <div class="card-body">
-        <h5>Description</h5>
-        <p><?php echo ($output->data[0]->deskripsi); ?></p>
-        <div class="rating-card-two mt-4">
-          <!-- Rating Details -->
-          <div class="rating-detail">
-            <div class="d-flex align-items-center mt-4">
-              <a href="join-invest.php?id=<?php echo $id ?>"><button class="btn btn-primary">Invest Now</button></a>
+            <div class="tab-pane fade" id="prospektus" role="tabpanel" aria-labelledby="prospektus-tab">
+              <h6><?php echo ($output->data[0]->prospektus); ?></h6>
+              <a Href="download-prospektus.php?Url=prospektus/<?php echo ($output->data[0]->prospektus); ?>">Download</a>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
-    <div class="card related-product-card direction-rtl">
-      <div class="card-body">
-        <h5 class="mb-3">Bisnis Terkait</h5>
-        <div class="row g-3 justify-content-center">
-          <?php
-          $link = "getBisnis";
-          $output = getRegistran($link);
-          foreach ($output->data as $array_item) {
-            $bisnis[] = array(
-              'id_bisnis' => $array_item->id_bisnis,
-              'kode_bisnis' => $array_item->kode_bisnis,
-              'nama_bisnis' => $array_item->nama_bisnis,
-              'deskripsi' => $array_item->deskripsi,
-              'dana' => $array_item->dana,
-              'estimasi' => $array_item->estimasi,
-              'gambar' => $array_item->gambar,
-              'lokasi' => $array_item->lokasi,
-              'kategori' => $array_item->kategori,
-              'email' => $array_item->email,
-              'sistem_pengolahan' => $array_item->sistem_pengolahan,
-              'skema_bisnis' => $array_item->skema_bisnis,
-              'minimum_invest' => $array_item->minimum_invest,
-            );
-          }
-          ?>
-          <?php foreach ($bisnis as $key => $value) : ?>
 
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-sm-4 col-lg-3">
-              <div class="card single-product-card border">
-                <div class="card-body p-3">
-                  <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="image/<?php echo $value["gambar"]; ?>" alt="">
-                    <!-- Badge --><span class="badge bg-primary">Sale</span></a>
-                  <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html"><?php echo $value["nama_bisnis"];  ?></a>
-                  <!-- Product Price -->
-                  <span class="card-text"><?php echo $value["deskripsi"]; ?></span><br>
-                  <a href="detail-bisnis.php?id=<?php echo $value["id_bisnis"]; ?>" class="btn btn-primary mt-2">Detail</a>
-                </div>
+      <div class="card user-info-card mb-3">
+        <div class="card-body d-flex align-items-center">
+          <div class="user-profile me-3"><img src="asset/img/profile/<?php echo ($data->data[0]->foto_profil) ?>" alt="" style="height:100%"></div>
+          <div class="user-info">
+            <div class="d-flex align-items-center">
+              <h5 class="mb-1"><?php echo ($data->data[0]->nama) ?></h5>
+            </div>
+            <p class="mb-0">Keterangan</p></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card product-details-card mb-3 direction-rtl">
+        <div class="card-body">
+          <h5>Description</h5>
+          <p><?php echo ($output->data[0]->deskripsi); ?></p>
+          <div class="rating-card-two mt-4">
+            <!-- Rating Details -->
+            <div class="rating-detail">
+              <div class="d-flex align-items-center mt-4">
+                <a href="join-invest.php?id=<?php echo $id ?>"><button class="btn btn-primary">Invest Now</button></a>
               </div>
             </div>
-          <?php endforeach ?>
+          </div>
+
+        </div>
+      </div>
+      <div class="card related-product-card direction-rtl">
+        <div class="card-body">
+          <h5 class="mb-3">Bisnis Terkait</h5>
+          <div class="row g-3 justify-content-center">
+            <?php
+            $link = "getBisnis";
+            $output = getRegistran($link);
+            foreach ($output->data as $array_item) {
+              $bisnis[] = array(
+                'id_bisnis' => $array_item->id_bisnis,
+                'kode_bisnis' => $array_item->kode_bisnis,
+                'nama_bisnis' => $array_item->nama_bisnis,
+                'deskripsi' => $array_item->deskripsi,
+                'dana' => $array_item->dana,
+                'estimasi' => $array_item->estimasi,
+                'gambar' => $array_item->gambar,
+                'lokasi' => $array_item->lokasi,
+                'kategori' => $array_item->kategori,
+                'email' => $array_item->email,
+                'sistem_pengolahan' => $array_item->sistem_pengolahan,
+                'skema_bisnis' => $array_item->skema_bisnis,
+                'minimum_invest' => $array_item->minimum_invest,
+              );
+            }
+            ?>
+            <?php foreach ($bisnis as $key => $value) : ?>
+
+              <!-- Single Top Product Card -->
+              <div class="col-6 col-sm-4 col-lg-3">
+                <div class="card single-product-card border">
+                  <div class="card-body p-3">
+                    <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="image/<?php echo $value["gambar"]; ?>" alt="">
+                      <!-- Badge --><span class="badge bg-primary">Sale</span></a>
+                      <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html"><?php echo $value["nama_bisnis"];  ?></a>
+                      <!-- Product Price -->
+                      <span class="card-text"><?php echo $value["deskripsi"]; ?></span><br>
+                      <a href="detail-bisnis.php?id=<?php echo $value["id_bisnis"]; ?>" class="btn btn-primary mt-2">Detail</a>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach ?>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
