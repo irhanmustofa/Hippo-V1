@@ -591,6 +591,8 @@ function setBisnis()
         $estimasi = $_GET['estimasi'];
     if (!empty($_GET['gambar']))
         $gambar = $_GET['gambar'];
+    if (!empty($_GET['prospektus']))
+        $prospektus = $_GET['prospektus'];
     if (!empty($_GET['lokasi']))
         $lokasi = $_GET['lokasi'];
     if (!empty($_GET['kategori']))
@@ -606,9 +608,9 @@ function setBisnis()
 
 
 
-    if ($kode_bisnis && $nama_bisnis && $deskripsi && $dana && $estimasi && $gambar) {
+    if ($kode_bisnis && $nama_bisnis && $deskripsi && $dana && $estimasi && $gambar && $prospektus) {
         $query = "INSERT INTO bisnis SET kode_bisnis = '$kode_bisnis', nama_bisnis = '$nama_bisnis', 
-        deskripsi = '$deskripsi', dana = '$dana', estimasi = '$estimasi', gambar = '$gambar', lokasi = '$lokasi', kategori = '$kategori', email = '$email', sistem_pengolahan = '$sistem_pengolahan', skema_bisnis = '$skema_bisnis', minimum_invest = '$minimum_invest'";
+        deskripsi = '$deskripsi', dana = '$dana', estimasi = '$estimasi', gambar = '$gambar', prospektus = '$prospektus', lokasi = '$lokasi', kategori = '$kategori', email = '$email', sistem_pengolahan = '$sistem_pengolahan', skema_bisnis = '$skema_bisnis', minimum_invest = '$minimum_invest'";
         $result = $connect->query($query);
 
         if ($result) {
@@ -665,6 +667,35 @@ function getBisnis()
 {
     global $connect;
     $query = "SELECT * FROM bisnis";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getBisnisAcc()
+{
+    global $connect;
+
+    if (!empty($_GET['status']))
+        $status = $_GET['status'];
+    $query = "SELECT * FROM bisnis WHERE status = 'diterima'";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {

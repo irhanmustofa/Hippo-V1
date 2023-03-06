@@ -259,7 +259,7 @@ $data = getRegistran($link);
             <h3>Bisnis Berlangsung</h3>
           </div>
           <div class="col-6 d-md-flex justify-content-md-end">
-            <button class="btn btn-outline-info" type="button">Selengkapnya</button>
+            <a href="all-bisnis.php" class="btn btn-outline-info" type="button">Selengkapnya</a>
           </div>
         </div>
         <?php

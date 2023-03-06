@@ -5,7 +5,7 @@ require_once "utility.php";
 $email = $_SESSION['email'];
 $link = "getProfile&email=" . urlencode($email);
 
-$link = "getBisnis";
+$link = "getBisnisAcc";
 $output = getRegistran($link);
 
 ?>

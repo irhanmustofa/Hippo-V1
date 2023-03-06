@@ -7,6 +7,7 @@ $link = "getProfile&email=" . urlencode($email);
 
 $link = "getBisnis";
 $data = getRegistran($link);
+$id = $data->data[0]->id_bisnis;
 ?>
 
 
@@ -61,7 +62,7 @@ $data = getRegistran($link);
                                         } else {
                                             $getExtensi = explode(".", $nama_file);
                                             $extensi_file = strtolower(end($getExtensi));
-                                            $nama_file = "file-" . $kode_bisnis . $nama_file . '.' . $extensi_file;
+                                            $nama_file = "file-" . $id . "_" . $nama_file . '.' . $extensi_file;
                                             if (!in_array($extensi_file, $extensi_izin) == true) {
                                                 // if ($op == 'update') {
                                                 //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
@@ -87,9 +88,49 @@ $data = getRegistran($link);
                                             $kelurga_imgNik = $nama_file;
                                     }
 
+                                    //FIle prospektus
+                                    $allow_prospektus = true;
+                                    $sumber_prospektus = $_FILES['prospektus']['tmp_name'];
+                                    $target_prospektus = "prospektus/";
+                                    $nama_prospektus = $_FILES['prospektus']['name'];
+                                    $size_prospektus = $_FILES['prospektus']['size'];
+
+                                    if ($nama_prospektus != "") {
+                                        if ($size_prospektus > $size_izin) {
+                                            $error .= "- Ukuran prospektus prospektus tidak Boleh Melebihi 1 MB";
+                                            $allow_prospektus = false;
+                                        } else {
+                                            $getExtensi = explode(".", $nama_prospektus);
+                                            $extensi_prospektus = strtolower(end($getExtensi));
+                                            $nama_prospektus = "prospektus-" . $email . $nama_prospektus . '.' . $extensi_prospektus;
+                                            if (!in_array($extensi_prospektus, $extensi_izin) == true) {
+                                                // if ($op == 'update') {
+                                                //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
+                                                //     $data = getData($link);
+                                                //     if ($data && $data->status == 1) {
+                                                //         unlink($target_ktp . $data->data->img_ktp);
+                                                //     }
+                                                // }
+                                                // } else {
+                                                $error .= " prospektus hanya diperbolehkan dalam bentuk dokumen (jpg, jpeg, png, gif, pdf)";
+                                                $allow_ktp = false;
+                                            }
+                                        }
+
+                                        if ($allow_prospektus) {
+                                            if (!move_uploaded_file($sumber_prospektus, $target_prospektus . $nama_prospektus)) {
+                                                $error .= " Gagal Uplaod prospektus prospektus ke server";
+                                                $error .= $sumber_prospektus . " " . $target_prospektus . $nama_prospektus;
+                                                $allow_prospektus = false;
+                                            }
+                                        }
+                                        if ($allow_prospektus)
+                                            $kelurga_imgNik = $nama_prospektus;
+                                    }
+
                                     $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
                                     '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
-                                    '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
+                                    '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&prospektus=' . urlencode($nama_prospektus) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
                                     $data = getRegistran($link);
                                     $output = $data;
                                     if ($output) {
@@ -134,6 +175,8 @@ $data = getRegistran($link);
                                             <input name="minimum_invest" class="form-control" type="text"><br>
                                             <label for="">Gambar</label>
                                             <input name="gambar" class="form-control" type="file"><br>
+                                            <label for="">Prospektus</label>
+                                            <input name="prospektus" class="form-control" type="file"><br>
                                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
                                             <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
                                         </form>
