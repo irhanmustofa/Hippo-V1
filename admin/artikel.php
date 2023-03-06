@@ -131,45 +131,47 @@ require_once "../utility.php";
                         </div>
                     </div>
                 </div>
-                <?php
-                $link = "getArtikel";
-                $output = getRegistran($link);
-                $no = 0;
-                if ($output && $output->status == 1) {
-                    $data = $output->data;
 
-                    foreach ($data as $key => $value) {
-                        $no++;
-                ?>
-                        <div class="card-body table-responsive">
-                            <table class="table table-striped table-hover" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Tanggal Posting</th>
-                                        <th>Judul Artikel</th>
-                                        <th>Deskripsi</th>
-                                        <th>Gambar</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
+                <div class="card-body table-responsive">
+                    <table class="table table-striped table-hover" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Tanggal Posting</th>
+                                <th>Judul Artikel</th>
+                                <th>Deskripsi</th>
+                                <th>Gambar</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $link = "getArtikel";
+                        $output = getRegistran($link);
+                        $no = 0;
+                        if ($output && $output->status == 1) {
+                            $data = $output->data;
+
+                            foreach ($data as $key => $value) {
+                                $no++;
+                        ?>
                                 <tbody>
                                     <tr>
                                         <td><?php echo $value->tanggal ?></td>
                                         <td><?php echo $value->judul ?></td>
                                         <td style="width: 500px;"><?php echo $value->deskripsi ?></td>
                                         <td><img src="image/<?php echo $value->gambar ?>" alt="" width="100px"></td>
-                                        <td class="text-center">
-                                            <a href="edit.php?id=<?php echo $value->id ?>" class="btn btn btn-warning">Edit</a>
-                                            <a href="delete.php?id=<?php echo $value->id ?>" class="btn btn btn-danger">Delete</a>
+                                        <td class="text-center d-flex mt-3">
+                                            <a href="edit.php?id=<?php echo $value->id ?>" class="btn btn btn-warning mt-3"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="delete.php?id=<?php echo $value->id ?>" class="btn btn btn-danger mt-3"><i class="bi bi-trash3-fill"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                <?php
-                    }
-                }
-                ?>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </table>
+                </div>
+
             </div>
         </section>
         <?php include "footer.php"; ?>

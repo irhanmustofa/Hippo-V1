@@ -1,8 +1,5 @@
-<?php 
-include "header.php"; 
-
-require_once "../utility.php";
-
+<?php
+include "header.php";
 $link = "getBisnis";
 $data = getRegistran($link);
 ?>
@@ -77,7 +74,7 @@ $data = getRegistran($link);
                             <tr>
                                 <th>Email Penerbit</th>
                                 <th>Kode Bisnis</th>
-                                <th>Nama Ide Bisnis</th>
+                                <th>Nama Bisnis</th>
                                 <th>Dana</th>
                                 <th>Estimasi</th>
                                 <th>Lokasi</th>
@@ -86,32 +83,48 @@ $data = getRegistran($link);
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data->data as $array_item): ?>
-                            <tr>
-                                <td><?php echo $array_item->email; ?></td>
-                                <td><?php echo $array_item->kode_bisnis; ?></td>
-                                <td><?php echo $array_item->nama_bisnis; ?></td>
-                                <td><?php echo $array_item->dana; ?></td>
-                                <td><?php echo $array_item->estimasi; ?></td>
-                                <td><?php echo $array_item->lokasi; ?></td>
-                                <td class="text-center">
-                                    <?php 
-                                    if ($array_item->status == 'diterima') { ?>
-                                        <span class="badge bg-success">Diterima</span>
-                                    <?php  }elseif ($array_item->status == 'ditolak') { ?>
-                                        <span class="badge bg-danger">Ditolak</span>
-                                    <?php }else{ ?>
-                                        <span class="badge bg-warning">Diproses</span>
-                                    <?php } ?>
+                            <?php
+                            if (isset($_POST['delete'])) {
+                                $id_bisnis = $_POST['id_bisnis'];
+                                $link = "getDeleteBisnis&id_bisnis=" . urlencode($id_bisnis);
+                                $delete = getRegistran($link, $id_bisnis);
+                                if (!$delete) {
+                                    echo "<script>alert('Data berhasil dihapus');window.location='pengajuan-bisnis.php'</script>";
+                                } else {
+                                    echo "<script>alert('Data gagal dihapus');window.location='pengajuan-bisnis.php'</script>";
+                                }
+                            }
+                            ?>
+                            <?php foreach ($data->data as $array_item) : ?>
+                                <tr>
+                                    <td><?php echo $array_item->email; ?></td>
+                                    <td><?php echo $array_item->kode_bisnis; ?></td>
+                                    <td><?php echo $array_item->nama_bisnis; ?></td>
+                                    <td><?php echo $array_item->dana; ?></td>
+                                    <td><?php echo $array_item->estimasi; ?></td>
+                                    <td><?php echo $array_item->lokasi; ?></td>
+                                    <td class="text-center">
+                                        <?php
+                                        if ($array_item->status == 'diterima') { ?>
+                                            <span class="badge bg-success">Diterima</span>
+                                        <?php  } elseif ($array_item->status == 'ditolak') { ?>
+                                            <span class="badge bg-danger">Ditolak</span>
+                                        <?php } else { ?>
+                                            <span class="badge bg-warning">Diproses</span>
+                                        <?php } ?>
 
-                                    
-                                    
-                                </td>
-                                <td class="text-center">
-                                    <a href="edit-pengajuan-bisnis.php?id=<?php echo $array_item->id_bisnis; ?>"><span class="badge bg-warning">Review</span></a>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
+
+
+                                    </td>
+                                    <td class="text-center d-flex mt-3">
+                                        <a class="btn btn-warning" href="edit-pengajuan-bisnis.php?id=<?php echo $array_item->id_bisnis; ?>"><i class="bi bi-pencil-square"></i></a>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="id_bisnis" value="<?php echo $array_item->id_bisnis; ?>">
+                                            <button type="submit" name="delete" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                        <!-- <span class="badge bg-danger">Delete</span> -->
+                                    </td>
+                                </tr>
                             <?php endforeach ?>
                         </tbody>
                     </table>

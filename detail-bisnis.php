@@ -158,17 +158,17 @@ $data = getRegistran($link);
                   <div class="card-body p-3">
                     <!-- Product Thumbnail --><a class="product-thumbnail d-block" href="page-shop-details.html"><img src="image/<?php echo $value["gambar"]; ?>" alt="">
                       <!-- Badge --><span class="badge bg-primary">Sale</span></a>
-                      <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html"><?php echo $value["nama_bisnis"];  ?></a>
-                      <!-- Product Price -->
-                      <span class="card-text"><?php echo $value["deskripsi"]; ?></span><br>
-                      <a href="detail-bisnis.php?id=<?php echo $value["id_bisnis"]; ?>" class="btn btn-primary mt-2">Detail</a>
-                    </div>
+                    <!-- Product Title --><a class="product-title d-block text-truncate" href="page-shop-details.html"><?php echo $value["nama_bisnis"];  ?></a>
+                    <!-- Product Price -->
+                    <span class="card-text d-inline-block text-truncate" style="max-width: 120px;"><?php echo $value["deskripsi"]; ?></span><br>
+                    <a href="detail-bisnis.php?id=<?php echo $value["id_bisnis"]; ?>" class="btn btn-primary mt-2">Detail</a>
                   </div>
                 </div>
-              <?php endforeach ?>
-            </div>
+              </div>
+            <?php endforeach ?>
           </div>
         </div>
       </div>
     </div>
-    <?php include 'footer.php'; ?>
+  </div>
+  <?php include 'footer.php'; ?>

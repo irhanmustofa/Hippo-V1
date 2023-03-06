@@ -3,6 +3,15 @@ session_start();
 if (!isset($_SESSION['start'])) {
     echo ("<script>location.href = 'start.php';</script>");
 }
+require_once 'utility.php';
+$error = "";
+
+$email = $_SESSION['email'];
+$link = "getProfile&email=" . urlencode($email);
+
+$data = getRegistran($link);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,10 +84,10 @@ if (!isset($_SESSION['start'])) {
                 <div class="sidenav-profile bg-gradient" style="color: black;">
                     <div class="sidenav-style1"></div>
                     <!-- User Thumbnail -->
-                    <div class="user-profile"><img src="img/bg-img/2.jpg" alt=""></div>
+                    <div class="user-profile"><img src="asset/img/profile/<?php echo ($data->data[0]->foto_profil); ?>" alt=""></div>
                     <!-- User Info -->
                     <div class="user-info">
-                        <h6 class="user-name mb-0">Affan Islam</h6><span>CEO, Designing World</span>
+                        <h6 class="user-name mb-0"><?php echo ($data->data[0]->nama) ?></h6>
                     </div>
                 </div>
                 <!-- Sidenav Nav -->

@@ -1,4 +1,7 @@
-<?php include "header.php"; ?>
+<?php
+include "header.php";
+
+?>
 
 <div id="main">
     <header class="mb-3">
@@ -20,12 +23,18 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon purple mb-2">
-                                            <i class="iconly-boldShow"></i>
+                                            <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
+                                    <?php
+                                    $query = "SELECT COUNT(*) as jumlah_user FROM user WHERE class = 1";
+                                    $result = mysqli_query($connect, $query);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $jumlah_user = $row['jumlah_user'];
+                                    ?>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Profile Views</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
+                                        <h6 class="text-muted font-semibold">Jumlah Penerbit</h6>
+                                        <h6 class="font-extrabold mb-0"><?php echo $jumlah_user ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -40,9 +49,15 @@
                                             <i class="iconly-boldProfile"></i>
                                         </div>
                                     </div>
+                                    <?php
+                                    $query = "SELECT COUNT(*) as jumlah_user1 FROM user WHERE class = 2";
+                                    $result = mysqli_query($connect, $query);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $jumlah_user1 = $row['jumlah_user1'];
+                                    ?>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Followers</h6>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                        <h6 class="text-muted font-semibold">Jumlah Pendana</h6>
+                                        <h6 class="font-extrabold mb-0"><?php echo $jumlah_user1 ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -54,12 +69,18 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon green mb-2">
-                                            <i class="iconly-boldAdd-User"></i>
+                                            <i class="bi bi-card-list mb-4 mx-3"></i>
                                         </div>
                                     </div>
+                                    <?php
+                                    $query = "SELECT COUNT(*) as artikel1 FROM artikel";
+                                    $result = mysqli_query($connect, $query);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $artikel1 = $row['artikel1'];
+                                    ?>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Following</h6>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
+                                        <h6 class="text-muted font-semibold">Jumlah Artikel</h6>
+                                        <h6 class="font-extrabold mb-0"><?php echo $artikel1 ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -74,9 +95,15 @@
                                             <i class="iconly-boldBookmark"></i>
                                         </div>
                                     </div>
+                                    <?php
+                                    $query = "SELECT COUNT(*) as bisnis1 FROM bisnis";
+                                    $result = mysqli_query($connect, $query);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $bisnis1 = $row['bisnis1'];
+                                    ?>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
+                                        <h6 class="text-muted font-semibold">Jumlah Bisnis</h6>
+                                        <h6 class="font-extrabold mb-0"><?php echo $bisnis1 ?></h6>
                                     </div>
                                 </div>
                             </div>

@@ -1,11 +1,11 @@
-<?php 
-include "header.php"; 
+<?php
+include "header.php";
 
 require_once "../utility.php";
 
 $id = $_GET["id"];
 
-$link = "getBisnisId&id_bisnis=".urlencode($id);
+$link = "getBisnisId&id_bisnis=" . urlencode($id);
 $data = getRegistran($link);
 ?>
 <div id="main">
@@ -103,49 +103,48 @@ $data = getRegistran($link);
 						</div>
 					</div>
 				</div>
-			</section>
+		</section>
 
-			<section class="section">
-				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title">Konfirmasi Ide Bisnis</h4>
-					</div>
-					<div class="card-content">
-						<div class="card-body">
-							<div class="row">
-								<div class="mb-4">
-									<h6>Input group append</h6>
-									<form method="post">
-										<input type="hidden" name="id" value="<?php echo $id ?>">
-										<div class="input-group mb-3">
-											<select class="form-select" name="status">
-												<option selected>--Konfirmasi Status--</option>
-												<option value="diterima">Diterima</option>
-												<option value="ditolak">Ditolak</option>
-											</select>
-											<button class="btn  btn-primary input-group-text" type="submit" name="konfirmasi">Konfirmasi</button>
-										</div>
-									</form>
-								</div>
+		<section class="section">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Konfirmasi Ide Bisnis</h4>
+				</div>
+				<div class="card-content">
+					<div class="card-body">
+						<div class="row">
+							<div class="mb-4">
+								<h6>Input group append</h6>
+								<form method="post">
+									<input type="hidden" name="id" value="<?php echo $id ?>">
+									<div class="input-group mb-3">
+										<select class="form-select" name="status">
+											<option selected>--Konfirmasi Status--</option>
+											<option value="diterima">Diterima</option>
+											<option value="ditolak">Ditolak</option>
+											<option value="ditolak">Direview</option>
+										</select>
+										<button class="btn  btn-primary input-group-text" type="submit" name="konfirmasi">Konfirmasi</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php 
+	</div>
+	<?php
 
-			if (isset($_POST["konfirmasi"])) {
-				$id = $_POST["id"];
-				$status = $_POST["status"];
+	if (isset($_POST["konfirmasi"])) {
+		$id = $_POST["id"];
+		$status = $_POST["status"];
 
-				if($data && $data->status == '1'){
-					$link= "setKonfirmasiBisnis&id_bisnis=".urlencode($id)."&status=".urlencode($status);
-					$data= getRegistran($link);
-					echo "<script>alert ('Data ditambahkan')</script>";
-					echo "<script>location = 'pengajuan-bisnis.php'</script>";
-				}
-
-				
-			}
-			include "footer.php"; 
-		?>
+		if ($data && $data->status == '1') {
+			$link = "setKonfirmasiBisnis&id_bisnis=" . urlencode($id) . "&status=" . urlencode($status);
+			$data = getRegistran($link);
+			echo "<script>alert ('Data ditambahkan')</script>";
+			echo "<script>location = 'pengajuan-bisnis.php'</script>";
+		}
+	}
+	include "footer.php";
+	?>
