@@ -666,7 +666,7 @@ function setKonfirmasiBisnis()
 function getBisnis()
 {
     global $connect;
-    $query = "SELECT * FROM bisnis";
+    $query = "SELECT * FROM bisnis WHERE status = 'diterima'";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {
@@ -857,7 +857,35 @@ function getUserPenerbit()
     if (!empty($_GET['alamat']))
         $alamat = md5($_GET['alamat']);
 
-    $query = "SELECT * FROM user WHERE class = 2";
+    $query = "SELECT * FROM user WHERE class = 1";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function getAdminPenerbit()
+{
+    global $connect;
+    if (!empty($_GET['id_user']))
+        $id = $_GET['id_user'];
+
+    $query = "SELECT * FROM user WHERE id_user = $id";
     $result = $connect->query($query);
     while ($row = mysqli_fetch_object($result)) {
         $data[] = $row;
@@ -903,7 +931,7 @@ function getUserPendana()
     if (!empty($_GET['alamat']))
         $alamat = md5($_GET['alamat']);
 
-    $query = "SELECT * FROM user WHERE class = 1";
+    $query = "SELECT * FROM user WHERE class = 2";
     $result = $connect->query($query);
     while ($row = mysqli_fetch_object($result)) {
         $data[] = $row;

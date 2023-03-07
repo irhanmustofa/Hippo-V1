@@ -3,7 +3,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 include "header.php";
-$link = "getUserPendana";
+$link = "getUserPenerbit";
 $output = getRegistran($link);
 foreach ($output->data as $array_item) {
     $bisnis[] = array(
@@ -54,9 +54,7 @@ foreach ($output->data as $array_item) {
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>No Identitas</th>
-                                <th>Foto KTP</th>
                                 <th>No NPWP</th>
-                                <th>Foto NPWP</th>
                                 <th>Alamat</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -84,15 +82,15 @@ foreach ($output->data as $array_item) {
                                     <td><?= $value['nama']; ?></td>
                                     <td><?= $value['email']; ?></td>
                                     <td><?= $value['no_identitas']; ?></td>
-                                    <td><?= $value['foto_ktp']; ?></td>
                                     <td><?= $value['no_npwp']; ?></td>
-                                    <td><?= $value['foto_npwp']; ?></td>
                                     <td><?= $value['alamat']; ?></td>
-                                    <td>
+                                    <td class="text-center">
+                                        <a class="btn btn-warning" href="edit-penerbit.php?id=<?php echo $value['id_user']; ?>"><i class="bi bi-pencil-square"></i></a>
                                         <form action="" method="POST">
-                                            <input type="hidden" name="id_user" value="<?= $value['id_user']; ?>">
-                                            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                                            <input type="hidden" name="id_bisnis" value="<?php echo $value['id_user']; ?>">
+                                            <button type="submit" name="delete" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                         </form>
+                                        <!-- <span class="badge bg-danger">Delete</span> -->
                                     </td>
                                 </tr>
                             </tbody>

@@ -317,33 +317,36 @@ $data = getRegistran($link);
     <div class="container">
       <div class="row g-3">
         <div class="col-12">
-          <?php
-          $link = "getArtikel";
-          $output = getRegistran($link);
-          foreach ($output->data as $array_item) {
-            echo '<div class="card single-product-card">';
-            echo ' <div class="card-body">';
-            echo '<div class="d-flex align-items-center">';
-            echo '<div class="card-side-img">';
-            echo '<a class="product-thumbnail d-block" href="detail-artikel.php?id=' . $array_item->id . '">';
-            echo '<img style="width:200px;" src="admin/image/' . $array_item->gambar . '" />';
-            echo '<span class="badge bg-primary">Sale</span></a></div>';
-            echo '<div class="card-content px-4 py-2">';
-            echo $array_item->judul . '<br>';
-            echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
-            // tambahkan kode untuk menampilkan data dalam array lainnya
+          <div class="section-heading">
+            <h3 class="mx-4">Artikel HIPPO</h3>
+            <?php
+            $link = "getArtikel";
+            $output = getRegistran($link);
+            foreach ($output->data as $array_item) {
+              echo '<div class="card single-product-card">';
+              echo ' <div class="card-body">';
+              echo '<div class="d-flex align-items-center">';
+              echo '<div class="card-side-img">';
+              echo '<a class="product-thumbnail d-block" href="detail-artikel.php?id=' . $array_item->id . '">';
+              echo '<img style="width:200px;" src="admin/image/' . $array_item->gambar . '" />';
+              echo '<span class="badge bg-primary">Sale</span></a></div>';
+              echo '<div class="card-content px-4 py-2">';
+              echo $array_item->judul . '<br>';
+              echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
+              // tambahkan kode untuk menampilkan data dalam array lainnya
 
-            // foreach ($output as $row) {
-            //     echo $row["kode_bisnis"];
-            //     echo $row["nama_bisnis"];
-            //     echo $row["deskripsi"];
-            // }
-            // echo ($output->data[0]->kode_bisnis) . '<br>';
+              // foreach ($output as $row) {
+              //     echo $row["kode_bisnis"];
+              //     echo $row["nama_bisnis"];
+              //     echo $row["deskripsi"];
+              // }
+              // echo ($output->data[0]->kode_bisnis) . '<br>';
 
 
-          }
-          ?>
+            }
+            ?>
 
+          </div>
         </div>
       </div>
     </div>

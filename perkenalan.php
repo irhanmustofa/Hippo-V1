@@ -12,7 +12,9 @@
 						</div>
 						<div class="accordion-collapse collapse show" id="accordionStyleOne" aria-labelledby="accordionOne" data-bs-parent="#accordionStyle1">
 							<div class="accordion-body">
-								<p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum, velit?</p>
+								<p class="mb-0">HIPPO adalah sebuah platform investasi bisnis dengan sistem Securities Crowdfunding yang sudah mendapatkan izin sebagai
+									Penyelenggara dari Otoritas Jasa Keuangan. Anda bisa memiliki bisnis mulai dari Alfamart,
+									Usahan makanan dan minuman,Teknologi,per-filman Sour Sally dan masih banyak brand UKM terbaik yang bisa Anda miliki dengan investasi mulai dari Rp 500.000.</p>
 							</div>
 						</div>
 					</div>
@@ -66,6 +68,6 @@
 	</div>
 </div>
 
-<?php 
+<?php
 include "footer.php";
 ?>
