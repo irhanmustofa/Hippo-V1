@@ -44,10 +44,23 @@ $data = getRegistran($link);
     <link rel="stylesheet" href="asset/css/rangeslider.css">
     <link rel="stylesheet" href="asset/css/vanilla-dataTables.min.css">
     <link rel="stylesheet" href="asset/css/apexcharts.css">
+    <link rel="stylesheet" href="asset/css/jquery.nice-number.css">
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="asset/style.css">
     <!-- Web App Manifest -->
     <link rel="manifest" href="asset/manifest.json">
+
+    <link href="asset/css/jquery.nice-number.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" 
+    integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" 
+    crossorigin="anonymous">
+    </script>
+    <script src="asset/js/jquery.nice-number.js"></script>
+
+
+
+
+
 </head>
 
 <body>

@@ -62,7 +62,7 @@ $id = $data->data[0]->id_bisnis;
                                         } else {
                                             $getExtensi = explode(".", $nama_file);
                                             $extensi_file = strtolower(end($getExtensi));
-                                            $nama_file = "file-" . $id . "_" . $nama_file . '.' . $extensi_file;
+                                            $nama_file = "file-" . $email . "_" . $id . "_" . $nama_file . '.' . $extensi_file;
                                             if (!in_array($extensi_file, $extensi_izin) == true) {
                                                 // if ($op == 'update') {
                                                 //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;

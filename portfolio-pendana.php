@@ -4,6 +4,9 @@ include 'header.php';
 require_once "utility.php";
 $email = $_SESSION['email'];
 $link = "getProfile&email=" . urlencode($email);
+
+$link = "getBisnis";
+$data = getRegistran($link);
 ?>
 
 
@@ -28,7 +31,59 @@ $link = "getProfile&email=" . urlencode($email);
             </div>
         </div>
     </div>
+
+
     <!-- Top Products-->
+    <div class="top-products-area product-list-wrap">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12">
+                    <?php 
+                    if ($data == NULL) { ?>
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Data Kosong
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
+                    <?php } else{
+
+                        $link = "getPendanaanUser&email_pendana=" . urlencode($email);
+                        // echo $link;
+                        $output = getRegistran($link);
+                        foreach ($output->data as $array_item) { ?>
+
+                            <div class="card mb-3">
+                              <div class="row g-0">
+                                <div class="col-md-4">
+                                  <img src="image/<?php echo $array_item->gambar ?>" class="img-fluid rounded-start" alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><?php echo $array_item->nama_bisnis ?></h5>
+                                    <p class="card-text"><?php echo $array_item->deskripsi ?></p>
+                                    <p class="card-text"><small class="text-muted">Jumlah Invest : <?php echo $array_item->jumlah_invest; ?></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <?php } ?>
+            <?php } ?> 
+
+
+</div>
+</div>
+</div>
+<!-- Top Products-->
     <!-- <div class="top-products-area product-list-wrap">
         <div class="container">
             <div class="row g-3">

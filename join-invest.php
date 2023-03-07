@@ -13,6 +13,29 @@ $link = "getProfile&email=" . urlencode($email);
 // echo $link;
 $user = getRegistran($link);
 
+
+
+if (isset($_POST['submit'])) {
+	$id_bisnis = $_POST['id_bisnis'];
+	$nama_pendana = $_POST['nama_pendana'];
+	$email_pendana = $_POST['email_pendana'];
+	$email_penerbit = $_POST['email_penerbit'];
+	$no_hp = $_POST['no_hp'];
+	$jumlah_invest = $_POST['jumlah_invest'];
+
+
+
+	$link = "setPendanaan&id_bisnis=" . urlencode($id_bisnis) . "&nama_pendana=" . urlencode($nama_pendana) .
+	'&email_pendana=' . urlencode($email_pendana) . '&email_penerbit=' . urlencode($email_penerbit) .
+	'&no_hp=' . urlencode($no_hp) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
+	$data = getRegistran($link);
+	if ($data && $data->status == '1') {
+		echo '<script>alert("data berhasil ditambah")</script>';
+		echo ("<script>location.href = 'portfolio-pendana.php';</script>");
+	}
+     
+}
+
 ?>
 
 
@@ -68,37 +91,38 @@ $user = getRegistran($link);
 			</div>
 
 			<div class="card-body">
-				<form action="#" method="GET">
+				<form action="#" method="post">
+					<input class="form-control" name="id_bisnis" type="hidden" value="<?php echo $id;?>">
 					<div class="form-group">
 						<label class="form-label" for="exampleInputText">Nama Pendana</label>
-						<input class="form-control" name="nama" type="text" value="<?php echo ($user->data[0]->nama);?>" disabled>
+						<input class="form-control" name="nama_pendana" type="text" value="<?php echo ($user->data[0]->nama);?>" readonly>
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputemail">Email Pendana</label>
-						<input class="form-control" name="email" type="email" value="<?php echo $email?>" disabled>
+						<input class="form-control" name="email_pendana" type="email" value="<?php echo $email?>" readonly>
 					</div>
 					<div class="form-group">
-						<label class="form-label" for="exampleInputtelephone">Input telephone</label>
-						<input class="form-control" name="no_hp" type="tel" >
+						<label class="form-label" for="exampleInputtelephone">No HP</label>
+						<input class="form-control" name="no_hp" type="text" >
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputnumber">Minimum Invest</label>
 						<input class="form-control" name="dana_invest" name="" value="<?php echo ($bisnis->data[0]->minimum_invest);?>">
 					</div>
 					<div class="form-group">
-						<label class="form-label" for="exampleInputnumber">Input Jumlah Invest</label>
-						<input class="form-control" name="dana_invest" type="number">
+						<label class="form-label" for="exampleInputnumber">Input Invest</label>
+						<input class="nice-number" type="number" value="1" name="">
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputnumber">Total Invest</label>
-						<input class="form-control" name="dana_invest" type="number">
+						<input class="form-control" name="jumlah_invest" type="text" >
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputText">Email Penerbit</label>
-						<input class="form-control" name="nama" type="text" value="<?php echo ($bisnis->data[0]->email);?>" disabled>
+						<input class="form-control" name="email_penerbit" type="text" value="<?php echo ($bisnis->data[0]->email);?>" readonly>
 					</div>
 
-					<button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" type="button">Send Message
+					<button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" type="submit" name="submit">Invest
 						<svg class="bi bi-arrow-right-short" width="24" height="24" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
 						</svg>
@@ -108,6 +132,26 @@ $user = getRegistran($link);
 		</div>
 	</div>
 </div>
+
+<script src="asset/js/jquery.nice-number.js"></script>
+<script type="text/javascript">
+	$('input[type="number"]').niceNumber({
+
+  // auto resize the number input
+  autoSize: true,
+
+  // the number of extra character
+  autoSizeBuffer: 1,
+
+  // custom button text
+  buttonDecrement: '-',
+  buttonIncrement: "+",
+
+  // 'around', 'left', or 'right'
+  buttonPosition: 'around'
+  
+});
+</script>
 
 
 <?php 

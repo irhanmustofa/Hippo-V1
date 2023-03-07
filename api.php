@@ -1093,3 +1093,69 @@ function getjmlhPenerbit()
     header('Content-Type: application/json');
     echo json_encode($response);
 }
+
+function setPendanaan()
+{
+    global $connect;
+    if (!empty($_GET['id_bisnis']))
+        $id_bisnis = $_GET['id_bisnis'];
+    if (!empty($_GET['nama_pendana']))
+        $nama_pendana = $_GET['nama_pendana'];
+    if (!empty($_GET['email_pendana']))
+        $email_pendana = $_GET['email_pendana'];
+    if (!empty($_GET['email_penerbit']))
+        $email_penerbit = $_GET['email_penerbit'];
+    if (!empty($_GET['no_hp']))
+        $no_hp = $_GET['no_hp'];
+    if (!empty($_GET['jumlah_invest']))
+        $jumlah_invest = $_GET['jumlah_invest'];
+
+
+    $query = "INSERT INTO pendanaan SET id_bisnis = '$id_bisnis', nama_pendana = '$nama_pendana', email_pendana = '$email_pendana', email_penerbit = '$email_penerbit', no_hp = '$no_hp', jumlah_invest = '$jumlah_invest'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function getPendanaanUser()
+{
+
+    global $connect;
+    if (!empty($_GET['email_pendana']))
+        $email_pendana = $_GET['email_pendana'];
+
+    $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis  WHERE email_pendana = '$email_pendana'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
