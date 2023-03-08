@@ -102,7 +102,7 @@ $id = $data->data[0]->id_bisnis;
                                         } else {
                                             $getExtensi = explode(".", $nama_prospektus);
                                             $extensi_prospektus = strtolower(end($getExtensi));
-                                            $nama_prospektus = "prospektus-" . $email . $nama_prospektus . '.' . $extensi_prospektus;
+                                            $nama_prospektus = "prospektus-" . $email . $id . $nama_prospektus . '.' . $extensi_prospektus;
                                             if (!in_array($extensi_prospektus, $extensi_izin) == true) {
                                                 // if ($op == 'update') {
                                                 //     $link = 'getKeluargaImage&id=' . $id . '&field=img_ktp&nama=' . $kelurga_nama;
