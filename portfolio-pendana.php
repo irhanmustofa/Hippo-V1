@@ -39,25 +39,21 @@ $data = getRegistran($link);
             <div class="row g-3">
                 <div class="col-12">
                     <?php
-                    if ($data == NULL) { ?>
+                    $link = "getPendanaanUser&email_pendana=" . urlencode($email);
+                    $output = getRegistran($link);
+                    if ($output == NULL) { ?>
                         <div class="card text-center">
                             <div class="card-header">
                                 Data Kosong
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
+                                <h5 class="card-title">Silahkan <b>Mulai Investasi</b></h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
                             </div>
                         </div>
-                        <?php } else {
+                    <?php } else {
 
-                        $link = "getPendanaanUser&email_pendana=" . urlencode($email);
-                        // echo $link;
-                        $output = getRegistran($link);
+
                         foreach ($output->data as $array_item) { ?>
 
                             <div class="card mb-3">
@@ -95,7 +91,7 @@ $data = getRegistran($link);
             </div>
         </div>
     </div> -->
-        <!-- Pagination-->
+    <!-- Pagination-->
         <!-- <div class="shop-pagination pt-3">
         <div class="container">
             <div class="card">
@@ -127,5 +123,5 @@ $data = getRegistran($link);
             </div>
         </div>
     </div> -->
-    </div>
-    <?php include 'footer.php'; ?>
+</div>
+<?php include 'footer.php'; ?>
