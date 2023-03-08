@@ -118,6 +118,10 @@ if (isset($_POST['submit'])) {
 						<label class="form-label" for="exampleInputnumber">Minimum Invest</label>
 						<input class="form-control" name="dana_invest" id="dana_invest" type="text" value="<?php echo ($bisnis->data[0]->minimum_invest); ?>" readonly>
 					</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bfa228ff9841ce64773993b3a2d8df6619305968
 					<div class="form-group">
 						<label for="quantity">Lembar Saham</label>
 						<input type="number" class="form-control" id="quantity" name="quantity" value="0" min="1" max="1000" required>
@@ -129,8 +133,20 @@ if (isset($_POST['submit'])) {
 					<div class="form-group">
 						<label class="form-label" for="exampleInputText">Email Penerbit</label>
 						<input class="form-control" name="email_penerbit" type="text" value="<?php echo ($bisnis->data[0]->email); ?>" readonly>
+<<<<<<< HEAD
 					</div>
 
+=======
+					</div><br>
+					<div class="form-group">
+						<label for="quantity">lembar saham:</label>
+						<input type="number" class="form-control" id="quantity" name="quantity" min="1" max="10" required>
+					</div>
+					<div class="form-group">
+						<label for="price">Price:</label>
+						<input type="text" class="form-control" id="price" name="price" readonly>
+					</div><br><br>
+>>>>>>> bfa228ff9841ce64773993b3a2d8df6619305968
 					<button class="btn btn-primary w-100 d-flex align-items-center justify-content-center" type="submit" name="submit">Invest
 						<svg class="bi bi-arrow-right-short" width="24" height="24" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
@@ -154,26 +170,6 @@ if (isset($_POST['submit'])) {
 		priceInput.value = price;
 	});
 </script>
-<!-- <script src="asset/js/jquery.nice-number.js"></script>
-<script type="text/javascript">
-	$('input[type="number"]').niceNumber({
-
-		// auto resize the number input
-		autoSize: true,
-
-		// the number of extra character
-		autoSizeBuffer: 1,
-
-		// custom button text
-		buttonDecrement: '-',
-		buttonIncrement: "+",
-
-		// 'around', 'left', or 'right'
-		buttonPosition: 'around'
-
-	});
-</script> -->
-
 
 
 <?php
