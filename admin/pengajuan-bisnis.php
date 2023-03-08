@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-$link = "getBisnis";
+$link = "getBisnisAdmin";
 $data = getRegistran($link);
 ?>
 <div id="main">

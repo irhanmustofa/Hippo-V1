@@ -70,7 +70,7 @@ $data = getRegistran($link);
                                             <h5 class="card-title"><?php echo $array_item->nama_bisnis ?></h5>
                                             <p class="card-text"><?php echo $array_item->deskripsi ?></p>
                                             <p class="card-text"><small class="text-muted">Jumlah Invest : <?php echo $array_item->jumlah_invest; ?></small></p>
-                                            <a href="detail-bisnis.php?id_bisnis=<?php echo $array_item->id_bisnis ?>">Detail</a>
+                                            <a href="detail-bisnis.php?id=<?php echo $array_item->id_bisnis ?>">Detail</a>
                                         </div>
                                     </div>
                                 </div>
