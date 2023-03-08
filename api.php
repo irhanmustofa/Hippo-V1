@@ -1009,6 +1009,34 @@ function getDeletePenerbit()
     echo json_encode($response);
 }
 
+function getDeleteinvestor()
+{
+    global $connect;
+    if (!empty($_GET['id_pendanaan']))
+        $id = $_GET['id_pendanaan'];
+
+    $query = "DELETE FROM pendanaan WHERE id_pendanaan = $id";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
 function getDeletePendana()
 {
     global $connect;

@@ -1,4 +1,19 @@
-<?php include "header.php"; ?>
+<?php
+include "header.php";
+if (isset($_POST['delete'])) {
+    $id = $_POST['id_pendanaan'];
+    $link = "getDeleteinvestor&id_pendanaan=" . urlencode($id);
+    $output = getRegistran($link);
+    if (!$output->data[0]->status == '1') {
+        echo '<script>alert("data berhasil di hapus")</script>';
+        header('Location:penerbit.php');
+    } else {
+        echo '<script>alert("data gagal di hapus")</script>';
+    }
+}
+
+
+?>
 <div id="main">
     <header class="mb-3">
         <a href="#" class="burger-btn d-block d-xl-none">
@@ -80,55 +95,52 @@
                         <?php
                         $link = "getPendanaanAdmin";
                         $output = getRegistran($link);
-                        foreach ($output->data as $array_item) {
-                            $pendanaan[] = array(
-                                'id_bisnis' => $array_item->id_bisnis,
-                                'nama_pendana' => $array_item->nama_pendana,
-                                'email_pendana' => $array_item->email_pendana,
-                                'email_penerbit' => $array_item->email_penerbit,
-                                'no_hp' => $array_item->no_hp,
-                                'jumlah_invest' => $array_item->jumlah_invest,
-                                'time' => $array_item->time,
-                            );
-                        }
-                        ?>
-                        <tbody>
-                            <?php foreach ($pendanaan as $p) : ?>
-                                <tr>
-                                    <td><?= $p['nama_pendana']; ?></td>
-                                    <td><?= $p['email_pendana']; ?></td>
-                                    <td><?= $p['email_penerbit']; ?></td>
-                                    <td><?= $p['no_hp']; ?></td>
-                                    <td><?= $p['jumlah_invest']; ?></td>
-                                    <td><?= $p['time']; ?></td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-warning btn-sm">Review</a>
-                                        <span class="badge bg-danger">Delete</span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-
-
-
-                        <!-- <tbody>
+                        if ($output == 0) { ?>
                             <tr>
-                                <td>Dale</td>
-                                <td>Henri Herdiyanto</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Accepted</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
+                                <td colspan="7" class="text-center mt-5">
+                                    <h1>Data Kosong</h1>
+                                    <img src="../asset/img/bg-img/hipopotamus.png" alt="">
                                 </td>
                             </tr>
-                        </tbody> -->
+                        <?php
+                        } else {
+                            foreach ($output->data as $array_item) {
+                                $pendanaan[] = array(
+                                    'id_pendanaan' => $array_item->id_pendanaan,
+                                    'id_bisnis' => $array_item->id_bisnis,
+                                    'nama_pendana' => $array_item->nama_pendana,
+                                    'email_pendana' => $array_item->email_pendana,
+                                    'email_penerbit' => $array_item->email_penerbit,
+                                    'no_hp' => $array_item->no_hp,
+                                    'jumlah_invest' => $array_item->jumlah_invest,
+                                    'waktu' => $array_item->waktu,
+                                );
+                            } ?>
+                            <tbody>
+                                <?php foreach ($pendanaan as $p) : ?>
+                                    <tr>
+                                        <td><?= $p['nama_pendana']; ?></td>
+                                        <td><?= $p['email_pendana']; ?></td>
+                                        <td><?= $p['email_penerbit']; ?></td>
+                                        <td><?= $p['no_hp']; ?></td>
+                                        <td><?= $p['jumlah_invest']; ?></td>
+                                        <td><?= $p['waktu']; ?></td>
+                                        <td class="text-center">
+                                            <a class="btn btn-warning" href="?id=<?= $p['id_pendanaan']; ?>"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="id_pendanaan" value="<?= $p['id_pendanaan']; ?>">
+                                                <button type="submit" name="delete" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+
+                        <?php }
+                        ?>
                     </table>
                 </div>
             </div>
-
         </section>
     </div>
-    <?php include "footer.php"; ?>
+</div>
