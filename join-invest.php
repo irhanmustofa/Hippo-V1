@@ -26,10 +26,16 @@ if (isset($_POST['submit'])) {
 
 
 	$link = "setPendanaan&id_bisnis=" . urlencode($id_bisnis) . "&nama_pendana=" . urlencode($nama_pendana) .
-		'&email_pendana=' . urlencode($email_pendana) . '&email_penerbit=' . urlencode($email_penerbit) .
-		'&no_hp=' . urlencode($no_hp) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
+	'&email_pendana=' . urlencode($email_pendana) . '&email_penerbit=' . urlencode($email_penerbit) .
+	'&no_hp=' . urlencode($no_hp) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
 	$data = getRegistran($link);
 	if ($data && $data->status == '1') {
+		$link = "getPendanaanUser&email_pendana=" . urlencode($email);
+		$output = getRegistran($link);
+		$email_penerbit = $output->data[0]->email_penerbit;
+        $jumlah_invest = $output->data[0]->jumlah_invest;
+		$link = "setTransaksiPendanaan&email_penerbit=" . urlencode($email_penerbit) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
+		$data = getRegistran($link);
 		echo '<script>alert("data berhasil ditambah")</script>';
 		echo ("<script>location.href = 'portfolio-pendana.php';</script>");
 	}
@@ -110,37 +116,15 @@ if (isset($_POST['submit'])) {
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputnumber">Minimum Invest</label>
-						<input class="form-control" name="dana_invest" name="" value="<?php echo ($bisnis->data[0]->minimum_invest); ?>">
+						<input class="form-control" name="dana_invest" id="dana_invest" type="text" value="<?php echo ($bisnis->data[0]->minimum_invest); ?>" readonly>
 					</div>
-					<!-- <label class="form-label" for="exampleInputnumber">Input Invest</label>
-						<input class="nice-number" type="number" value="1" name=""> -->
-					<!-- HTML code -->
-					<!-- <div class="container">
-						<form action="" method="post">
-							<div class="form-group">
-								<label for="quantity">Quantity:</label>
-								<input type="number" class="form-control" id="quantity" name="quantity" min="1" max="10" required>
-							</div>
-							<div class="form-group">
-								<label for="price">Price:</label>
-								<input type="text" class="form-control" id="price" name="price" readonly>
-							</div>
-							<button type="submit" class="btn btn-primary">Calculate</button>
-						</form>
-					</div> -->
-
-
-					<!-- <?php
-							if ($_SERVER["REQUEST_METHOD"] == "POST") {
-								$quantity = $_POST["quantity"];
-								$price = $quantity * 50000;
-								echo "<script>document.getElementById('price').value='$price'</script>";
-							}
-							?> -->
-
 					<div class="form-group">
-						<label class="form-label" for="exampleInputnumber">Total Invest</label>
-						<input class="form-control" name="jumlah_invest" type="text">
+						<label for="quantity">Lembar Saham</label>
+						<input type="number" class="form-control" id="quantity" name="quantity" value="0" min="1" max="1000" required>
+					</div>
+					<div class="form-group">
+						<label for="price">Total Invest</label>
+						<input type="text" class="form-control" id="price" name="jumlah_invest" readonly>
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="exampleInputText">Email Penerbit</label>
@@ -153,16 +137,6 @@ if (isset($_POST['submit'])) {
 						</svg>
 					</button>
 				</form>
-				<form>
-					<div class="form-group">
-						<label for="quantity">Quantity:</label>
-						<input type="number" class="form-control" id="quantity" name="quantity" min="1" max="10" required>
-					</div>
-					<div class="form-group">
-						<label for="price">Price:</label>
-						<input type="text" class="form-control" id="price" name="price" readonly>
-					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -171,10 +145,12 @@ if (isset($_POST['submit'])) {
 <script>
 	const quantityInput = document.getElementById('quantity');
 	const priceInput = document.getElementById('price');
+	const danaInput = document.getElementById('dana_invest');
 
 	quantityInput.addEventListener('input', () => {
 		const quantity = quantityInput.value;
-		const price = quantity * 50000;
+		const dana_invest = danaInput.value;
+		const price = quantity * dana_invest;
 		priceInput.value = price;
 	});
 </script>

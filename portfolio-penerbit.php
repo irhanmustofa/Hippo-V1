@@ -172,7 +172,7 @@ $id = $data->data[0]->id_bisnis;
                                             <label for="">Skema Bisnis</label>
                                             <input name="skema_bisnis" class="form-control" type="text"><br>
                                             <label for="">Minimum Invest</label>
-                                            <input name="minimum_invest" class="form-control" type="text"><br>
+                                            <input name="minimum_invest" class="form-control" type="number"><br>
                                             <label for="">Gambar</label>
                                             <input name="gambar" class="form-control" type="file"><br>
                                             <label for="">Prospektus</label>
@@ -195,15 +195,16 @@ $id = $data->data[0]->id_bisnis;
             <div class="row g-3">
                 <div class="col-12">
                     <?php 
-                    if ($data == NULL) { ?>
+                    $link = "getBisnisUser&getProfile&email=" . urlencode($email);
+                    $output = getRegistran($link);
+                    if ($output == NULL) { ?>
                         <div class="card text-center">
                             <div class="card-header">
                                 Data Kosong
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
+                                <h5 class="card-title">Silahkan Ajukan Bisnis Anda</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>
                             <div class="card-footer text-muted">
                                 2 days ago
@@ -211,8 +212,6 @@ $id = $data->data[0]->id_bisnis;
                         </div>
                     <?php } else{
 
-                        $link = "getBisnisUser&getProfile&email=" . urlencode($email);
-                        $output = getRegistran($link);
                         foreach ($output->data as $array_item) {
                             echo '<div class="card single-product-card mt-2">';
                             echo ' <div class="card-body">';

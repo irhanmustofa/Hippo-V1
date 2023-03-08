@@ -10,38 +10,55 @@
             <li class="nav-item" role="presentation">
               <button class="btn active" id="pembelian-tab" data-bs-toggle="tab" data-bs-target="#pembelian" type="button" role="tab" aria-controls="pembelian" aria-selected="true">Pembelian</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
               <button class="btn" id="penjualan-tab" data-bs-toggle="tab" data-bs-target="#penjualan" type="button" role="tab" aria-controls="penjualan" aria-selected="false">Penjualan</button>
-            </li>
+            </li> -->
             <li class="nav-item" role="presentation">
               <button class="btn" id="pasar-tab" data-bs-toggle="tab" data-bs-target="#pasar" type="button" role="tab" aria-controls="pasar" aria-selected="false">Pasar Sekunder</button>
             </li>
           </ul>
           <div class="tab-content rounded-lg p-3 shadow-sm" id="affanTabs1Content">
+
             <div class="tab-pane fade show active" id="pembelian" role="tabpanel" aria-labelledby="pembelian-tab">
 
-              <div class="container">
-                <div class="card">
-                  <div class="card-body text-center p-5"><img class="mb-4" style="width: 20rem;" src="asset/img/bg-img/hipopotamus.png" alt="">
-                    <h3 class="mb-4">Belum ada transaksi</h3>
-                    <a class="btn btn-creative btn-danger btn-lg" href="#">Mulai Investasi</a>
+              <?php 
+              $link = "getTransaksi";
+              $output = getRegistran($link);
+              if ($output == NULL) { ?>
+
+
+                <div class="container">
+                  <div class="card">
+                    <div class="card-body text-center p-5"><img class="mb-4" style="width: 20rem;" src="asset/img/bg-img/hipopotamus.png" alt="">
+                      <h3 class="mb-4">Belum ada transaksi</h3>
+                      <a class="btn btn-creative btn-danger btn-lg" href="#">Mulai Investasi</a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            </div>
-            <div class="tab-pane fade" id="penjualan" role="tabpanel" aria-labelledby="penjualan-tab">
+              <?php } else{ ?>
+                <?php foreach ($output->data as $array_item): ?>
 
-              <div class="container">
-                <div class="card">
-                  <div class="card-body text-center p-5"><img class="mb-4" style="width: 20rem;" src="asset/img/bg-img/hipopotamus.png" alt="">
-                    <h3 class="mb-4">Belum ada transaksi</h3>
-                    <a class="btn btn-creative btn-danger btn-lg" href="#">Mulai Investasi</a>
+                  <div class="card">
+                    <div class="card-header">
+                      <?php echo $array_item->waktu; ?>
+                    </div>
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p>Gabung Pendanaan dengan <?php echo $array_item->email_penerbit; ?></p>
+                        <footer class="blockquote-footer"><cite title="Source Title">IDR <?php echo $array_item->jumlah_invest; ?></cite></footer>
+                      </blockquote>
+                    </div>
                   </div>
-                </div>
-              </div>
+                <?php endforeach ?>
+
+              <?php } ?>
+
+
 
             </div>
+
+
             <div class="tab-pane fade" id="pasar" role="tabpanel" aria-labelledby="pasar-tab">
 
 

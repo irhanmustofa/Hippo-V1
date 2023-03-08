@@ -666,7 +666,7 @@ function setKonfirmasiBisnis()
 function getBisnis()
 {
     global $connect;
-    $query = "SELECT * FROM bisnis WHERE status = 'diterima'";
+    $query = "SELECT * FROM bisnis";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {
@@ -1185,4 +1185,58 @@ function getPendanaanAdmin()
 
     header('Content-Type: application/json');
     echo json_encode($dodol);
+}
+
+function getTransaksi()
+{
+
+    global $connect;
+    $query = "SELECT * FROM transaksi_pendanaan";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function setTransaksiPendanaan()
+{
+    global $connect;
+    if (!empty($_GET['email_penerbit']))
+        $email_penerbit = $_GET['email_penerbit'];
+    if (!empty($_GET['jumlah_invest']))
+        $jumlah_invest = $_GET['jumlah_invest'];
+
+    $query = "INSERT INTO transaksi_pendanaan SET email_penerbit = '$email_penerbit', jumlah_invest = '$jumlah_invest'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
