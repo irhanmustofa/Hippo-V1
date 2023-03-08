@@ -106,9 +106,9 @@ $data = getRegistran($link);
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="penawaran.php" class='sidebar-link'>
-                                <i class="bi bi-clipboard2-plus-fill"></i>
-                                <span>Penawaran</span>
+                            <a href="investor.php" class='sidebar-link'>
+                                <i class="bi bi-person-workspace"></i>
+                                <span>Daftar investor</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

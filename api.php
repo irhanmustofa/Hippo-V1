@@ -1159,3 +1159,30 @@ function getPendanaanUser()
     header('Content-Type: application/json');
     echo json_encode($dodol);
 }
+
+function getPendanaanAdmin()
+{
+
+    global $connect;
+    $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis ";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}

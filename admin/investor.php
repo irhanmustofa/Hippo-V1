@@ -69,13 +69,49 @@
                         <thead>
                             <tr>
                                 <th>Nama Pendana</th>
-                                <th>Tujuan Pendanaan</th>
-                                <th>Jumlah Pendanaan</th>
-                                <th class="text-center">Status</th>
+                                <th>Email Pendana</th>
+                                <th>Email Penerbit</th>
+                                <th>No HP Pendana</th>
+                                <th>Jumlah Invest</th>
+                                <th>Waktu Invest</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
+                        <?php
+                        $link = "getPendanaanAdmin";
+                        $output = getRegistran($link);
+                        foreach ($output->data as $array_item) {
+                            $pendanaan[] = array(
+                                'id_bisnis' => $array_item->id_bisnis,
+                                'nama_pendana' => $array_item->nama_pendana,
+                                'email_pendana' => $array_item->email_pendana,
+                                'email_penerbit' => $array_item->email_penerbit,
+                                'no_hp' => $array_item->no_hp,
+                                'jumlah_invest' => $array_item->jumlah_invest,
+                                'time' => $array_item->time,
+                            );
+                        }
+                        ?>
                         <tbody>
+                            <?php foreach ($pendanaan as $p) : ?>
+                                <tr>
+                                    <td><?= $p['nama_pendana']; ?></td>
+                                    <td><?= $p['email_pendana']; ?></td>
+                                    <td><?= $p['email_penerbit']; ?></td>
+                                    <td><?= $p['no_hp']; ?></td>
+                                    <td><?= $p['jumlah_invest']; ?></td>
+                                    <td><?= $p['time']; ?></td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-warning btn-sm">Review</a>
+                                        <span class="badge bg-danger">Delete</span>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+
+
+
+                        <!-- <tbody>
                             <tr>
                                 <td>Dale</td>
                                 <td>Henri Herdiyanto</td>
@@ -88,31 +124,7 @@
                                     <span class="badge bg-danger">Delete</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Nathaniel</td>
-                                <td>Muhammad Irfan Rasnansyah</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-danger">Rejected </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Emmanuel</td>
-                                <td>Irhan Mustafa</td>
-                                <td>Rp. 2.000.000</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">Accepted</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">Riview</span>
-                                    <span class="badge bg-danger">Delete</span>
-                                </td>
-                            </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
             </div>
