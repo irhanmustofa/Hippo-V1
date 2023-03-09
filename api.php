@@ -1242,6 +1242,36 @@ function getPendanaanAdmin()
     echo json_encode($dodol);
 }
 
+
+function getPendanaanByBisnis()
+{
+
+    global $connect;
+    if (!empty($_GET['id_bisnis']))
+        $id_bisnis = $_GET['id_bisnis'];
+    $query = "SELECT * FROM pendanaan WHERE id_bisnis = '$id_bisnis'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
 function getTransaksi()
 {
 
