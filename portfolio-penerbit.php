@@ -168,82 +168,110 @@ $id = $data->data[0]->id_bisnis;
                                             <label for="">Email</label>
                                             <input name="email" class="form-control" type="text" value="<?php echo $email ?>" readonly><br>
                                             <label for="">Sistem Pengolahan</label>
-                                            <input name="sistem_pengolahan" class="form-control" type="text"><br>
-                                            <label for="">Skema Bisnis</label>
-                                            <input name="skema_bisnis" class="form-control" type="text"><br>
-                                            <label for="">Minimum Invest</label>
-                                            <input name="minimum_invest" class="form-control" type="number"><br>
-                                            <label for="">Gambar</label>
-                                            <input name="gambar" class="form-control" type="file"><br>
-                                            <label for="">Prospektus</label>
-                                            <input name="prospektus" class="form-control" type="file"><br>
-                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                            <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                                            <select class="form-select" aria-label="Default select example" name="sistem_pengolahan">
+                                              <option selected>--Pilih Sistem Pengolahan--</option>
+                                              <option>Payroll</option>
+                                              <option>Personalia</option>
+                                              <option>Inventaris</option>
+                                              <option>UMKM</option>
+                                          </select>
+                                          <label for="">Skema Bisnis</label>
+                                          <select class="form-select" aria-label="Default select example" name="skema_bisnis">
+                                              <option selected>--Pilih Skema Bisnis--</option>
+                                              <option>Franchise</option>
+                                              <option>Marketplace</option>
+                                              <option>Dropship</option>
+                                              <option>Subscription</option>
+                                              <option>Manufaktur</option>
+                                          </select>
+                                          <label for="">Minimum Invest</label>
+                                          <input name="minimum_invest" class="form-control" type="number"><br>
+                                          <label for="">Gambar</label>
+                                          <input name="gambar" class="form-control" type="file"><br>
+                                          <label for="">Prospektus</label>
+                                          <input name="prospektus" class="form-control" type="file"><br>
+                                          <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                          <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Top Products-->
+  <div class="top-products-area product-list-wrap">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12">
+                <?php
+                $link = "getBisnisUser&getProfile&email=" . urlencode($email);
+                $output = getRegistran($link);
+                if ($output == NULL) { ?>
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Data Kosong
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Silahkan <b>Ajukan Ide Bisnis</b></h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Top Products-->
-    <div class="top-products-area product-list-wrap">
-        <div class="container">
-            <div class="row g-3">
-                <div class="col-12">
-                    <?php 
-                    $link = "getBisnisUser&getProfile&email=" . urlencode($email);
-                    $output = getRegistran($link);
-                    if ($output == NULL) { ?>
-                        <div class="card text-center">
-                            <div class="card-header">
-                                Data Kosong
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Silahkan Ajukan Bisnis Anda</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
+                <?php } else {
+
+
+                    foreach ($output->data as $array_item) { ?>
+
+                        <div class="card mb-3">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-4 ps-1">
+                                    <div class="card-body">
+                                        <a href="detail-bisnis.php?id=<?php echo $array_item->id_bisnis ?>">
+                                            <img src="image/<?php echo $array_item->gambar ?>" class="img-fluid rounded-start" alt="...">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $array_item->nama_bisnis ?></h5>
+                                        <p class="card-title"><?php echo $array_item->kode_bisnis ?></p>
+                                        <p class="card-text"><?php echo $array_item->deskripsi ?></p>
+                                        <?php
+                                        if ($array_item->status == 'diterima') { ?>
+                                            <span class="badge bg-success">Diterima</span>
+                                        <?php  } elseif ($array_item->status == 'ditolak') { ?>
+                                            <span class="badge bg-danger">Ditolak</span>
+                                        <?php } else { ?>
+                                            <span class="badge bg-warning">Diproses</span>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <?php 
+                                if ($array_item->status == 'diterima') { ?>
+                                    <div class="col-md-4">
+                                        <div class="card-body">
+                                            <a href="dana-terkumpul.php?id=<?php echo $array_item->id_bisnis ?>" class="btn btn-primary">Cek Dana Terkumpul</a>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
                             </div>
                         </div>
-                    <?php } else{
-
-                        foreach ($output->data as $array_item) {
-                            echo '<div class="card single-product-card mt-2">';
-                            echo ' <div class="card-body">';
-                            echo '<div class="d-flex align-items-center">';
-                            echo '<div class="card-side-img">';
-                            echo '<a class="product-thumbnail d-block" href="detail-bisnis.php?id=' . $array_item->id_bisnis . '">';
-                            echo '<img style="width:200px;" src="image/' . $array_item->gambar . '" />';
-                            echo '<span class="badge bg-primary">Sale</span></a></div>';
-                            echo '<div class="card-content px-4 py-2">';
-                            echo $array_item->kode_bisnis . '<br>';
-                            echo $array_item->nama_bisnis . '<br>';
-                            echo $array_item->deskripsi . '<br> </div> </div> </div> </div>';
-                        // tambahkan kode untuk menampilkan data dalam array lainnya
-
-                        // foreach ($output as $row) {
-                        //     echo $row["kode_bisnis"];
-                        //     echo $row["nama_bisnis"];
-                        //     echo $row["deskripsi"];
-                        // }
-                        // echo ($output->data[0]->kode_bisnis) . '<br>';
 
 
-                        }
-                    } 
+                    <?php } ?>
+                <?php } ?>
 
-                    ?>
 
-                </div>
+
             </div>
         </div>
     </div>
-    <!-- Pagination-->
+</div>
+<!-- Pagination-->
     <!-- <div class="shop-pagination pt-3">
         <div class="container">
             <div class="card">
