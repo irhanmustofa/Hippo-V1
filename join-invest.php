@@ -32,9 +32,10 @@ if (isset($_POST['submit'])) {
 	if ($data && $data->status == '1') {
 		$link = "getPendanaanUser&email_pendana=" . urlencode($email);
 		$output = getRegistran($link);
+		$email_pendana = $output->data[0]->email_pendana;
 		$email_penerbit = $output->data[0]->email_penerbit;
         $jumlah_invest = $output->data[0]->jumlah_invest;
-		$link = "setTransaksiPendanaan&email_penerbit=" . urlencode($email_penerbit) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
+		$link = "setTransaksiPendanaan&email_pendana=" . urlencode($email_pendana) . "&email_penerbit=" . urlencode($email_penerbit) . '&jumlah_invest=' . urlencode($jumlah_invest) . '&type=insert';
 		$data = getRegistran($link);
 		echo '<script>alert("data berhasil ditambah")</script>';
 		echo ("<script>location.href = 'portfolio-pendana.php';</script>");

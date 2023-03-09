@@ -81,7 +81,7 @@ if (isset($_POST['simpan'])) {
       } else {
         $getExtensi = explode(".", $nama_profil);
         $extensi_profil = strtolower(end($getExtensi));
-        $nama_profil = "profil-" . $email . ".". $extensi_profil;
+        $nama_profil = "profil-" . $nama_profil . ".". $extensi_profil;
         if (!in_array($extensi_profil, $extensi_izin) == true) {
           // if ($op == 'update') {
           //   $link = 'getKeluargaImage&id=' . $id . '&field=img_profil&nama=' . $kelurga_nama;
@@ -108,19 +108,19 @@ if (isset($_POST['simpan'])) {
     }
 
 
-    if (!empty($_POST["foto_profil"])) {
+    if (empty($nama_profil)) {
       $link = "setProfil&nama=" . urlencode($nama) . "&email=" . urlencode($email);
       $data = getRegistran($link);
+
     } else {
-      $link = "setProfilFoto&nama=" . urlencode($nama) . "&email=" . urlencode($email) . "&foto_profil=" . urlencode($nama_profil);
-      echo $link;
+      $link = "setProfilFoto&foto_profil=" . urlencode($nama_profil) . "&email=" . urlencode($email);
       $data = getRegistran($link);
     }
 
   }
 
   echo "<script>alert ('Data berhasil diubah')</script>";
-  // echo "<script>location = 'detail-profile.php'</script>";
+  header('Location:detail-profil.php');
 }
 
 

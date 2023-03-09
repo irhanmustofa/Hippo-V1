@@ -1,4 +1,9 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php';
+
+require_once "utility.php";
+$email = $_SESSION['email'];
+ ?>
 
 <div class="page-content-wrapper py-3">
   <div class="container">
@@ -22,7 +27,7 @@
             <div class="tab-pane fade show active" id="pembelian" role="tabpanel" aria-labelledby="pembelian-tab">
 
               <?php 
-              $link = "getTransaksi";
+              $link = "getTransaksiUser&email_pendana=" . urlencode($email);
               $output = getRegistran($link);
               if ($output == NULL) { ?>
 
