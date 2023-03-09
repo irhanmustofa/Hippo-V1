@@ -112,6 +112,12 @@ $data = getRegistran($link);
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="dana-terkumpul.php" class='sidebar-link'>
+                                <i class="bi bi-newspaper"></i>
+                                <span>Cek Dana Terkumpul</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="artikel.php" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
                                 <span>Artikel</span>

@@ -1327,6 +1327,61 @@ function getTransaksiUser()
     header('Content-Type: application/json');
     echo json_encode($dodol);
 }
+function getTransaksi()
+{
+
+    global $connect;
+    $query = "SELECT * FROM transaksi_pendanaan";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getDanaAdmin()
+{
+
+    global $connect;
+    $query = "SELECT * FROM transaksi_pendanaan LEFT JOIN bisnis ON transaksi_pendanaan.email_penerbit = bisnis.email";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+
 
 function setTransaksiPendanaan()
 {
