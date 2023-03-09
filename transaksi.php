@@ -3,6 +3,9 @@ include 'header.php';
 
 require_once "utility.php";
 $email = $_SESSION['email'];
+$link = "getProfile&email=" . urlencode($email);
+// echo $link;
+$user = getRegistran($link);
  ?>
 
 <div class="page-content-wrapper py-3">
