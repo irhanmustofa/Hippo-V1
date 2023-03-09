@@ -126,7 +126,7 @@ if (isset($_POST['delete'])) {
                                         <td><?= $p['jumlah_invest']; ?></td>
                                         <td><?= $p['waktu']; ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning" href="?id=<?= $p['id_pendanaan']; ?>"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" href="edit-investor.php?id=<?= $p['id_pendanaan']; ?>"><i class="bi bi-pencil-square"></i></a>
                                             <form action="" method="POST">
                                                 <input type="hidden" name="id_pendanaan" value="<?= $p['id_pendanaan']; ?>">
                                                 <button type="submit" name="delete" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>

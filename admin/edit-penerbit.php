@@ -74,10 +74,7 @@ $data = getRegistran($link);
                                 <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->no_identitas; ?>" disabled>
                             </div>
 
-                            <div class="form-group">
-                                <label for="helperText">Foto KTP</label><br>
-                                <img style="width: 15rem;" src="../asset/img/ktp/<?php echo $data->data[0]->foto_ktp; ?>" alt="">
-                            </div>
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -88,7 +85,8 @@ $data = getRegistran($link);
                                 <label for="disabledInput">Alamat</label>
                                 <input type="text" class="form-control" value="<?php echo $data->data[0]->alamat; ?>" disabled>
                             </div>
-
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="disabledInput">Foto Profil</label>
                                 <div class="card" style="width: 15rem;">
@@ -98,37 +96,19 @@ $data = getRegistran($link);
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-        </section>
-
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Konfirmasi Ide Bisnis</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="mb-4">
-                                <h6>Input group append</h6>
-                                <form method="post">
-                                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                                    <div class="input-group mb-3">
-                                        <select class="form-select" name="status">
-                                            <option selected>--Konfirmasi Status--</option>
-                                            <option value="diterima">Diterima</option>
-                                            <option value="ditolak">Ditolak</option>
-                                            <option value="ditolak">Direview</option>
-                                        </select>
-                                        <button class="btn  btn-primary input-group-text" type="submit" name="konfirmasi">Konfirmasi</button>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="helperText">Foto KTP</label>
+                                <div class="card" style="width: 15rem;">
+                                    <img src="../asset/img/ktp/<?php echo $data->data[0]->foto_ktp; ?>" alt="">
+                                    <div class="card-body">
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
+
     </div>
     <?php include "footer.php"; ?>
