@@ -18,7 +18,7 @@ $id = $data->data[0]->id_bisnis;
         <div class="container">
             <div class="card">
                 <div class="card-body p-2">
-                    <div class="d-flex align-items-center justify-content-between"><small class="ms-1">Portfolio</small>    
+                    <div class="d-flex align-items-center justify-content-between"><small class="ms-1">Portfolio</small>
                         <div class="container d-flex justify-content-end">
                             <div class="card direction-rtl">
                                 <div class="card-body">
@@ -129,8 +129,8 @@ $id = $data->data[0]->id_bisnis;
                                     }
 
                                     $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
-                                    '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
-                                    '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&prospektus=' . urlencode($nama_prospektus) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
+                                        '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
+                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&prospektus=' . urlencode($nama_prospektus) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
                                     $data = getRegistran($link);
                                     $output = $data;
                                     if ($output) {
@@ -150,7 +150,7 @@ $id = $data->data[0]->id_bisnis;
                                     </div>
                                     <div class="modal-body">
                                         <form action="" method="POST" enctype="multipart/form-data">
-                                            <input name="id_bisnis" class="form-control" type="hidden" ><br>
+                                            <input name="id_bisnis" class="form-control" type="hidden"><br>
                                             <label for="">Kode Bisnis</label>
                                             <input name="kode_bisnis" class="form-control" type="text" autofocus><br>
                                             <label for="">Nama Bisnis</label>
@@ -169,109 +169,109 @@ $id = $data->data[0]->id_bisnis;
                                             <input name="email" class="form-control" type="text" value="<?php echo $email ?>" readonly><br>
                                             <label for="">Sistem Pengolahan</label>
                                             <select class="form-select" aria-label="Default select example" name="sistem_pengolahan">
-                                              <option selected>--Pilih Sistem Pengolahan--</option>
-                                              <option>Payroll</option>
-                                              <option>Personalia</option>
-                                              <option>Inventaris</option>
-                                              <option>UMKM</option>
-                                          </select>
-                                          <label for="">Skema Bisnis</label>
-                                          <select class="form-select" aria-label="Default select example" name="skema_bisnis">
-                                              <option selected>--Pilih Skema Bisnis--</option>
-                                              <option>Franchise</option>
-                                              <option>Marketplace</option>
-                                              <option>Dropship</option>
-                                              <option>Subscription</option>
-                                              <option>Manufaktur</option>
-                                          </select>
-                                          <label for="">Minimum Invest</label>
-                                          <input name="minimum_invest" class="form-control" type="number"><br>
-                                          <label for="">Gambar</label>
-                                          <input name="gambar" class="form-control" type="file"><br>
-                                          <label for="">Prospektus</label>
-                                          <input name="prospektus" class="form-control" type="file"><br>
-                                          <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                          <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- Top Products-->
-  <div class="top-products-area product-list-wrap">
-    <div class="container">
-        <div class="row g-3">
-            <div class="col-12">
-                <?php
-                $link = "getBisnisUser&getProfile&email=" . urlencode($email);
-                $output = getRegistran($link);
-                if ($output == NULL) { ?>
-                    <div class="card text-center">
-                        <div class="card-header">
-                            Data Kosong
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Silahkan <b>Ajukan Ide Bisnis</b></h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                <?php } else {
-
-
-                    foreach ($output->data as $array_item) { ?>
-
-                        <div class="card mb-3">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-4 ps-1">
-                                    <div class="card-body">
-                                        <a href="detail-bisnis.php?id=<?php echo $array_item->id_bisnis ?>">
-                                            <img src="image/<?php echo $array_item->gambar ?>" class="img-fluid rounded-start" alt="...">
-                                        </a>
+                                                <option selected>--Pilih Sistem Pengolahan--</option>
+                                                <option>Payroll</option>
+                                                <option>Personalia</option>
+                                                <option>Inventaris</option>
+                                                <option>UMKM</option>
+                                            </select>
+                                            <label for="">Skema Bisnis</label>
+                                            <select class="form-select" aria-label="Default select example" name="skema_bisnis">
+                                                <option selected>--Pilih Skema Bisnis--</option>
+                                                <option>Franchise</option>
+                                                <option>Marketplace</option>
+                                                <option>Dropship</option>
+                                                <option>Subscription</option>
+                                                <option>Manufaktur</option>
+                                            </select>
+                                            <label for="">Minimum Invest</label>
+                                            <input name="minimum_invest" class="form-control" type="number"><br>
+                                            <label for="">Gambar</label>
+                                            <input name="gambar" class="form-control" type="file"><br>
+                                            <label for="">Prospektus</label>
+                                            <input name="prospektus" class="form-control" type="file"><br>
+                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                            <button name="submit" class="btn btn-success" type="submit">Ajukan</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $array_item->nama_bisnis ?></h5>
-                                        <p class="card-title"><?php echo $array_item->kode_bisnis ?></p>
-                                        <p class="card-text"><?php echo $array_item->deskripsi ?></p>
-                                        <?php
-                                        if ($array_item->status == 'diterima') { ?>
-                                            <span class="badge bg-success">Diterima</span>
-                                        <?php  } elseif ($array_item->status == 'ditolak') { ?>
-                                            <span class="badge bg-danger">Ditolak</span>
-                                        <?php } else { ?>
-                                            <span class="badge bg-warning">Diproses</span>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <?php 
-                                if ($array_item->status == 'diterima') { ?>
-                                    <div class="col-md-4">
-                                        <div class="card-body">
-                                            <a href="dana-terkumpul.php?id=<?php echo $array_item->id_bisnis ?>" class="btn btn-primary">Cek Dana Terkumpul</a>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
                             </div>
                         </div>
-
-
-                    <?php } ?>
-                <?php } ?>
-
-
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Pagination-->
+    <!-- Top Products-->
+    <div class="top-products-area product-list-wrap">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12">
+                    <?php
+                    $link = "getBisnisUser&getProfile&email=" . urlencode($email);
+                    $output = getRegistran($link);
+                    if ($output == NULL) { ?>
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Data Kosong
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Silahkan <b>Ajukan Ide Bisnis</b></h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                        </div>
+                        <?php } else {
+
+
+                        foreach ($output->data as $array_item) { ?>
+
+                            <div class="card mb-3">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-4 ps-1">
+                                        <div class="card-body">
+                                            <a href="detail-bisnis.php?id=<?php echo $array_item->id_bisnis ?>">
+                                                <img src="image/<?php echo $array_item->gambar ?>" class="img-fluid rounded-start" alt="...">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $array_item->nama_bisnis ?></h5>
+                                            <p class="card-title"><?php echo $array_item->kode_bisnis ?></p>
+                                            <p class="card-text"><?php echo $array_item->deskripsi ?></p>
+                                            <?php
+                                            if ($array_item->status == 'diterima') { ?>
+                                                <span class="badge bg-success">Diterima</span>
+                                            <?php  } elseif ($array_item->status == 'ditolak') { ?>
+                                                <span class="badge bg-danger">Ditolak</span>
+                                            <?php } else { ?>
+                                                <span class="badge bg-warning">Diproses</span>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    if ($array_item->status == 'diterima') { ?>
+                                        <div class="col-md-4">
+                                            <div class="card-body">
+                                                <a href="dana-terkumpul.php?id=<?php echo $array_item->id_bisnis ?>" class="btn btn-primary">Cek Dana Terkumpul</a>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+
+
+                        <?php } ?>
+                    <?php } ?>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pagination-->
     <!-- <div class="shop-pagination pt-3">
         <div class="container">
             <div class="card">

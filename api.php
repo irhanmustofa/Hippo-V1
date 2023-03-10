@@ -1276,6 +1276,7 @@ function getPendanaanByBisnis()
     global $connect;
     if (!empty($_GET['id_bisnis']))
         $id_bisnis = $_GET['id_bisnis'];
+    // SELECT * FROM pendanaan JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis WHERE email = 'henry.herdiyanto123@gmail.com' and status = 'diterima'
     $query = "SELECT * FROM pendanaan WHERE id_bisnis = '$id_bisnis'";
     $result = $connect->query($query);
 
@@ -1358,7 +1359,7 @@ function getDanaAdmin()
 {
 
     global $connect;
-    $query = "SELECT * FROM transaksi_pendanaan LEFT JOIN bisnis ON transaksi_pendanaan.email_penerbit = bisnis.email";
+    $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {
@@ -1454,6 +1455,64 @@ function getDepositUser()
     if (!empty($_GET['email']))
         $email = $_GET['email'];
     $query = "SELECT * FROM deposit WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+// api hari jumat
+function getRiwayatTransaksi()
+{
+
+    global $connect;
+    $query = "SELECT * FROM bisnis LEFT JOIN pendanaan ON bisnis.id_bisnis = pendanaan.id_bisnis";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+
+function getBisnisTransaksi()
+{
+
+    global $connect;
+    if (!empty($_GET['email_penerbit']))
+        $email = $_GET['email_penerbit'];
+    $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis WHERE email = '$email' AND status = 'diterima'";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {
