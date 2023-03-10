@@ -1411,3 +1411,67 @@ function setTransaksiPendanaan()
     header('Content-Type: application/json');
     echo json_encode($response);
 }
+
+
+//Update Hari Jumat
+function setDeposit()
+{
+    global $connect;
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    if (!empty($_GET['no_rekening']))
+        $no_rekening = $_GET['no_rekening'];
+    if (!empty($_GET['nama']))
+        $nama = $_GET['nama'];
+    if (!empty($_GET['jumlah_transfer']))
+        $jumlah_transfer = $_GET['jumlah_transfer'];
+    if (!empty($_GET['bukti_transfer']))
+        $bukti_transfer = $_GET['bukti_transfer'];
+
+    $query = "INSERT INTO deposit SET email = '$email',no_rekening = '$no_rekening', nama = '$nama', jumlah_transfer = '$jumlah_transfer', bukti_transfer = '$bukti_transfer'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function getDepositUser()
+{
+
+    global $connect;
+    if (!empty($_GET['email']))
+        $email = $_GET['email'];
+    $query = "SELECT * FROM deposit WHERE email = '$email'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}

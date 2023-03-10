@@ -27,6 +27,15 @@ $total = $row['total'];
 <div class="page-content-wrapper py-3">
 	<div class="container">
 		<div class="card">
+
+
+			<?php if ($data == NULL) { ?>
+			<div class="card text-center">
+				<div class="card-body">
+					<h5 class="card-title"><b>Belum Ada Dana Terkumpul</b></h5>
+				</div>
+			</div>
+			<?php } else { ?>
 			<div class="card-body">
 				<h1>Dana Terkumpul <span class="badge bg-secondary">Rp. <?php echo $total; ?></span></h1>
 
@@ -53,6 +62,7 @@ $total = $row['total'];
 					</tbody>
 				</table>
 			</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>
