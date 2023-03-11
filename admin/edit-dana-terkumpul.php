@@ -44,27 +44,18 @@ require_once "../utility.php";
                                 <label for="basicInput">Nama Pendana</label>
                                 <input type="text" class="form-control" id="basicInput" value="<?php echo $data->data[0]->nama_pendana; ?>" disabled>
                             </div>
-
                             <div class="form-group">
                                 <label for="helperText">email pendana</label>
                                 <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->email_pendana; ?>" disabled>
                             </div>
-
                             <div class="form-group">
                                 <label for="helperText">email penerbit</label>
                                 <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->email_penerbit; ?>" disabled>
                             </div>
-
                             <div class="form-group">
                                 <label for="helperText">No hp</label>
                                 <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->no_hp; ?>" disabled>
                             </div>
-
-                            <div class="form-group">
-                                <label for="helperText">Jumlah Invest</label>
-                                <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->jumlah_invest; ?>" disabled>
-                            </div>
-
                             <div class="form-group">
                                 <label for="helperText">Waktu Invest</label>
                                 <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->waktu; ?>" disabled>
@@ -77,20 +68,25 @@ require_once "../utility.php";
                                 <label for="disabledInput">Nama Bisnis</label>
                                 <input type="text" class="form-control" value="<?php echo $data->data[0]->nama_bisnis; ?>" disabled>
                             </div>
-
-                            <div class="form-group">
-                                <label for="disabledInput">Deskripsi Bisnis</label>
-                                <textarea name="deskripsi" id="deskripsi"><?php echo $data->data[0]->deskripsi; ?></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="disabledInput">Kebutuhan Dana</label>
-                                <input type="text" class="form-control" value="<?php echo $data->data[0]->dana; ?>" disabled>
-                            </div>
-
                             <div class="form-group">
                                 <label for="disabledInput">Estimasi Bisnis</label>
                                 <input type="text" class="form-control" value="<?php echo $data->data[0]->estimasi; ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledInput">Lokasi Bisnis</label>
+                                <input type="text" class="form-control" value="<?php echo $data->data[0]->lokasi; ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledInput">Katewgori Bisnis</label>
+                                <input type="text" class="form-control" value="<?php echo $data->data[0]->kategori; ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledInput">Sistem Pengelolaan</label>
+                                <input type="text" class="form-control" value="<?php echo $data->data[0]->sistem_pengolahan; ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledInput">Skema Bisnis</label>
+                                <input type="text" class="form-control" value="<?php echo $data->data[0]->skema_bisnis; ?>" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -103,7 +99,6 @@ require_once "../utility.php";
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="disabledInput">Gambar Bisnis</label>
                                 <div class="card" style="width: 20rem;">
@@ -113,28 +108,20 @@ require_once "../utility.php";
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="disabledInput">Lokasi Bisnis</label>
-                                <input type="text" class="form-control" value="<?php echo $data->data[0]->lokasi; ?>" disabled>
+                                <label for="disabledInput">Deskripsi Bisnis</label>
+                                <textarea name="deskripsi" id="deskripsi"><?php echo $data->data[0]->deskripsi; ?></textarea>
                             </div>
-
                             <div class="form-group">
-                                <label for="disabledInput">Katewgori Bisnis</label>
-                                <input type="text" class="form-control" value="<?php echo $data->data[0]->kategori; ?>" disabled>
+                                <label for="disabledInput">Kebutuhan Dana</label>
+                                <input type="text" class="form-control" value="<?php echo $data->data[0]->dana; ?>" disabled>
                             </div>
-
-                            <div class="form-group">
-                                <label for="disabledInput">Sistem Pengelolaan</label>
-                                <input type="text" class="form-control" value="<?php echo $data->data[0]->sistem_pengolahan; ?>" disabled>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="disabledInput">Skema Bisnis</label>
-                                <input type="text" class="form-control" value="<?php echo $data->data[0]->skema_bisnis; ?>" disabled>
-                            </div>
-
                             <div class="form-group">
                                 <label for="disabledInput">Minimum Invest</label>
                                 <input type="text" class="form-control" value="<?php echo $data->data[0]->minimum_invest; ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="helperText">Jumlah Invest</label>
+                                <input type="text" id="helperText" class="form-control" value="<?php echo $data->data[0]->jumlah_invest; ?>" disabled>
                             </div>
                         </div>
                     </div>
