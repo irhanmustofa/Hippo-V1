@@ -1276,7 +1276,6 @@ function getPendanaanByBisnis()
     global $connect;
     if (!empty($_GET['id_bisnis']))
         $id_bisnis = $_GET['id_bisnis'];
-    // SELECT * FROM pendanaan JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis WHERE email = 'henry.herdiyanto123@gmail.com' and status = 'diterima'
     $query = "SELECT * FROM pendanaan WHERE id_bisnis = '$id_bisnis'";
     $result = $connect->query($query);
 
@@ -1360,6 +1359,34 @@ function getDanaAdmin()
 
     global $connect;
     $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+function getDanadetailAdmin()
+{
+
+    global $connect;
+
+    $id_pendanaan = $_GET['id_pendanaan'];
+    $query = "SELECT * FROM pendanaan LEFT JOIN bisnis ON pendanaan.id_bisnis = bisnis.id_bisnis WHERE id_pendanaan = '$id_pendanaan'";
     $result = $connect->query($query);
 
     while ($row = mysqli_fetch_object($result)) {

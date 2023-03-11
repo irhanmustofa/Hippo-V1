@@ -160,7 +160,7 @@ require_once "../utility.php";
                                         <td style="width: 500px;"><?php echo $value->deskripsi ?></td>
                                         <td><img src="image/<?php echo $value->gambar ?>" alt="" width="100px"></td>
                                         <td class="text-center d-flex mt-3">
-                                            <a href="edit.php?id=<?php echo $value->id ?>" class="btn btn btn-warning mt-3"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="edit-artikel.php?id=<?php echo $value->id ?>" class="btn btn btn-warning mt-3"><i class="bi bi-pencil-square"></i></a>
                                             <a href="delete.php?id=<?php echo $value->id ?>" class="btn btn btn-danger mt-3"><i class="bi bi-trash3-fill"></i></a>
                                         </td>
                                     </tr>

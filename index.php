@@ -23,7 +23,7 @@ $data = getRegistran($link);
       </svg>
       <div class="toast-text ms-3 me-2">
         <p class="mb-1 text-white">Welcome <?php echo ($data->data[0]->nama) ?></p><small class="d-block">Click the "Add to Home Screen" button
-        &amp; enjoy it like an app.</small>
+          &amp; enjoy it like an app.</small>
       </div>
     </div>
     <button class="btn btn-close btn-close-white position-absolute p-1" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -33,55 +33,36 @@ $data = getRegistran($link);
     <div class="tiny-slider-one">
       <!-- Single Hero Slide -->
       <div>
-        <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/31.jpg')">
+        <div class="single-hero-slide bg-overlay" style="background-image: url('asset/img/hero33.png')">
           <div class="h-100 d-flex align-items-center text-center">
             <div class="container">
-              <h3 class="text-white mb-1">Build with Bootstrap 5</h3>
-              <p class="text-white mb-4">Build fast, responsive sites with Bootstrap.</p><a class="btn btn-creative btn-warning" href="#">Buy Now</a>
+              <h3 class="text-white mb-1">HIPPO</h3>
+              <p class="text-white mb-4">Hippo adalah sebuah website investasi yang menyediakan layanan investasi yang mudah dan terjangkau bagi para investor.</p>
+              <a class="btn btn-creative btn-warning" href="#">Mulai Sekarang</a>
             </div>
           </div>
         </div>
       </div>
       <!-- Single Hero Slide -->
       <div>
-        <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/33.jpg')">
+        <div class="single-hero-slide bg-overlay" style="background-image: url('asset/img/hero31.png')">
           <div class="h-100 d-flex align-items-center text-center">
             <div class="container">
-              <h3 class="text-white mb-1">Vanilla JavaScript</h3>
-              <p class="text-white mb-4">The whole code is written with vanilla JS.</p><a class="btn btn-creative btn-warning" href="#">Buy Now</a>
+              <h3 class="text-white mb-1">PENERBIT</h3>
+              <p class="text-white mb-4">Dengan bergabung menjadi penerbit kamu bisa mengembangkan bisnis mu menjadi lebih besar dengan bantuan dana</p>
+              <a class="btn btn-creative btn-warning" href="#">Mulai Sekarang</a>
             </div>
           </div>
         </div>
       </div>
       <!-- Single Hero Slide -->
       <div>
-        <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/32.jpg')">
+        <div class="single-hero-slide bg-overlay" style="background-image: url('asset/img/hero32.jpg')">
           <div class="h-100 d-flex align-items-center text-center">
             <div class="container">
-              <h3 class="text-white mb-1">PWA Ready</h3>
-              <p class="text-white mb-4">Click the "Add to Home Screen" button &amp; <br> enjoy it like an app.</p><a class="btn btn-creative btn-warning" href="#">Buy Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Single Hero Slide -->
-      <div>
-        <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/33.jpg')">
-          <div class="h-100 d-flex align-items-center text-center">
-            <div class="container">
-              <h3 class="text-white mb-1">Lots of Elements &amp; Pages</h3>
-              <p class="text-white mb-4">Create your website in days, not months.</p><a class="btn btn-creative btn-warning" href="#">Buy Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Single Hero Slide -->
-      <div>
-        <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/1.jpg')">
-          <div class="h-100 d-flex align-items-center text-center">
-            <div class="container">
-              <h3 class="text-white mb-1">Dark &amp; RTL Ready</h3>
-              <p class="text-white mb-4">You can use the Dark or <br> RTL mode of your choice.</p><a class="btn btn-creative btn-warning" href="#">Buy Now</a>
+              <h3 class="text-white mb-1">PENDANA</h3>
+              <p class="text-white mb-4">Anda bisa menghasilkan uang hanya dari rumah dengan cara investasikan uangmu dan raih keuntungan sebesar-besarnya</p>
+              <a class="btn btn-creative btn-warning" href="#">Mulai Sekarang</a>
             </div>
           </div>
         </div>
@@ -105,7 +86,7 @@ $data = getRegistran($link);
         </div>
       </div>
     </div>
-    <?php
+  <?php
   }
   ?>
 
@@ -122,7 +103,7 @@ $data = getRegistran($link);
               <div class="feature-card mx-auto text-center">
                 <div class="card mx-auto bg-gray">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telegram" style="color: #33a8da;" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z" />
                   </svg>
                 </div>
                 <p class="mb-0">Telegram</p>
@@ -215,8 +196,8 @@ $data = getRegistran($link);
             <div class="feature-card mx-auto text-center">
               <div class="card mx-auto bg-gray">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
-                  <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
-                  <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
+                  <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z" />
+                  <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z" />
                 </svg>
               </div>
               <p class="mb-0">Bussines</p>
@@ -226,7 +207,7 @@ $data = getRegistran($link);
             <div class="feature-card mx-auto text-center">
               <div class="card mx-auto bg-gray">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+                  <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
                 </svg>
               </div>
               <p class="mb-0">Invest</p>
@@ -236,7 +217,7 @@ $data = getRegistran($link);
             <div class="feature-card mx-auto text-center">
               <div class="card mx-auto bg-gray">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
-                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
+                  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
                 </svg>
               </div>
               <p class="mb-0">Market</p>

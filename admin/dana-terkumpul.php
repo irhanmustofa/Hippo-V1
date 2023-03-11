@@ -65,7 +65,7 @@ $email_penerbit = ($data->data[0]->email_penerbit);
                                         <td><?php echo $value->jumlah_invest ?></td>
                                         <td><?php echo $value->waktu ?></td>
                                         <td class="text-center d-flex mt-3">
-                                            <a href="edit.php?id=<?php echo $value->id ?>" class="btn btn btn-warning mt-3"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="edit-dana-terkumpul.php?id=<?php echo $value->id_pendanaan ?>" class="btn btn btn-warning mt-3"><i class="bi bi-eye"></i></a>
                                             <a href="delete.php?id=<?php echo $value->id ?>" class="btn btn btn-danger mt-3"><i class="bi bi-trash3-fill"></i></a>
                                         </td>
                                     </tr>
