@@ -11,6 +11,7 @@ $data = getRegistran($link);
 
 $link = "getBisnisId&id_bisnis=" . urlencode($id);
 $data2 = getRegistran($link);
+$dana = $data2->data[0]->dana;
 
 //$total = mysqli_query($connect, "SELECT SUM(jumlah_invest) AS Total FROM pendanaan WHERE id_bisnis = '$id'");
 //while ($row = $total -> fetch_assoc()){
@@ -25,6 +26,8 @@ $result = mysqli_query($connect, $query);
 // Ambil nilai total dari hasil query
 $row = mysqli_fetch_assoc($result);
 $total = $row['total'];
+
+$persentase = $total/$dana*100;
 ?>
 
 <div class="page-content-wrapper py-3">
@@ -64,7 +67,11 @@ $total = $row['total'];
 
 						</tbody>
 					</table>
-					<h5>Dana target <span class="badge bg-secondary">Rp. <?php echo $data2->data[0]->dana; ?></span></h5>
+					<h5>Dana target <span class="badge bg-secondary">Rp. <?php echo $data2->data[0]->dana; ?></span></h5><br>
+					<h5>Progress Bar</h5>
+					<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar" style="width: <?php echo $persentase ?>%"><?php echo $persentase ?>%</div>
+					</div>
 
 				</div>
 			<?php } ?>
