@@ -100,6 +100,12 @@ $data = getRegistran($link);
                             </ul>
                         </li>
                         <li class="sidebar-item">
+                            <a href="kategori-bisnis.php" class='sidebar-link'>
+                                <i class="bi bi-clipboard2-plus-fill"></i>
+                                <span>Kategori Bisnis</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="pengajuan-bisnis.php" class='sidebar-link'>
                                 <i class="bi bi-clipboard2-plus-fill"></i>
                                 <span>Bisnis</span>
@@ -115,6 +121,12 @@ $data = getRegistran($link);
                             <a href="dana-terkumpul.php" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
                                 <span>Cek Dana Terkumpul</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="konfirmasi-deposit.php" class='sidebar-link'>
+                                <i class="bi bi-newspaper"></i>
+                                <span>Konfirmasi Deposit</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

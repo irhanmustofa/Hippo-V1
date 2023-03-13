@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include 'header2.php';
 
 require_once "utility.php";
 $email = $_SESSION['email'];
@@ -8,6 +8,9 @@ $link = "getProfile&email=" . urlencode($email);
 $link = "getBisnis";
 $data = getRegistran($link);
 $id = $data->data[0]->id_bisnis;
+
+$link = "getKategoriBisnis";
+$kategori = getRegistran($link);
 ?>
 
 
@@ -129,8 +132,8 @@ $id = $data->data[0]->id_bisnis;
                                     }
 
                                     $link = "setBisnis&kode_bisnis=" . urlencode($kode_bisnis) .
-                                        '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
-                                        '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&prospektus=' . urlencode($nama_prospektus) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
+                                    '&nama_bisnis=' . urlencode($nama_bisnis) . '&deskripsi=' . urlencode($deskripsi) .
+                                    '&dana=' . urlencode($dana) . '&estimasi=' . urlencode($estimasi) . '&gambar=' . urlencode($nama_file) . '&prospektus=' . urlencode($nama_prospektus) . '&lokasi=' . urlencode($lokasi) . '&kategori=' . urlencode($kategori) . '&email=' . urlencode($email) . '&sistem_pengolahan=' . urlencode($sistem_pengolahan) . '&skema_bisnis=' . urlencode($skema_bisnis) . '&minimum_invest=' . urlencode($minimum_invest) . '&type=insert';
                                     $data = getRegistran($link);
                                     $output = $data;
                                     if ($output) {
@@ -157,24 +160,38 @@ $id = $data->data[0]->id_bisnis;
                                             <input name="nama_bisnis" class="form-control" type="text"><br>
                                             <label for="">Deskripsi Bisnis</label>
                                             <textarea name="deskripsi" id="deskripsi"></textarea><br>
+                                             <label for="">Omset /Tahun (*Minimal Rp 1 Milyar)</label>
+                                            <input name="omset" class="form-control" type="number"><br>
+                                             <label for="">Lama Bisnis Berjalan (*Minimal 1-2 tahun)</label>
+                                            <input name="lama_bisnis" class="form-control" type="text"><br>
+                                             <label for="">Jumlah Lokasi Bisnis (*Minimal 3 lokasi untuk bisnis offline)</label>
+                                            <input name="jumlah_lokasi_bisnis" class="form-control" type="number"><br>
+
                                             <label for="">Kebutuhan Dana</label>
-                                            <input name="dana" class="form-control" type="text"><br>
+                                            <input name="dana" class="form-control" type="number"><br>
                                             <label for="">Estimasi</label>
                                             <input name="estimasi" class="form-control" type="text"><br>
+                                           
+                                            
                                             <label for="">Lokasi</label>
                                             <input name="lokasi" class="form-control" type="text"><br>
                                             <label for="">Kategori</label>
-                                            <input name="kategori" class="form-control" type="text"><br>
+                                            <select class="form-control" name="kategori" required="required">
+                                                <option value="">--Pilih Kategori--</option>
+                                                <?php foreach ($kategori->data as $array_item) { ?>
+                                                    <option><?php echo $array_item->nama_kategori; ?></option>
+                                                <?php } ?>
+                                            </select>
                                             <label for="">Email</label>
                                             <input name="email" class="form-control" type="text" value="<?php echo $email ?>" readonly><br>
-                                            <label for="">Sistem Pengolahan</label>
+                                            <!-- <label for="">Sistem Pengolahan</label>
                                             <select class="form-select" aria-label="Default select example" name="sistem_pengolahan">
                                                 <option selected>--Pilih Sistem Pengolahan--</option>
                                                 <option>Payroll</option>
                                                 <option>Personalia</option>
                                                 <option>Inventaris</option>
                                                 <option>UMKM</option>
-                                            </select>
+                                            </select> -->
                                             <label for="">Skema Bisnis</label>
                                             <select class="form-select" aria-label="Default select example" name="skema_bisnis">
                                                 <option selected>--Pilih Skema Bisnis--</option>
@@ -185,7 +202,7 @@ $id = $data->data[0]->id_bisnis;
                                                 <option>Manufaktur</option>
                                             </select>
                                             <label for="">Minimum Invest</label>
-                                            <input name="minimum_invest" class="form-control" type="number"><br>
+                                            <input value="1000000" name="minimum_invest" class="form-control" type="number" readonly><br>
                                             <label for="">Gambar</label>
                                             <input name="gambar" class="form-control" type="file"><br>
                                             <label for="">Prospektus</label>
@@ -220,7 +237,7 @@ $id = $data->data[0]->id_bisnis;
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             </div>
                         </div>
-                        <?php } else {
+                    <?php } else {
 
 
                         foreach ($output->data as $array_item) { ?>

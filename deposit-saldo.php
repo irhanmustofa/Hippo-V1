@@ -60,7 +60,7 @@ $link = "getProfile&email=" . urlencode($email);
                     } else {
                         $getExtensi = explode(".", $nama_file);
                         $extensi_file = strtolower(end($getExtensi));
-                        $nama_file = "file-" . $email . "_" . $id . "_" . $nama_file . '.' . $extensi_file;
+                        $nama_file = "bukti-transfer-" . $email . "_" . $id . "_" . $nama_file . '.' . $extensi_file;
                         if (!in_array($extensi_file, $extensi_izin) == true) {
                             $error .= " File hanya diperbolehkan dalam bentuk bukti_transfer (jpg, jpeg, png, gif)";
                             $allow_ktp = false;

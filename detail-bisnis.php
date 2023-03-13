@@ -91,8 +91,8 @@ $data = getRegistran($link);
               <p class="mb-0"><?php echo ($output->data[0]->deskripsi); ?></p>
             </div>
             <div class="tab-pane fade" id="prospektus" role="tabpanel" aria-labelledby="prospektus-tab">
-              <h6><?php echo ($output->data[0]->prospektus); ?></h6><br>
-              <a href="download-prospektus.php?Url=prospektus/<?php echo ($output->data[0]->prospektus); ?>" class="btn btn-primary" role="button" style="width: 50%;">Download Prospektus</a>
+              <!-- <h6><?php echo ($output->data[0]->prospektus); ?></h6><br> -->
+              <a href="download-prospektus.php?Url=prospektus/<?php echo ($output->data[0]->prospektus); ?>" class="btn btn-outline-primary w-100 rounded-pill" role="button" >Download Prospektus</a>
             </div>
           </div>
         </div>

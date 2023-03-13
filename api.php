@@ -6,6 +6,22 @@ if (function_exists($_GET['function'])) {
 }
 
 
+function getDanaTerkumpul()
+{
+
+    global $connect;
+    if (!empty($_GET['id_bisnis']))
+        $id_bisnis = $_GET['id_bisnis'];
+
+    $query = "SELECT SUM(jumlah_invest) as total FROM pendanaan WHERE id_bisnis = '$id_bisnis'";
+    $result = mysqli_query($connect, $query);
+    $row = mysqli_fetch_assoc($result);
+    $total = $row['total'];
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
 function getProfileAdmin()
 {
 
@@ -1504,6 +1520,95 @@ function getDepositUser()
     echo json_encode($dodol);
 }
 
+// api hari senin 13 maret
+
+function getDepositAdmin()
+{
+
+    global $connect;
+    $query = "SELECT * FROM deposit";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getDepositId()
+{
+
+    global $connect;
+    if (!empty($_GET['id_deposit']))
+        $id_deposit = $_GET['id_deposit'];
+    $query = "SELECT * FROM deposit WHERE id_deposit = '$id_deposit'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function setKonfirmasiDeposit()
+{
+    global $connect;
+
+    if (!empty($_GET['id_deposit']))
+        $id_deposit = $_GET['id_deposit'];
+    if (!empty($_GET['status']))
+        $status = $_GET['status'];
+    if (!empty($_GET['tanggal']))
+        $tanggal = $_GET['tanggal'];
+
+
+    $query = "UPDATE deposit SET status = '$status', tanggal = '$tanggal' WHERE id_deposit = '$id_deposit'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
 // api hari jumat
 function getRiwayatTransaksi()
 {
@@ -1560,4 +1665,146 @@ function getBisnisTransaksi()
 
     header('Content-Type: application/json');
     echo json_encode($dodol);
+}
+
+function setKategoriBisnis()
+{
+    global $connect;
+
+    if (!empty($_GET['kode_kategori']))
+        $kode_kategori = $_GET['kode_kategori'];
+    if (!empty($_GET['nama_kategori']))
+        $nama_kategori = $_GET['nama_kategori'];
+
+
+    $query = "INSERT INTO kategori_bisnis SET kode_kategori = '$kode_kategori',nama_kategori = '$nama_kategori'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function setUpdateKategoriBisnis()
+{
+    global $connect;
+
+    if (!empty($_GET['id_kategori']))
+        $id_kategori = $_GET['id_kategori'];
+    if (!empty($_GET['kode_kategori']))
+        $kode_kategori = $_GET['kode_kategori'];
+    if (!empty($_GET['nama_kategori']))
+        $nama_kategori = $_GET['nama_kategori'];
+
+
+    $query = "UPDATE kategori_bisnis SET kode_kategori = '$kode_kategori', nama_kategori = '$nama_kategori' WHERE id_kategori = '$id_kategori'";
+    $result = $connect->query($query);
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => 'Sukses'
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+function getKategoriBisnis()
+{
+
+    global $connect;
+    $query = "SELECT * FROM kategori_bisnis";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getKategoriBisnisId()
+{
+
+    global $connect;
+     if (!empty($_GET['id_kategori']))
+        $id_kategori = $_GET['id_kategori'];
+    $query = "SELECT * FROM kategori_bisnis WHERE id_kategori = '$id_kategori'";
+    $result = $connect->query($query);
+
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $dodol = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $dodol = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($dodol);
+}
+
+function getDeleteKategoriBisnis()
+{
+    global $connect;
+    $id_kategori = $_GET["id_kategori"];
+    $query = "DELETE FROM kategori_bisnis WHERE id_kategori = $id_kategori";
+    $result = $connect->query($query);
+    while ($row = mysqli_fetch_object($result)) {
+        $data[] = $row;
+    }
+
+    if ($result) {
+        $response = array(
+            'status' => 1,
+            'data' => $data
+        );
+    } else {
+        $response = array(
+            'status' => 0,
+            'data' => 'Gagal'
+        );
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
