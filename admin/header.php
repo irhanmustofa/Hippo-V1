@@ -82,6 +82,13 @@ $data = getRegistran($link);
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a href="aktivasi-user.php" class='sidebar-link'>
+                                <i class="bi bi-person-circle"></i>
+                                <span>Konfirmasi Aktivasi User</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-circle"></i>
